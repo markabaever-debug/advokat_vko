@@ -171,10 +171,10 @@ a {
 /* ===== DOCUMENT THUMBNAILS (увеличенные + рамка) ===== */
 /* ===================================================== */
 
-/* Размеры превью (можешь менять тут) */
+/* Размеры превью */
 :root {
-  --doc-w: 34mm;   /* было 20mm */
-  --doc-h: 48mm;   /* было 30mm */
+  --doc-w: 34mm;
+  --doc-h: 48mm;
 }
 
 .docsGrid {
@@ -194,6 +194,10 @@ a {
   padding: 0;
   text-align: left;
   cursor: pointer;
+
+  /* ВАЖНО: кнопки по умолчанию могут быть черными — фикс */
+  color: #ffffff;
+  font: inherit;
 }
 
 .docThumb {
@@ -203,9 +207,7 @@ a {
   border-radius: 12px;
   overflow: hidden;
 
-  /* “рамка документа” */
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
   border: 1px solid rgba(255,255,255,0.18);
   box-shadow: 0 14px 32px rgba(0,0,0,0.45);
 
@@ -215,8 +217,7 @@ a {
 .docThumb:hover {
   transform: translateY(-2px);
   border-color: rgba(255,255,255,0.28);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.05));
+  background: linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.05));
 }
 
 .docThumb img {
@@ -226,7 +227,7 @@ a {
   display: block;
 }
 
-/* маленький “PDF” бейдж */
+/* “PDF” бейдж */
 .docThumb::after {
   content: "PDF";
   position: absolute;
@@ -242,9 +243,11 @@ a {
 }
 
 .docLabel {
-  font-size: 12px;
+  /* ФИКС: делаем подпись читабельной */
+  color: rgba(255,255,255,0.92);
+  font-size: 12.5px;
   line-height: 1.25;
-  opacity: 0.88;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.35);
 }
 
 /* ===================================================== */
@@ -290,10 +293,18 @@ a {
   opacity: 0.92;
 }
 
+.modalHint {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
 .modalActions {
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .modalBtn {
@@ -304,11 +315,24 @@ a {
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 13px;
+  color: #fff;
 }
 
 .modalBtn:hover {
   background: rgba(255,255,255,0.12);
   transform: translateY(-1px);
+}
+
+.modalBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.modalCounter {
+  font-size: 12px;
+  opacity: 0.75;
+  padding: 0 6px;
 }
 
 .modalBody {
@@ -322,29 +346,13 @@ a {
   border: 0;
 }
 
-/* ===== DOCUMENT LIST (если где-то ещё используется) ===== */
-
-ul {
-  padding-left: 20px;
-}
-
-li {
-  margin-bottom: 8px;
-}
-
-li a {
-  text-decoration: underline;
-}
-
 /* ===== FOOTER ===== */
 
 footer {
   text-align: center;
 }
 
-/* ===================================================== */
 /* ================= RESPONSIVE ======================== */
-/* ===================================================== */
 
 @media (max-width: 768px) {
   .h1 {
@@ -359,12 +367,10 @@ footer {
     padding: 20px;
   }
 
-  /* Services → 1 колонка */
   .servicesGrid {
     grid-template-columns: 1fr;
   }
 
-  /* Документы чуть меньше на телефоне */
   :root {
     --doc-w: 30mm;
     --doc-h: 44mm;
