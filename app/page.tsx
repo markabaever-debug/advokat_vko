@@ -34,7 +34,7 @@ export default function Home() {
 
           <div className="ctaRow">
             <a className="btn btnPrimary" href="tel:+77775430791">📞 Позвонить</a>
-            <a className="btn" href="https://wa.me/87775430791" target="_blank" rel="noreferrer">💬 Написать в WhatsApp</a>
+            <a className="btn" href="https://wa.me/77775430791" target="_blank" rel="noreferrer">💬 Написать в WhatsApp</a>
             <a className="btn" href="https://t.me/ai_advokat_kz_bot" target="_blank" rel="noreferrer">➡️ Открыть Telegram-бот</a>
           </div>
 
