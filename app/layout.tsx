@@ -25,6 +25,14 @@ export const metadata: Metadata = {
     siteName: "Advokat VKO",
     locale: "ru_RU",
     type: "website",
+    images: ["/og.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Адвокат в Усть-Каменогорске — Advokat VKO",
+    description:
+      "Юридическая помощь по гражданским и уголовным делам. Консультация онлайн и очно.",
+    images: ["/og.jpg"],
   },
 };
 
@@ -35,9 +43,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
