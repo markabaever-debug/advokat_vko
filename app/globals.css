@@ -168,38 +168,55 @@ a {
 }
 
 /* ===================================================== */
-/* ===== DOCUMENT THUMBNAILS (20x30 мм) =============== */
+/* ===== DOCUMENT THUMBNAILS (увеличенные + рамка) ===== */
 /* ===================================================== */
+
+/* Размеры превью (можешь менять тут) */
+:root {
+  --doc-w: 34mm;   /* было 20mm */
+  --doc-h: 48mm;   /* было 30mm */
+}
 
 .docsGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 16px;
   margin-top: 12px;
 }
 
-.docCard {
-  width: 20mm;
+.docCardBtn {
+  width: var(--doc-w);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
 }
 
 .docThumb {
-  width: 20mm;
-  height: 30mm;
-  border-radius: 10px;
+  position: relative;
+  width: var(--doc-w);
+  height: var(--doc-h);
+  border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.04);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+
+  /* “рамка документа” */
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.45);
+
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .docThumb:hover {
   transform: translateY(-2px);
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.28);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.05));
 }
 
 .docThumb img {
@@ -209,10 +226,100 @@ a {
   display: block;
 }
 
+/* маленький “PDF” бейдж */
+.docThumb::after {
+  content: "PDF";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  background: rgba(0,0,0,0.65);
+  padding: 3px 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.18);
+  opacity: 0.95;
+}
+
 .docLabel {
   font-size: 12px;
   line-height: 1.25;
-  opacity: 0.85;
+  opacity: 0.88;
+}
+
+/* ===================================================== */
+/* ===== MODAL (PDF viewer) ============================ */
+/* ===================================================== */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 9999;
+}
+
+.modalPanel {
+  width: min(980px, 100%);
+  height: min(86vh, 860px);
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.6);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.modalTitle {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.92;
+}
+
+.modalActions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.modalBtn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+}
+
+.modalBtn:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
+}
+
+.modalBody {
+  flex: 1;
+  background: rgba(0,0,0,0.25);
+}
+
+.modalFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 /* ===== DOCUMENT LIST (если где-то ещё используется) ===== */
@@ -240,7 +347,6 @@ footer {
 /* ===================================================== */
 
 @media (max-width: 768px) {
-
   .h1 {
     font-size: 26px;
   }
@@ -258,13 +364,13 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  /* Документы немного больше на телефоне */
-  .docCard {
-    width: 24mm;
+  /* Документы чуть меньше на телефоне */
+  :root {
+    --doc-w: 30mm;
+    --doc-h: 44mm;
   }
 
-  .docThumb {
-    width: 24mm;
-    height: 36mm;
+  .modalPanel {
+    height: 84vh;
   }
 }
