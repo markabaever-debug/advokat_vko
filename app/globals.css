@@ -1,382 +1,333 @@
-/* ===== BASE ===== */
-
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
-  background: linear-gradient(135deg, #0f172a, #0b1120);
-  color: #ffffff;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* ===== LAYOUT ===== */
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.panel {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 18px;
-  padding: 30px;
-  backdrop-filter: blur(10px);
-}
-
-/* ===== HEADER ===== */
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.brand {
-  font-size: 20px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.badge {
-  background: rgba(255,255,255,0.08);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  opacity: 0.8;
-}
-
-/* ===== TEXT ===== */
-
-.h1 {
-  font-size: 34px;
-  margin: 0 0 10px 0;
-}
-
-.h2 {
-  font-size: 24px;
-  margin: 0;
-}
-
-.sub {
-  opacity: 0.85;
-  line-height: 1.6;
-}
-
-.muted {
-  opacity: 0.7;
-  line-height: 1.6;
-}
-
-/* ===== BUTTONS ===== */
-
-.btn {
-  padding: 10px 18px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.05);
-  cursor: pointer;
-  transition: all 0.25s ease;
-  font-size: 14px;
-}
-
-.btn:hover {
-  background: rgba(255,255,255,0.12);
-  transform: translateY(-2px);
-}
-
-.btnPrimary {
-  background: linear-gradient(90deg, #3b82f6, #2563eb);
-  border: none;
-}
-
-.btnPrimary:hover {
-  background: linear-gradient(90deg, #2563eb, #1d4ed8);
-}
-
-/* ===== CTA ROW ===== */
-
-.ctaRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-/* ===== KPI BLOCK ===== */
-
-.kpis {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.kpi {
-  background: rgba(255,255,255,0.07);
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 13px;
-}
-
-/* ===================================================== */
-/* ===== SERVICES BLOCK (4 направления) =============== */
-/* ===================================================== */
-
-.servicesGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.serviceCard {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 18px;
-  transition: all 0.25s ease;
-}
-
-.serviceCard:hover {
-  background: rgba(255,255,255,0.09);
-  transform: translateY(-2px);
-}
-
-.serviceCardTitle {
-  margin: 0 0 8px 0;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.serviceCardText {
-  margin: 0;
-  opacity: 0.75;
-  line-height: 1.6;
-  font-size: 14px;
-}
-
-/* ===================================================== */
-/* ===== DOCUMENT THUMBNAILS (увеличенные + рамка) ===== */
-/* ===================================================== */
-
-/* Размеры превью */
-:root {
-  --doc-w: 34mm;
-  --doc-h: 48mm;
-}
-
-.docsGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 12px;
-}
-
-.docCardBtn {
-  width: var(--doc-w);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: transparent;
-  border: 0;
-  padding: 0;
-  text-align: left;
-  cursor: pointer;
-
-  /* ВАЖНО: кнопки по умолчанию могут быть черными — фикс */
-  color: #ffffff;
-  font: inherit;
-}
-
-.docThumb {
-  position: relative;
-  width: var(--doc-w);
-  height: var(--doc-h);
-  border-radius: 12px;
-  overflow: hidden;
-
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-  border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: 0 14px 32px rgba(0,0,0,0.45);
-
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-
-.docThumb:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255,255,255,0.28);
-  background: linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.05));
-}
-
-.docThumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* “PDF” бейдж */
-.docThumb::after {
-  content: "PDF";
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  font-size: 10px;
-  letter-spacing: 0.5px;
-  background: rgba(0,0,0,0.65);
-  padding: 3px 6px;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.18);
-  opacity: 0.95;
-}
-
-.docLabel {
-  /* ФИКС: делаем подпись читабельной */
-  color: rgba(255,255,255,0.92);
-  font-size: 12.5px;
-  line-height: 1.25;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.35);
-}
-
-/* ===================================================== */
-/* ===== MODAL (PDF viewer) ============================ */
-/* ===================================================== */
-
-.modalOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.72);
-  backdrop-filter: blur(6px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  z-index: 9999;
-}
-
-.modalPanel {
-  width: min(980px, 100%);
-  height: min(86vh, 860px);
-  background: rgba(15, 23, 42, 0.92);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 16px;
-  box-shadow: 0 24px 70px rgba(0,0,0,0.6);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.modalHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.10);
-}
-
-.modalTitle {
-  font-size: 14px;
-  font-weight: 600;
-  opacity: 0.92;
-}
-
-.modalHint {
-  font-size: 12px;
-  opacity: 0.7;
-  margin-top: 2px;
-}
-
-.modalActions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-.modalBtn {
-  padding: 8px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.06);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 13px;
-  color: #fff;
-}
-
-.modalBtn:hover {
-  background: rgba(255,255,255,0.12);
-  transform: translateY(-1px);
-}
-
-.modalBtn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.modalCounter {
-  font-size: 12px;
-  opacity: 0.75;
-  padding: 0 6px;
-}
-
-.modalBody {
-  flex: 1;
-  background: rgba(0,0,0,0.25);
-}
-
-.modalFrame {
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-/* ===== FOOTER ===== */
-
-footer {
-  text-align: center;
-}
-
-/* ================= RESPONSIVE ======================== */
-
-@media (max-width: 768px) {
-  .h1 {
-    font-size: 26px;
-  }
-
-  .container {
-    padding: 20px 15px;
-  }
-
-  .panel {
-    padding: 20px;
-  }
-
-  .servicesGrid {
-    grid-template-columns: 1fr;
-  }
-
-  :root {
-    --doc-w: 30mm;
-    --doc-h: 44mm;
-  }
-
-  .modalPanel {
-    height: 84vh;
-  }
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+
+type DocItem = {
+  id: string;
+  title: string;
+  pdf: string;
+  thumb: string;
+};
+
+export default function Home() {
+  const shortName = "Маркабаев Е.Б.";
+  const fullName = "Маркабаев Ерлан Бапашевич";
+  const city = "Усть-Каменогорск";
+  const region = "ВКО";
+
+  const phoneDisplay = "7775430791";
+  const phoneCall = "+77775430791";
+  const waNumber = "77775430791";
+
+  const waText = encodeURIComponent("Здравствуйте! Нужна консультация адвоката");
+  const waLink = `https://wa.me/${waNumber}?text=${waText}`;
+  const tgLink = "https://t.me/ai_advokat_kz_bot";
+
+  const docs: DocItem[] = useMemo(
+    () => [
+      {
+        id: "license",
+        title: "Лицензия на занятие адвокатской деятельностью",
+        pdf: "/docs/license.pdf",
+        thumb: "/docs/thumbs/license.jpg",
+      },
+      {
+        id: "insurance",
+        title: "Страхование адвокатской деятельности",
+        pdf: "/docs/insurance.pdf",
+        thumb: "/docs/thumbs/insurance.jpg",
+      },
+      {
+        id: "cert1",
+        title: "Повышение квалификации (1)",
+        pdf: "/docs/cert-1.pdf",
+        thumb: "/docs/thumbs/cert-1.jpg",
+      },
+      {
+        id: "cert2",
+        title: "Повышение квалификации (2)",
+        pdf: "/docs/cert-2.pdf",
+        thumb: "/docs/thumbs/cert-2.jpg",
+      },
+      {
+        id: "cert3",
+        title: "Повышение квалификации (3)",
+        pdf: "/docs/cert-3.pdf",
+        thumb: "/docs/thumbs/cert-3.jpg",
+      },
+    ],
+    []
+  );
+
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const openDoc = openIndex === null ? null : docs[openIndex];
+
+  const goPrev = () => {
+    if (openIndex === null) return;
+    setOpenIndex((prev) => {
+      if (prev === null) return null;
+      return (prev - 1 + docs.length) % docs.length; // зацикливание
+    });
+  };
+
+  const goNext = () => {
+    if (openIndex === null) return;
+    setOpenIndex((prev) => {
+      if (prev === null) return null;
+      return (prev + 1) % docs.length; // зацикливание
+    });
+  };
+
+  // ESC закрывает, стрелки листают
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (openIndex === null) return;
+
+      if (e.key === "Escape") setOpenIndex(null);
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "ArrowRight") goNext();
+    };
+
+    if (openIndex !== null) window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [openIndex]);
+
+  return (
+    <main className="container">
+      {/* HEADER */}
+      <header className="nav">
+        <div className="brand">
+          ⚖️ {shortName}
+          <span className="badge">
+            {city} • {region}
+          </span>
+        </div>
+
+        <div style={{ display: "flex", gap: 10 }}>
+          <a className="btn" href={tgLink} target="_blank" rel="noreferrer">
+            Telegram
+          </a>
+          <a className="btn" href={waLink} target="_blank" rel="noreferrer">
+            WhatsApp
+          </a>
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section className="panel" style={{ marginTop: 20 }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 30,
+            alignItems: "flex-start",
+            flexWrap: "wrap",
+          }}
+        >
+          <div style={{ flex: 1, minWidth: 260 }}>
+            <h1 className="h1">{shortName}</h1>
+
+            <p className="sub">
+              Адвокат, {city} ({region}). Гражданские и уголовные дела. Судебная
+              защита, документы, консультация онлайн и очно.
+            </p>
+
+            <div className="kpis">
+              <div className="kpi">✅ Конфиденциально</div>
+              <div className="kpi">✅ Срочные дела</div>
+              <div className="kpi">✅ Суд / переговоры</div>
+            </div>
+
+            <div className="ctaRow" style={{ marginTop: 20 }}>
+              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
+                📞 Позвонить
+              </a>
+
+              <a className="btn" href={waLink} target="_blank" rel="noreferrer">
+                💬 WhatsApp
+              </a>
+
+              <a className="btn" href={tgLink} target="_blank" rel="noreferrer">
+                🤖 Telegram
+              </a>
+            </div>
+          </div>
+
+          <div
+            style={{
+              width: 160,
+              height: 220,
+              borderRadius: 14,
+              overflow: "hidden",
+              border: "2px solid rgba(255,255,255,0.15)",
+              boxShadow: "0 15px 35px rgba(0,0,0,0.45)",
+              flexShrink: 0,
+            }}
+          >
+            <img
+              src="/me.jpg"
+              alt="Адвокат Маркабаев Е.Б."
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section className="panel" style={{ marginTop: 30 }}>
+        <h2 className="h2">Основные направления</h2>
+
+        <p className="muted" style={{ marginTop: 10 }}>
+          Юридическая помощь в {city} ({region})
+        </p>
+
+        <div className="servicesGrid" style={{ marginTop: 20 }}>
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">⚖️ Уголовные дела</h3>
+            <p className="serviceCardText">
+              Защита и представительство по уголовным делам, участие на стадии
+              следствия и суда.
+            </p>
+          </div>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">📄 Гражданские дела</h3>
+            <p className="serviceCardText">
+              Взыскание долгов по расписке, семейные и наследственные дела, споры
+              о собственности.
+            </p>
+          </div>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">🚗 Административные дела</h3>
+            <p className="serviceCardText">
+              ДТП, нарушения ПДД, обжалование штрафов, защита при лишении
+              водительских прав.
+            </p>
+          </div>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">🏛 Дела по АППК</h3>
+            <p className="serviceCardText">
+              Споры с государственными органами, оспаривание решений и действий
+              должностных лиц.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section className="panel" style={{ marginTop: 30 }}>
+        <h2 className="h2">Об адвокате</h2>
+
+        <p className="muted" style={{ marginTop: 10 }}>
+          {fullName}. Консультации и ведение дел: уголовные, гражданские, семейные
+          споры, подготовка процессуальных документов, представительство в суде.
+        </p>
+
+        <div style={{ marginTop: 20 }}>
+          <strong>Контакты:</strong>
+          <div>📞 {phoneDisplay}</div>
+          <div>
+            📍 {city} ({region})
+          </div>
+          <div>Telegram: t.me/ai_advokat_kz_bot</div>
+        </div>
+
+        <h3 style={{ marginTop: 25 }}>Документы и сертификаты</h3>
+        <p className="muted" style={{ marginTop: 8 }}>
+          Нажмите на документ для просмотра. В окне просмотра: ← → (листание), Esc (закрыть).
+        </p>
+
+        <div className="docsGrid">
+          {docs.map((d, idx) => (
+            <button
+              key={d.id}
+              type="button"
+              className="docCardBtn"
+              onClick={() => setOpenIndex(idx)}
+              aria-label={`Открыть: ${d.title}`}
+            >
+              <div className="docThumb">
+                <img src={d.thumb} alt={d.title} />
+              </div>
+              <div className="docLabel">{d.title}</div>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
+        Информация на сайте носит справочный характер и не является публичной
+        офертой.
+      </footer>
+
+      {/* MODAL */}
+      {openDoc && openIndex !== null && (
+        <div
+          className="modalOverlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label={openDoc.title}
+          onClick={() => setOpenIndex(null)}
+        >
+          <div className="modalPanel" onClick={(e) => e.stopPropagation()}>
+            <div className="modalHeader">
+              <div>
+                <div className="modalTitle">{openDoc.title}</div>
+                <div className="modalHint">← → листать • Esc закрыть</div>
+              </div>
+
+              <div className="modalActions">
+                <button type="button" className="modalBtn" onClick={goPrev} title="Предыдущий (←)">
+                  ← Назад
+                </button>
+
+                <div className="modalCounter">
+                  {openIndex + 1}/{docs.length}
+                </div>
+
+                <button type="button" className="modalBtn" onClick={goNext} title="Следующий (→)">
+                  Вперёд →
+                </button>
+
+                <a
+                  className="modalBtn"
+                  href={openDoc.pdf}
+                  target="_blank"
+                  rel="noreferrer"
+                  title="Открыть PDF в новой вкладке"
+                >
+                  Открыть PDF
+                </a>
+
+                <button
+                  type="button"
+                  className="modalBtn"
+                  onClick={() => setOpenIndex(null)}
+                  title="Закрыть (Esc)"
+                >
+                  ✕ Закрыть
+                </button>
+              </div>
+            </div>
+
+            <div className="modalBody">
+              <iframe
+                key={openDoc.pdf}
+                className="modalFrame"
+                src={`${openDoc.pdf}#view=FitH`}
+                title={openDoc.title}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </main>
+  );
 }
