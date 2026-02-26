@@ -1,319 +1,168 @@
-:root{
-  --bg: #0b1220;
-  --card: rgba(255,255,255,.06);
-  --card2: rgba(255,255,255,.08);
-  --text: rgba(255,255,255,.92);
-  --muted: rgba(255,255,255,.68);
-  --line: rgba(255,255,255,.12);
-  --brand: #7c3aed;
-  --brand2: #06b6d4;
-  --shadow: 0 18px 50px rgba(0,0,0,.35);
+/* ===== BASE ===== */
+
+* {
+  box-sizing: border-box;
 }
 
-* { box-sizing: border-box; }
-html, body { padding: 0; margin: 0; }
-body{
-  background:
-    radial-gradient(900px 500px at 15% 10%, rgba(124,58,237,.25), transparent 60%),
-    radial-gradient(900px 500px at 85% 0%, rgba(6,182,212,.20), transparent 55%),
-    linear-gradient(180deg, #070b14 0%, #0b1220 35%, #070b14 100%);
-  color: var(--text);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-  line-height: 1.6;
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #0b1120);
+  color: #ffffff;
 }
 
-a { color: inherit; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-.container{
-  max-width: 1040px;
+/* ===== LAYOUT ===== */
+
+.container {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 28px 18px 64px;
+  padding: 40px 20px;
 }
 
-.nav{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(255,255,255,.03);
-  box-shadow: 0 10px 30px rgba(0,0,0,.18);
-  position: sticky;
-  top: 14px;
+.panel {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 30px;
   backdrop-filter: blur(10px);
 }
 
-.brand{
-  display:flex; align-items:center; gap:10px;
-  font-weight: 700;
-  letter-spacing: .2px;
+/* ===== HEADER ===== */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.badge{
-  font-size: 12px;
+.brand {
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badge {
+  background: rgba(255,255,255,0.08);
   padding: 4px 10px;
   border-radius: 999px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.04);
-  color: var(--muted);
+  font-size: 12px;
+  opacity: 0.8;
 }
 
-.hero{
-  margin-top: 20px;
-  display:grid;
-  grid-template-columns: 1.25fr .75fr;
-  gap: 18px;
+/* ===== TEXT ===== */
+
+.h1 {
+  font-size: 34px;
+  margin: 0 0 10px 0;
 }
 
-@media (max-width: 880px){
-  .hero{ grid-template-columns: 1fr; }
-}
-
-.panel{
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-  box-shadow: var(--shadow);
-  padding: 22px;
-}
-
-.h1{
-  font-size: 38px;
-  line-height: 1.12;
-  margin: 0 0 10px;
-}
-
-@media (max-width: 520px){
-  .h1{ font-size: 30px; }
-}
-
-.sub{
-  margin: 0 0 14px;
-  color: var(--muted);
-  font-size: 16px;
-}
-
-.kpis{
-  display:flex; gap:10px; flex-wrap: wrap;
-  margin-top: 14px;
-}
-
-.kpi{
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.03);
-  border-radius: 12px;
-  padding: 10px 12px;
-  font-size: 13px;
-  color: var(--muted);
-}
-
-.ctaRow{
-  display:flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 16px;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap: 8px;
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  text-decoration:none;
-  background: rgba(255,255,255,.03);
-  transition: transform .08s ease, background .2s ease, border-color .2s ease;
-  font-weight: 600;
-}
-
-.btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.22); }
-
-.btnPrimary{
-  background: linear-gradient(135deg, var(--brand), var(--brand2));
-  border: 0;
-  color: white;
-}
-
-.grid{
-  margin-top: 18px;
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-@media (max-width: 880px){
-  .grid{ grid-template-columns: 1fr; }
-}
-
-.card{
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: rgba(255,255,255,.03);
-  padding: 16px;
-}
-
-.cardTitle{
-  margin: 0 0 6px;
-  font-size: 16px;
-}
-
-.cardText{
+.h2 {
+  font-size: 24px;
   margin: 0;
-  color: var(--muted);
+}
+
+.sub {
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.muted {
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+/* ===== BUTTONS ===== */
+
+.btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: all 0.25s ease;
   font-size: 14px;
 }
 
-.section{
-  margin-top: 18px;
+.btn:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
 }
 
-.h2{
-  margin: 0 0 10px;
-  font-size: 22px;
+.btnPrimary {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border: none;
 }
 
-.list{
-  margin: 0;
-  padding-left: 18px;
-  color: var(--muted);
+.btnPrimary:hover {
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
 }
 
-.faq details{
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.03);
-  border-radius: 14px;
-  padding: 12px 14px;
-  margin-bottom: 10px;
+/* ===== CTA ROW ===== */
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.faq summary{
-  cursor: pointer;
-  font-weight: 700;
+/* ===== KPI BLOCK ===== */
+
+.kpis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-.footer{
-  margin-top: 26px;
-  color: var(--muted);
-  font-size: 12px;
-  border-top: 1px solid var(--line);
-  padding-top: 14px;
+.kpi {
+  background: rgba(255,255,255,0.07);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
 }
-export default function Home() {
-  const displayNameShort = "Маркабаев Е.Б.";
-  const displayNameFull = "Маркабаев Ерлан Бапашевич";
-  const city = "Усть-Каменогорск";
-  const region = "ВКО";
 
-  const phoneRaw = "87775430791";
-  const phoneE164 = "+77775430791";
-  const waPhone = "77775430791";
+/* ===== DOCUMENT LIST ===== */
 
-  const waText = encodeURIComponent(
-    "Здравствуйте! Нужна консультация адвоката? Опишите ситуацию:"
-  );
+ul {
+  padding-left: 20px;
+}
 
-  const waLink = `https://wa.me/${waPhone}?text=${waText}`;
-  const tgLink = "https://t.me/ai_advokat_kz_bot";
+li {
+  margin-bottom: 8px;
+}
 
-  return (
-    <main className="container">
-      <header className="nav">
-        <div className="brand">
-          ⚖️ <span>{displayNameShort}</span>
-          <span className="badge">
-            {city} • {region}
-          </span>
-        </div>
+li a {
+  text-decoration: underline;
+}
 
-        <div style={{ display: "flex", gap: 10 }}>
-          <a className="btn" href={tgLink} target="_blank" rel="noreferrer">
-            Telegram
-          </a>
-          <a className="btn" href={waLink} target="_blank" rel="noreferrer">
-            WhatsApp
-          </a>
-        </div>
-      </header>
+/* ===== FOOTER ===== */
 
-      {/* HERO */}
-      <section className="hero">
-        <div className="panel heroGrid">
-          
-          {/* Текст */}
-          <div>
-            <h1 className="h1">{displayNameShort}</h1>
-            <p className="sub">
-              Адвокат, {city} ({region}). Гражданские и уголовные дела.
-              Судебная защита, документы, консультация онлайн и очно.
-            </p>
+footer {
+  text-align: center;
+}
 
-            <div className="kpis">
-              <div className="kpi">✅ Конфиденциально</div>
-              <div className="kpi">✅ Срочные дела</div>
-              <div className="kpi">✅ Суд / переговоры</div>
-            </div>
+/* ===== RESPONSIVE ===== */
 
-            <div className="ctaRow">
-              <a className="btn btnPrimary" href={`tel:${phoneE164}`}>
-                📞 Позвонить
-              </a>
+@media (max-width: 768px) {
+  .h1 {
+    font-size: 26px;
+  }
 
-              <a className="btn" href={waLink} target="_blank" rel="noreferrer">
-                💬 WhatsApp
-              </a>
+  .container {
+    padding: 20px 15px;
+  }
 
-              <a className="btn" href={tgLink} target="_blank" rel="noreferrer">
-                🤖 Telegram
-              </a>
-            </div>
-          </div>
-
-          {/* Фото */}
-          <div className="heroPhoto">
-            <img
-              src="/me.jpg"
-              alt={`Адвокат ${displayNameFull}`}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ОБ АДВОКАТЕ */}
-      <section className="panel" style={{ marginTop: 20 }}>
-        <h2 className="h2">Об адвокате</h2>
-
-        <p className="muted">
-          {displayNameFull}. Консультации и ведение дел: уголовные,
-          гражданские, семейные споры, подготовка документов и судебное
-          представительство.
-        </p>
-
-        <h3 className="h3" style={{ marginTop: 20 }}>
-          Документы и сертификаты
-        </h3>
-
-        <ul className="docList">
-          <li>
-            <a href="/docs/udostoverenie.pdf" target="_blank">
-              Удостоверение адвоката (PDF)
-            </a>
-          </li>
-          <li>
-            <a href="/docs/strahovka.pdf" target="_blank">
-              Страховка адвокатской деятельности (PDF)
-            </a>
-          </li>
-          <li>
-            <a href="/docs/sertifikat-kursy.pdf" target="_blank">
-              Сертификат повышения квалификации (PDF)
-            </a>
-          </li>
-        </ul>
-      </section>
-    </main>
-  );
+  .panel {
+    padding: 20px;
+  }
 }
