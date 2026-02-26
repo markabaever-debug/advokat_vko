@@ -59,16 +59,40 @@ export default function Home() {
     []
   );
 
-  const [openDoc, setOpenDoc] = useState<DocItem | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  // ESC закрывает модалку
+  const openDoc = openIndex === null ? null : docs[openIndex];
+
+  const goPrev = () => {
+    if (openIndex === null) return;
+    setOpenIndex((prev) => {
+      if (prev === null) return null;
+      return (prev - 1 + docs.length) % docs.length; // зацикливание
+    });
+  };
+
+  const goNext = () => {
+    if (openIndex === null) return;
+    setOpenIndex((prev) => {
+      if (prev === null) return null;
+      return (prev + 1) % docs.length; // зацикливание
+    });
+  };
+
+  // ESC закрывает, стрелки листают
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpenDoc(null);
+      if (openIndex === null) return;
+
+      if (e.key === "Escape") setOpenIndex(null);
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "ArrowRight") goNext();
     };
-    if (openDoc) window.addEventListener("keydown", onKeyDown);
+
+    if (openIndex !== null) window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [openDoc]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [openIndex]);
 
   return (
     <main className="container">
@@ -101,7 +125,6 @@ export default function Home() {
             flexWrap: "wrap",
           }}
         >
-          {/* LEFT SIDE */}
           <div style={{ flex: 1, minWidth: 260 }}>
             <h1 className="h1">{shortName}</h1>
 
@@ -131,7 +154,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* PHOTO RIGHT */}
           <div
             style={{
               width: 160,
@@ -219,16 +241,16 @@ export default function Home() {
 
         <h3 style={{ marginTop: 25 }}>Документы и сертификаты</h3>
         <p className="muted" style={{ marginTop: 8 }}>
-          Нажмите на документ, чтобы открыть просмотр.
+          Нажмите на документ для просмотра. В окне просмотра: ← → (листание), Esc (закрыть).
         </p>
 
         <div className="docsGrid">
-          {docs.map((d) => (
+          {docs.map((d, idx) => (
             <button
               key={d.id}
               type="button"
               className="docCardBtn"
-              onClick={() => setOpenDoc(d)}
+              onClick={() => setOpenIndex(idx)}
               aria-label={`Открыть: ${d.title}`}
             >
               <div className="docThumb">
@@ -246,32 +268,48 @@ export default function Home() {
       </footer>
 
       {/* MODAL */}
-      {openDoc && (
+      {openDoc && openIndex !== null && (
         <div
           className="modalOverlay"
           role="dialog"
           aria-modal="true"
           aria-label={openDoc.title}
-          onClick={() => setOpenDoc(null)}
+          onClick={() => setOpenIndex(null)}
         >
           <div className="modalPanel" onClick={(e) => e.stopPropagation()}>
             <div className="modalHeader">
-              <div className="modalTitle">{openDoc.title}</div>
+              <div>
+                <div className="modalTitle">{openDoc.title}</div>
+                <div className="modalHint">← → листать • Esc закрыть</div>
+              </div>
 
               <div className="modalActions">
+                <button type="button" className="modalBtn" onClick={goPrev} title="Предыдущий (←)">
+                  ← Назад
+                </button>
+
+                <div className="modalCounter">
+                  {openIndex + 1}/{docs.length}
+                </div>
+
+                <button type="button" className="modalBtn" onClick={goNext} title="Следующий (→)">
+                  Вперёд →
+                </button>
+
                 <a
                   className="modalBtn"
                   href={openDoc.pdf}
                   target="_blank"
                   rel="noreferrer"
-                  title="Открыть в новой вкладке"
+                  title="Открыть PDF в новой вкладке"
                 >
                   Открыть PDF
                 </a>
+
                 <button
                   type="button"
                   className="modalBtn"
-                  onClick={() => setOpenDoc(null)}
+                  onClick={() => setOpenIndex(null)}
                   title="Закрыть (Esc)"
                 >
                   ✕ Закрыть
@@ -281,6 +319,7 @@ export default function Home() {
 
             <div className="modalBody">
               <iframe
+                key={openDoc.pdf}
                 className="modalFrame"
                 src={`${openDoc.pdf}#view=FitH`}
                 title={openDoc.title}
