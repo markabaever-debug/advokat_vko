@@ -4,7 +4,7 @@ export default function Home() {
   const waPhone = "77775430791";
 
   const waText = encodeURIComponent(
-    "Здравствуйте! Нужна консультация адвоката? Опишите ситуацию:"
+    "Здравствуйте! Нужна консультация адвоката?"
   );
 
   const waLink = `https://wa.me/${waPhone}?text=${waText}`;
