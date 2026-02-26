@@ -11,7 +11,7 @@ export default function Home() {
           <a className="btn" href="https://t.me/ai_advokat_kz_bot" target="_blank" rel="noreferrer">
             🤖 Telegram
           </a>
-          <a className="btn" href="https://wa.me/87775430791" target="_blank" rel="noreferrer">
+          <a className="btn" href="https://wa.me/77775430791" target="_blank" rel="noreferrer">
             💬 WhatsApp
           </a>
         </div>
