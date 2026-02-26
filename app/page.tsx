@@ -35,7 +35,6 @@ export default function Home() {
 
       {/* HERO */}
       <section className="panel" style={{ marginTop: 20 }}>
-
         <div style={{ display: "flex", gap: 30, alignItems: "flex-start", flexWrap: "wrap" }}>
 
           {/* LEFT SIDE */}
@@ -91,6 +90,51 @@ export default function Home() {
                 objectFit: "cover"
               }}
             />
+          </div>
+
+        </div>
+      </section>
+
+      {/* SERVICES BLOCK */}
+      <section className="panel" style={{ marginTop: 30 }}>
+        <h2 className="h2">Основные направления</h2>
+
+        <p className="muted" style={{ marginTop: 10 }}>
+          Юридическая помощь в {city} ({region})
+        </p>
+
+        <div className="servicesGrid" style={{ marginTop: 20 }}>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">⚖️ Уголовные дела</h3>
+            <p className="serviceCardText">
+              Защита и представительство по уголовным делам,
+              участие на стадии следствия и суда.
+            </p>
+          </div>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">📄 Гражданские дела</h3>
+            <p className="serviceCardText">
+              Взыскание долгов по расписке, семейные и наследственные дела,
+              споры о собственности.
+            </p>
+          </div>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">🚗 Административные дела</h3>
+            <p className="serviceCardText">
+              ДТП, нарушения ПДД, обжалование штрафов,
+              защита при лишении водительских прав.
+            </p>
+          </div>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">🏛 Дела по АППК</h3>
+            <p className="serviceCardText">
+              Споры с государственными органами,
+              оспаривание решений и действий должностных лиц.
+            </p>
           </div>
 
         </div>
