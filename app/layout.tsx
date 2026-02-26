@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Адвокат в Усть-Каменогорске — юридическая консультация (ВКО)",
+  title: "Адвокат Маркабаев Е.Б.",
   description:
     "Адвокат в Усть-Каменогорске: уголовные и гражданские дела, семейные споры, документы, представительство в суде. WhatsApp/Telegram: 87775430791.",
   metadataBase: new URL("https://advokatvko.vercel.app"),
