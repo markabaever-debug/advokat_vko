@@ -1,198 +1,146 @@
 export default function Home() {
-  // Твои данные
-  const displayNameShort = "адвокат Маркабаев Е.Б.";
-  const displayNameFull = "Маркабаев Ерлан Бапашевич";
+  const shortName = "Маркабаев Е.Б.";
+  const fullName = "Маркабаев Ерлан Бапашевич";
   const city = "Усть-Каменогорск";
   const region = "ВКО";
 
-  const phoneRaw = "87775430791"; // как показываем на сайте
-  const phoneE164 = "+77775430791"; // для tel:
-  const waPhone = "77775430791"; // для wa.me (без 8 и без +)
+  const phoneDisplay = "7775430791";
+  const phoneCall = "+77775430791";
+  const waNumber = "77775430791";
 
   const waText = encodeURIComponent(
-    "Здравствуйте! Нужна консультация адвоката? Опишите ситуацию:"
+    "Здравствуйте! Нужна консультация адвоката"
   );
 
-  const waLink = `https://wa.me/${waPhone}?text=${waText}`;
+  const waLink = `https://wa.me/${waNumber}?text=${waText}`;
   const tgLink = "https://t.me/ai_advokat_kz_bot";
 
   return (
     <main className="container">
-      {/* Верхняя панель */}
+
+      {/* HEADER */}
       <header className="nav">
         <div className="brand">
-          ⚖️ <span>{displayNameShort}</span>
+          ⚖️ {shortName}
           <span className="badge">
             {city} • {region}
           </span>
         </div>
 
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-          <a className="btn" href={tgLink} target="_blank" rel="noreferrer">
-            🤖 Telegram
-          </a>
-          <a className="btn" href={waLink} target="_blank" rel="noreferrer">
-            💬 WhatsApp
-          </a>
+        <div style={{ display: "flex", gap: 10 }}>
+          <a className="btn" href={tgLink} target="_blank">Telegram</a>
+          <a className="btn" href={waLink} target="_blank">WhatsApp</a>
         </div>
       </header>
 
       {/* HERO */}
-      <section className="hero">
-        <div className="panel">
-          <h1 className="h1">{displayNameShort}</h1>
-          <p className="sub">
-            Адвокат, {city} ({region}). Гражданские и уголовные дела. Судебная
-            защита, документы, консультация онлайн и очно.
-          </p>
+      <section className="panel" style={{ marginTop: 20 }}>
 
-          <div className="kpis">
-            <div className="kpi">✅ Конфиденциально</div>
-            <div className="kpi">✅ Срочные дела</div>
-            <div className="kpi">✅ Суд / переговоры</div>
-            <div className="kpi">RU • KZ</div>
-          </div>
+        <div style={{ display: "flex", gap: 30, alignItems: "flex-start", flexWrap: "wrap" }}>
 
-          <div className="ctaRow">
-            <a className="btn btnPrimary" href={`tel:${phoneE164}`}>
-              📞 Позвонить
-            </a>
+          {/* LEFT SIDE */}
+          <div style={{ flex: 1, minWidth: 260 }}>
 
-            <a className="btn" href={waLink} target="_blank" rel="noreferrer">
-              💬 Написать в WhatsApp
-            </a>
+            <h1 className="h1">{shortName}</h1>
 
-            <a className="btn" href={tgLink} target="_blank" rel="noreferrer">
-              🤖 Открыть Telegram-бот
-            </a>
-          </div>
+            <p className="sub">
+              Адвокат, {city} ({region}). Гражданские и уголовные дела.
+              Судебная защита, документы, консультация онлайн и очно.
+            </p>
 
-          <div className="grid">
-            <div className="card">
-              <h3>Уголовные дела</h3>
-              <p>
-                Защита подозреваемых и обвиняемых, сопровождение на следствии,
-                жалобы и ходатайства.
-              </p>
+            <div className="kpis">
+              <div className="kpi">✅ Конфиденциально</div>
+              <div className="kpi">✅ Срочные дела</div>
+              <div className="kpi">✅ Суд / переговоры</div>
             </div>
 
-            <div className="card">
-              <h3>Гражданские споры</h3>
-              <p>
-                Долги, ущерб, договоры, наследство, жильё. Представительство в
-                суде.
-              </p>
+            <div className="ctaRow" style={{ marginTop: 20 }}>
+              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
+                📞 Позвонить
+              </a>
+
+              <a className="btn" href={waLink} target="_blank">
+                💬 WhatsApp
+              </a>
+
+              <a className="btn" href={tgLink} target="_blank">
+                🤖 Telegram
+              </a>
             </div>
 
-            <div className="card">
-              <h3>Семейные дела</h3>
-              <p>Развод, алименты, раздел имущества, порядок общения с детьми.</p>
-            </div>
           </div>
+
+          {/* PHOTO RIGHT */}
+          <div
+            style={{
+              width: 160,
+              height: 220,
+              borderRadius: 14,
+              overflow: "hidden",
+              border: "2px solid rgba(255,255,255,0.15)",
+              boxShadow: "0 15px 35px rgba(0,0,0,0.45)",
+              flexShrink: 0
+            }}
+          >
+            <img
+              src="/me.jpg"
+              alt="Адвокат Маркабаев Е.Б."
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover"
+              }}
+            />
+          </div>
+
         </div>
-
-        {/* Правая колонка */}
-        <aside className="panel">
-          <h3 className="h3">Быстрая консультация</h3>
-          <p className="muted">Напишите в WhatsApp/Telegram:</p>
-          <ol className="list">
-            <li>Коротко опишите ситуацию</li>
-            <li>Прикрепите документы/фото (если есть)</li>
-            <li>Укажите город: {city}</li>
-          </ol>
-
-          <div className="ctaRow">
-            <a className="btn btnPrimary" href={waLink} target="_blank" rel="noreferrer">
-              💬 WhatsApp
-            </a>
-            <a className="btn" href={tgLink} target="_blank" rel="noreferrer">
-              🤖 Telegram
-            </a>
-          </div>
-
-          <div className="contacts">
-            <h4>Контакты</h4>
-            <div>📞 {phoneRaw}</div>
-            <div>
-              📍 {city} ({region})
-            </div>
-          </div>
-        </aside>
       </section>
 
-      {/* ОБ АДВОКАТЕ */}
-      <section className="panel" style={{ marginTop: 16 }}>
-        <div className="about">
-          <div className="aboutText">
-            <h2 className="h2">Об адвокате</h2>
-            <p className="muted" style={{ marginTop: 6 }}>
-              {displayNameFull}. Консультации и ведение дел: уголовные,
-              гражданские, семейные споры, подготовка документов и судебное
-              представительство.
-            </p>
+      {/* ABOUT */}
+      <section className="panel" style={{ marginTop: 30 }}>
 
-            <div className="aboutGrid" style={{ marginTop: 14 }}>
-              <div className="aboutItem">
-                <div className="aboutLabel">ФИО</div>
-                <div className="aboutValue">{displayNameFull}</div>
-              </div>
-              <div className="aboutItem">
-                <div className="aboutLabel">Город</div>
-                <div className="aboutValue">
-                  {city} ({region})
-                </div>
-              </div>
-              <div className="aboutItem">
-                <div className="aboutLabel">Телефон / WhatsApp</div>
-                <div className="aboutValue">{phoneRaw}</div>
-              </div>
-              <div className="aboutItem">
-                <div className="aboutLabel">Telegram-бот</div>
-                <div className="aboutValue">t.me/ai_advokat_kz_bot</div>
-              </div>
-            </div>
+        <h2 className="h2">Об адвокате</h2>
 
-            <h3 className="h3" style={{ marginTop: 18 }}>
-              Документы и сертификаты
-            </h3>
-            <p className="muted">
-              Загрузите файлы в папку <b>public/docs</b> и добавьте ссылки ниже.
-            </p>
-
-            <ul className="docList" style={{ marginTop: 10 }}>
-              {/* Примеры (ты заменишь на свои файлы) */}
-              <li>
-                <a href="/docs/udostoverenie.pdf" target="_blank" rel="noreferrer">
-                  Удостоверение адвоката (PDF)
-                </a>
-              </li>
-              <li>
-                <a href="/docs/strahovka.pdf" target="_blank" rel="noreferrer">
-                  Страховка адвокатской деятельности (PDF)
-                </a>
-              </li>
-              <li>
-                <a href="/docs/sertifikat-kursy.pdf" target="_blank" rel="noreferrer">
-                  Сертификат повышения квалификации (PDF)
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Фото */}
-          <div className="aboutPhoto">
-            {/* Загрузи фото в public/me.jpg */}
-            <img src="/me.jpg" alt={`Адвокат ${displayNameFull}`} />
-            <div className="muted" style={{ marginTop: 8, fontSize: 12 }}>
-              Фото: загрузите файл <b>public/me.jpg</b>
-            </div>
-          </div>
-        </div>
-
-        <p className="muted" style={{ marginTop: 14 }}>
-          Информация на сайте носит справочный характер и не является публичной офертой.
+        <p className="muted" style={{ marginTop: 10 }}>
+          {fullName}. Консультации и ведение дел:
+          уголовные, гражданские, семейные споры,
+          подготовка процессуальных документов,
+          представительство в суде.
         </p>
+
+        <div style={{ marginTop: 20 }}>
+          <strong>Контакты:</strong>
+          <div>📞 {phoneDisplay}</div>
+          <div>📍 {city} ({region})</div>
+          <div>Telegram: t.me/ai_advokat_kz_bot</div>
+        </div>
+
+        <h3 style={{ marginTop: 25 }}>Документы и сертификаты</h3>
+
+        <ul style={{ marginTop: 10 }}>
+          <li>
+            <a href="/docs/udostoverenie.pdf" target="_blank">
+              Удостоверение адвоката (PDF)
+            </a>
+          </li>
+          <li>
+            <a href="/docs/strahovka.pdf" target="_blank">
+              Страховка адвокатской деятельности (PDF)
+            </a>
+          </li>
+          <li>
+            <a href="/docs/sertifikat-kursy.pdf" target="_blank">
+              Сертификат повышения квалификации (PDF)
+            </a>
+          </li>
+        </ul>
+
       </section>
+
+      <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
+        Информация на сайте носит справочный характер и не является публичной офертой.
+      </footer>
+
     </main>
   );
 }
