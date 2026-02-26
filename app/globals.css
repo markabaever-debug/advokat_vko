@@ -131,19 +131,9 @@ a {
   font-size: 13px;
 }
 
-/* ===== SERVICES (4 CARDS) — NEW BLOCK ===== */
-
-.servicesTitle {
-  margin: 0 0 6px 0;
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.servicesSubtitle {
-  margin: 0 0 18px 0;
-  opacity: 0.75;
-  line-height: 1.6;
-}
+/* ===================================================== */
+/* ===== SERVICES BLOCK (4 направления) =============== */
+/* ===================================================== */
 
 .servicesGrid {
   display: grid;
@@ -177,7 +167,55 @@ a {
   font-size: 14px;
 }
 
-/* ===== DOCUMENT LIST ===== */
+/* ===================================================== */
+/* ===== DOCUMENT THUMBNAILS (20x30 мм) =============== */
+/* ===================================================== */
+
+.docsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.docCard {
+  width: 20mm;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.docThumb {
+  width: 20mm;
+  height: 30mm;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.docThumb:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.docThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.docLabel {
+  font-size: 12px;
+  line-height: 1.25;
+  opacity: 0.85;
+}
+
+/* ===== DOCUMENT LIST (если где-то ещё используется) ===== */
 
 ul {
   padding-left: 20px;
@@ -197,9 +235,12 @@ footer {
   text-align: center;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===================================================== */
+/* ================= RESPONSIVE ======================== */
+/* ===================================================== */
 
 @media (max-width: 768px) {
+
   .h1 {
     font-size: 26px;
   }
@@ -212,8 +253,18 @@ footer {
     padding: 20px;
   }
 
-  /* services grid -> 1 column on mobile */
+  /* Services → 1 колонка */
   .servicesGrid {
     grid-template-columns: 1fr;
+  }
+
+  /* Документы немного больше на телефоне */
+  .docCard {
+    width: 24mm;
+  }
+
+  .docThumb {
+    width: 24mm;
+    height: 36mm;
   }
 }
