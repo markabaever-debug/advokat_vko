@@ -1,161 +1,119 @@
 export default function Home() {
   return (
-    <main style={styles.container}>
-      <section style={styles.hero}>
-        <h1 style={styles.title}>
-          Адвокат в Усть-Каменогорске
-        </h1>
+    <main className="container">
+      <header className="nav">
+        <div className="brand">
+          ⚖️ <span>Advokat VKO</span>
+          <span className="badge">Усть-Каменогорск • ВКО</span>
+        </div>
 
-        <h2 style={styles.subtitle}>
-          Юридическая консультация №1 • ВКО
-        </h2>
-
-        <p style={styles.description}>
-          Срочная помощь по гражданским и уголовным делам.
-          Защита в суде. Консультация онлайн и очно.
-        </p>
-
-        <div style={styles.buttons}>
-          <a href="tel:+77775430791" style={styles.primaryButton}>
-            📞 Позвонить
-          </a>
-
-          <a
-            href="https://wa.me/87775430791"
-            target="_blank"
-            rel="noreferrer"
-            style={styles.secondaryButton}
-          >
-            💬 WhatsApp
-          </a>
-
-          <a
-            href="https://t.me/ai_advokat_kz_bot"
-            target="_blank"
-            rel="noreferrer"
-            style={styles.secondaryButton}
-          >
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <a className="btn" href="https://t.me/ai_advokat_kz_bot" target="_blank" rel="noreferrer">
             🤖 Telegram
           </a>
+          <a className="btn" href="https://wa.me/87775430791" target="_blank" rel="noreferrer">
+            💬 WhatsApp
+          </a>
         </div>
+      </header>
+
+      <section className="hero">
+        <div className="panel">
+          <h1 className="h1">Адвокат в Усть-Каменогорске</h1>
+          <p className="sub">
+            Гражданские и уголовные дела. Судебная защита, документы, консультация онлайн и очно.
+            Быстро разберём ситуацию и предложим план действий.
+          </p>
+
+          <div className="kpis">
+            <div className="kpi">✅ Конфиденциально</div>
+            <div className="kpi">✅ Срочные дела</div>
+            <div className="kpi">✅ Суд / переговоры</div>
+            <div className="kpi">RU • KZ</div>
+          </div>
+
+          <div className="ctaRow">
+            <a className="btn btnPrimary" href="tel:+77775430791">📞 Позвонить</a>
+            <a className="btn" href="https://wa.me/87775430791" target="_blank" rel="noreferrer">💬 Написать в WhatsApp</a>
+            <a className="btn" href="https://t.me/ai_advokat_kz_bot" target="_blank" rel="noreferrer">➡️ Открыть Telegram-бот</a>
+          </div>
+
+          <div className="grid">
+            <div className="card">
+              <h3 className="cardTitle">Уголовные дела</h3>
+              <p className="cardText">Защита подозреваемых и обвиняемых, сопровождение на следствии, жалобы и ходатайства.</p>
+            </div>
+            <div className="card">
+              <h3 className="cardTitle">Гражданские споры</h3>
+              <p className="cardText">Долги, ущерб, договоры, наследство, жильё. Представительство в суде.</p>
+            </div>
+            <div className="card">
+              <h3 className="cardTitle">Семейные дела</h3>
+              <p className="cardText">Развод, алименты, раздел имущества, порядок общения с детьми.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside className="panel">
+          <h2 className="h2">Быстрая консультация</h2>
+          <p className="sub" style={{ marginBottom: 10 }}>
+            Напишите в WhatsApp/Telegram:
+          </p>
+          <ol className="list">
+            <li>Коротко опишите ситуацию</li>
+            <li>Прикрепите документы/фото (если есть)</li>
+            <li>Укажите город: Усть-Каменогорск</li>
+          </ol>
+
+          <div className="ctaRow" style={{ marginTop: 14 }}>
+            <a className="btn btnPrimary" href="https://wa.me/87775430791" target="_blank" rel="noreferrer">
+              💬 WhatsApp
+            </a>
+            <a className="btn" href="https://t.me/ai_advokat_kz_bot" target="_blank" rel="noreferrer">
+              🤖 Telegram
+            </a>
+          </div>
+
+          <div className="section">
+            <h3 className="h2">Контакты</h3>
+            <p className="sub" style={{ margin: 0 }}>📞 87775430791</p>
+            <p className="sub" style={{ marginTop: 6 }}>📍 Усть-Каменогорск (ВКО)</p>
+          </div>
+        </aside>
       </section>
 
-      <section style={styles.section}>
-        <h3 style={styles.sectionTitle}>Услуги</h3>
-        <ul style={styles.list}>
-          <li>Защита по уголовным делам</li>
-          <li>Гражданские споры (долги, ущерб, договоры)</li>
-          <li>Семейные дела (развод, алименты, раздел имущества)</li>
+      <section className="panel section">
+        <h2 className="h2">Услуги</h2>
+        <ul className="list">
           <li>Составление исков, жалоб, ходатайств</li>
-          <li>Судебное представительство</li>
+          <li>Судебное представительство и сопровождение сделок</li>
+          <li>Апелляция/кассация, обжалование решений</li>
+          <li>Досудебные переговоры и претензии</li>
         </ul>
       </section>
 
-      <section style={styles.section}>
-        <h3 style={styles.sectionTitle}>Почему выбирают нас</h3>
-        <ul style={styles.list}>
-          <li>Опыт ведения сложных дел</li>
-          <li>Индивидуальный подход</li>
-          <li>Конфиденциальность</li>
-          <li>Работаем до результата</li>
-        </ul>
+      <section className="panel section faq">
+        <h2 className="h2">Частые вопросы</h2>
+
+        <details>
+          <summary>Сколько стоит консультация?</summary>
+          <p className="sub">Стоимость зависит от сложности. Напишите в WhatsApp/Telegram — уточним и скажем сразу.</p>
+        </details>
+
+        <details>
+          <summary>Можно онлайн без визита?</summary>
+          <p className="sub">Да. Можно консультацию онлайн и обмен документами через мессенджеры.</p>
+        </details>
+
+        <details>
+          <summary>Берётесь за срочные дела?</summary>
+          <p className="sub">Да. Если ситуация срочная — лучше сразу звонить.</p>
+        </details>
       </section>
 
-      <section style={styles.section}>
-        <h3 style={styles.sectionTitle}>Как работаем</h3>
-        <ol style={styles.list}>
-          <li>Вы описываете ситуацию (WhatsApp / Telegram)</li>
-          <li>Мы уточняем детали и оцениваем перспективы</li>
-          <li>Даем план действий и берёмся за дело</li>
-        </ol>
-      </section>
-
-      <section style={styles.section}>
-        <h3 style={styles.sectionTitle}>Контакты</h3>
-        <p style={styles.contact}>📞 87775430791</p>
-        <p>Город: Усть-Каменогорск (ВКО)</p>
-      </section>
-
-      <footer style={styles.footer}>
+      <footer className="footer">
         Информация на сайте носит справочный характер и не является публичной офертой.
       </footer>
     </main>
   );
 }
-
-const styles = {
-  container: {
-    fontFamily: "Arial, sans-serif",
-    maxWidth: "900px",
-    margin: "0 auto",
-    padding: "40px 20px",
-    lineHeight: 1.6,
-  },
-
-  hero: {
-    marginBottom: "40px",
-  },
-
-  title: {
-    fontSize: "32px",
-    marginBottom: "8px",
-  },
-
-  subtitle: {
-    fontWeight: 400,
-    marginTop: 0,
-    color: "#555",
-  },
-
-  description: {
-    fontSize: "18px",
-    marginTop: "20px",
-  },
-
-  buttons: {
-    display: "flex",
-    gap: "12px",
-    flexWrap: "wrap" as const,
-    marginTop: "25px",
-  },
-
-  primaryButton: {
-    backgroundColor: "#111",
-    color: "#fff",
-    padding: "12px 18px",
-    borderRadius: "8px",
-    textDecoration: "none",
-  },
-
-  secondaryButton: {
-    border: "1px solid #ddd",
-    padding: "12px 18px",
-    borderRadius: "8px",
-    textDecoration: "none",
-    color: "#000",
-  },
-
-  section: {
-    marginBottom: "40px",
-  },
-
-  sectionTitle: {
-    fontSize: "22px",
-    marginBottom: "12px",
-  },
-
-  list: {
-    paddingLeft: "20px",
-  },
-
-  contact: {
-    fontSize: "18px",
-    fontWeight: 600,
-  },
-
-  footer: {
-    marginTop: "50px",
-    fontSize: "12px",
-    color: "#777",
-  },
-};
