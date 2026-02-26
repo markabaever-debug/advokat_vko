@@ -131,6 +131,52 @@ a {
   font-size: 13px;
 }
 
+/* ===== SERVICES (4 CARDS) — NEW BLOCK ===== */
+
+.servicesTitle {
+  margin: 0 0 6px 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.servicesSubtitle {
+  margin: 0 0 18px 0;
+  opacity: 0.75;
+  line-height: 1.6;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.serviceCard {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 18px;
+  transition: all 0.25s ease;
+}
+
+.serviceCard:hover {
+  background: rgba(255,255,255,0.09);
+  transform: translateY(-2px);
+}
+
+.serviceCardTitle {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.serviceCardText {
+  margin: 0;
+  opacity: 0.75;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
 /* ===== DOCUMENT LIST ===== */
 
 ul {
@@ -164,5 +210,10 @@ footer {
 
   .panel {
     padding: 20px;
+  }
+
+  /* services grid -> 1 column on mobile */
+  .servicesGrid {
+    grid-template-columns: 1fr;
   }
 }
