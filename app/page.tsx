@@ -1,3 +1,14 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+
+type DocItem = {
+  id: string;
+  title: string;
+  pdf: string;
+  thumb: string;
+};
+
 export default function Home() {
   const shortName = "Маркабаев Е.Б.";
   const fullName = "Маркабаев Ерлан Бапашевич";
@@ -8,16 +19,59 @@ export default function Home() {
   const phoneCall = "+77775430791";
   const waNumber = "77775430791";
 
-  const waText = encodeURIComponent(
-    "Здравствуйте! Нужна консультация адвоката"
-  );
-
+  const waText = encodeURIComponent("Здравствуйте! Нужна консультация адвоката");
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
   const tgLink = "https://t.me/ai_advokat_kz_bot";
 
+  const docs: DocItem[] = useMemo(
+    () => [
+      {
+        id: "license",
+        title: "Лицензия на занятие адвокатской деятельностью",
+        pdf: "/docs/license.pdf",
+        thumb: "/docs/thumbs/license.jpg",
+      },
+      {
+        id: "insurance",
+        title: "Страхование адвокатской деятельности",
+        pdf: "/docs/insurance.pdf",
+        thumb: "/docs/thumbs/insurance.jpg",
+      },
+      {
+        id: "cert1",
+        title: "Повышение квалификации (1)",
+        pdf: "/docs/cert-1.pdf",
+        thumb: "/docs/thumbs/cert-1.jpg",
+      },
+      {
+        id: "cert2",
+        title: "Повышение квалификации (2)",
+        pdf: "/docs/cert-2.pdf",
+        thumb: "/docs/thumbs/cert-2.jpg",
+      },
+      {
+        id: "cert3",
+        title: "Повышение квалификации (3)",
+        pdf: "/docs/cert-3.pdf",
+        thumb: "/docs/thumbs/cert-3.jpg",
+      },
+    ],
+    []
+  );
+
+  const [openDoc, setOpenDoc] = useState<DocItem | null>(null);
+
+  // ESC закрывает модалку
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenDoc(null);
+    };
+    if (openDoc) window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [openDoc]);
+
   return (
     <main className="container">
-
       {/* HEADER */}
       <header className="nav">
         <div className="brand">
@@ -28,22 +82,32 @@ export default function Home() {
         </div>
 
         <div style={{ display: "flex", gap: 10 }}>
-          <a className="btn" href={tgLink} target="_blank">Telegram</a>
-          <a className="btn" href={waLink} target="_blank">WhatsApp</a>
+          <a className="btn" href={tgLink} target="_blank" rel="noreferrer">
+            Telegram
+          </a>
+          <a className="btn" href={waLink} target="_blank" rel="noreferrer">
+            WhatsApp
+          </a>
         </div>
       </header>
 
       {/* HERO */}
       <section className="panel" style={{ marginTop: 20 }}>
-        <div style={{ display: "flex", gap: 30, alignItems: "flex-start", flexWrap: "wrap" }}>
-
+        <div
+          style={{
+            display: "flex",
+            gap: 30,
+            alignItems: "flex-start",
+            flexWrap: "wrap",
+          }}
+        >
+          {/* LEFT SIDE */}
           <div style={{ flex: 1, minWidth: 260 }}>
-
             <h1 className="h1">{shortName}</h1>
 
             <p className="sub">
-              Адвокат, {city} ({region}). Гражданские и уголовные дела.
-              Судебная защита, документы, консультация онлайн и очно.
+              Адвокат, {city} ({region}). Гражданские и уголовные дела. Судебная
+              защита, документы, консультация онлайн и очно.
             </p>
 
             <div className="kpis">
@@ -57,17 +121,17 @@ export default function Home() {
                 📞 Позвонить
               </a>
 
-              <a className="btn" href={waLink} target="_blank">
+              <a className="btn" href={waLink} target="_blank" rel="noreferrer">
                 💬 WhatsApp
               </a>
 
-              <a className="btn" href={tgLink} target="_blank">
+              <a className="btn" href={tgLink} target="_blank" rel="noreferrer">
                 🤖 Telegram
               </a>
             </div>
-
           </div>
 
+          {/* PHOTO RIGHT */}
           <div
             style={{
               width: 160,
@@ -76,7 +140,7 @@ export default function Home() {
               overflow: "hidden",
               border: "2px solid rgba(255,255,255,0.15)",
               boxShadow: "0 15px 35px rgba(0,0,0,0.45)",
-              flexShrink: 0
+              flexShrink: 0,
             }}
           >
             <img
@@ -85,11 +149,10 @@ export default function Home() {
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover"
+                objectFit: "cover",
               }}
             />
           </div>
-
         </div>
       </section>
 
@@ -102,113 +165,130 @@ export default function Home() {
         </p>
 
         <div className="servicesGrid" style={{ marginTop: 20 }}>
-
           <div className="serviceCard">
             <h3 className="serviceCardTitle">⚖️ Уголовные дела</h3>
             <p className="serviceCardText">
-              Защита и представительство по уголовным делам,
-              участие на стадии следствия и суда.
+              Защита и представительство по уголовным делам, участие на стадии
+              следствия и суда.
             </p>
           </div>
 
           <div className="serviceCard">
             <h3 className="serviceCardTitle">📄 Гражданские дела</h3>
             <p className="serviceCardText">
-              Взыскание долгов по расписке, семейные и наследственные дела,
-              споры о собственности.
+              Взыскание долгов по расписке, семейные и наследственные дела, споры
+              о собственности.
             </p>
           </div>
 
           <div className="serviceCard">
             <h3 className="serviceCardTitle">🚗 Административные дела</h3>
             <p className="serviceCardText">
-              ДТП, нарушения ПДД, обжалование штрафов,
-              защита при лишении водительских прав.
+              ДТП, нарушения ПДД, обжалование штрафов, защита при лишении
+              водительских прав.
             </p>
           </div>
 
           <div className="serviceCard">
             <h3 className="serviceCardTitle">🏛 Дела по АППК</h3>
             <p className="serviceCardText">
-              Споры с государственными органами,
-              оспаривание решений и действий должностных лиц.
+              Споры с государственными органами, оспаривание решений и действий
+              должностных лиц.
             </p>
           </div>
-
         </div>
       </section>
 
       {/* ABOUT */}
       <section className="panel" style={{ marginTop: 30 }}>
-
         <h2 className="h2">Об адвокате</h2>
 
         <p className="muted" style={{ marginTop: 10 }}>
-          {fullName}. Консультации и ведение дел:
-          уголовные, гражданские, семейные споры,
-          подготовка процессуальных документов,
-          представительство в суде.
+          {fullName}. Консультации и ведение дел: уголовные, гражданские, семейные
+          споры, подготовка процессуальных документов, представительство в суде.
         </p>
 
         <div style={{ marginTop: 20 }}>
           <strong>Контакты:</strong>
           <div>📞 {phoneDisplay}</div>
-          <div>📍 {city} ({region})</div>
+          <div>
+            📍 {city} ({region})
+          </div>
           <div>Telegram: t.me/ai_advokat_kz_bot</div>
         </div>
 
         <h3 style={{ marginTop: 25 }}>Документы и сертификаты</h3>
+        <p className="muted" style={{ marginTop: 8 }}>
+          Нажмите на документ, чтобы открыть просмотр.
+        </p>
 
         <div className="docsGrid">
-
-          {/* Лицензия */}
-          <a className="docCard" href="/docs/license.pdf" target="_blank" rel="noreferrer">
-            <div className="docThumb">
-              <img src="/docs/thumbs/license.jpg" alt="Лицензия на занятия адвокатской деятельностью" />
-            </div>
-            <div className="docLabel">Лицензия</div>
-          </a>
-
-          {/* Страховка */}
-          <a className="docCard" href="/docs/insurance.pdf" target="_blank" rel="noreferrer">
-            <div className="docThumb">
-              <img src="/docs/thumbs/insurance.jpg" alt="Страховка адвокатской деятельности" />
-            </div>
-            <div className="docLabel">Страховка</div>
-          </a>
-
-          {/* Повышение квалификации 1 */}
-          <a className="docCard" href="/docs/cert-1.pdf" target="_blank" rel="noreferrer">
-            <div className="docThumb">
-              <img src="/docs/thumbs/cert-1.jpg" alt="Повышение квалификации 1" />
-            </div>
-            <div className="docLabel">Повышение квалификации</div>
-          </a>
-
-          {/* Повышение квалификации 2 */}
-          <a className="docCard" href="/docs/cert-2.pdf" target="_blank" rel="noreferrer">
-            <div className="docThumb">
-              <img src="/docs/thumbs/cert-2.jpg" alt="Повышение квалификации 2" />
-            </div>
-            <div className="docLabel">Повышение квалификации</div>
-          </a>
-
-          {/* Повышение квалификации 3 */}
-          <a className="docCard" href="/docs/cert-3.pdf" target="_blank" rel="noreferrer">
-            <div className="docThumb">
-              <img src="/docs/thumbs/cert-3.jpg" alt="Повышение квалификации 3" />
-            </div>
-            <div className="docLabel">Повышение квалификации</div>
-          </a>
-
+          {docs.map((d) => (
+            <button
+              key={d.id}
+              type="button"
+              className="docCardBtn"
+              onClick={() => setOpenDoc(d)}
+              aria-label={`Открыть: ${d.title}`}
+            >
+              <div className="docThumb">
+                <img src={d.thumb} alt={d.title} />
+              </div>
+              <div className="docLabel">{d.title}</div>
+            </button>
+          ))}
         </div>
-
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
-        Информация на сайте носит справочный характер и не является публичной офертой.
+        Информация на сайте носит справочный характер и не является публичной
+        офертой.
       </footer>
 
+      {/* MODAL */}
+      {openDoc && (
+        <div
+          className="modalOverlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label={openDoc.title}
+          onClick={() => setOpenDoc(null)}
+        >
+          <div className="modalPanel" onClick={(e) => e.stopPropagation()}>
+            <div className="modalHeader">
+              <div className="modalTitle">{openDoc.title}</div>
+
+              <div className="modalActions">
+                <a
+                  className="modalBtn"
+                  href={openDoc.pdf}
+                  target="_blank"
+                  rel="noreferrer"
+                  title="Открыть в новой вкладке"
+                >
+                  Открыть PDF
+                </a>
+                <button
+                  type="button"
+                  className="modalBtn"
+                  onClick={() => setOpenDoc(null)}
+                  title="Закрыть (Esc)"
+                >
+                  ✕ Закрыть
+                </button>
+              </div>
+            </div>
+
+            <div className="modalBody">
+              <iframe
+                className="modalFrame"
+                src={`${openDoc.pdf}#view=FitH`}
+                title={openDoc.title}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
