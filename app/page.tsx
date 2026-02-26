@@ -1,6 +1,6 @@
 export default function Home() {
   // Твои данные
-  const displayNameShort = "Маркабаев Е.Б.";
+  const displayNameShort = "адвокат Маркабаев Е.Б.";
   const displayNameFull = "Маркабаев Ерлан Бапашевич";
   const city = "Усть-Каменогорск";
   const region = "ВКО";
