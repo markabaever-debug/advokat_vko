@@ -37,7 +37,6 @@ export default function Home() {
       <section className="panel" style={{ marginTop: 20 }}>
         <div style={{ display: "flex", gap: 30, alignItems: "flex-start", flexWrap: "wrap" }}>
 
-          {/* LEFT SIDE */}
           <div style={{ flex: 1, minWidth: 260 }}>
 
             <h1 className="h1">{shortName}</h1>
@@ -69,7 +68,6 @@ export default function Home() {
 
           </div>
 
-          {/* PHOTO RIGHT */}
           <div
             style={{
               width: 160,
@@ -95,7 +93,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SERVICES BLOCK */}
+      {/* SERVICES */}
       <section className="panel" style={{ marginTop: 30 }}>
         <h2 className="h2">Основные направления</h2>
 
@@ -161,23 +159,49 @@ export default function Home() {
 
         <h3 style={{ marginTop: 25 }}>Документы и сертификаты</h3>
 
-        <ul style={{ marginTop: 10 }}>
-          <li>
-            <a href="/docs/udostoverenie.pdf" target="_blank">
-              Удостоверение адвоката (PDF)
-            </a>
-          </li>
-          <li>
-            <a href="/docs/strahovka.pdf" target="_blank">
-              Страховка адвокатской деятельности (PDF)
-            </a>
-          </li>
-          <li>
-            <a href="/docs/sertifikat-kursy.pdf" target="_blank">
-              Сертификат повышения квалификации (PDF)
-            </a>
-          </li>
-        </ul>
+        <div className="docsGrid">
+
+          {/* Лицензия */}
+          <a className="docCard" href="/docs/license.pdf" target="_blank" rel="noreferrer">
+            <div className="docThumb">
+              <img src="/docs/thumbs/license.jpg" alt="Лицензия на занятия адвокатской деятельностью" />
+            </div>
+            <div className="docLabel">Лицензия</div>
+          </a>
+
+          {/* Страховка */}
+          <a className="docCard" href="/docs/insurance.pdf" target="_blank" rel="noreferrer">
+            <div className="docThumb">
+              <img src="/docs/thumbs/insurance.jpg" alt="Страховка адвокатской деятельности" />
+            </div>
+            <div className="docLabel">Страховка</div>
+          </a>
+
+          {/* Повышение квалификации 1 */}
+          <a className="docCard" href="/docs/cert-1.pdf" target="_blank" rel="noreferrer">
+            <div className="docThumb">
+              <img src="/docs/thumbs/cert-1.jpg" alt="Повышение квалификации 1" />
+            </div>
+            <div className="docLabel">Повышение квалификации</div>
+          </a>
+
+          {/* Повышение квалификации 2 */}
+          <a className="docCard" href="/docs/cert-2.pdf" target="_blank" rel="noreferrer">
+            <div className="docThumb">
+              <img src="/docs/thumbs/cert-2.jpg" alt="Повышение квалификации 2" />
+            </div>
+            <div className="docLabel">Повышение квалификации</div>
+          </a>
+
+          {/* Повышение квалификации 3 */}
+          <a className="docCard" href="/docs/cert-3.pdf" target="_blank" rel="noreferrer">
+            <div className="docThumb">
+              <img src="/docs/thumbs/cert-3.jpg" alt="Повышение квалификации 3" />
+            </div>
+            <div className="docLabel">Повышение квалификации</div>
+          </a>
+
+        </div>
 
       </section>
 
