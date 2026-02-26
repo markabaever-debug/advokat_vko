@@ -1,5 +1,5 @@
 export default function Home() {
-  const phoneRaw = "87775430791";
+  const phoneRaw = "7775430791";
   // WhatsApp требует международный формат без "8" и без "+"
   const waPhone = "77775430791";
 
