@@ -28,56 +28,35 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
+        {/* Google Tag Manager */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-HG01KQMSV6"
+          id="gtm-script"
           strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-XXXXXXX');
+            `,
+          }}
         />
-        <Script id="ga-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
-            gtag('js', new Date());
-            gtag('config', 'G-HG01KQMSV6');
-          `}
-        </Script>
-
-        <Script id="ga-events" strategy="afterInteractive">
-          {`
-            document.addEventListener('click', function(e) {
-              const link = e.target.closest('a');
-              if (!link) return;
-
-              const href = link.getAttribute('href') || '';
-
-              if (href.startsWith('tel:')) {
-                window.gtag('event', 'click_phone', {
-                  event_category: 'engagement',
-                  event_label: href
-                });
-              }
-
-              if (href.includes('wa.me')) {
-                window.gtag('event', 'click_whatsapp', {
-                  event_category: 'engagement',
-                  event_label: href
-                });
-              }
-
-              if (href.includes('t.me')) {
-                window.gtag('event', 'click_telegram', {
-                  event_category: 'engagement',
-                  event_label: href
-                });
-              }
-            });
-          `}
-        </Script>
       </head>
 
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+
         {children}
       </body>
     </html>
