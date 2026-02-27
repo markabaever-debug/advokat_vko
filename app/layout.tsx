@@ -9,32 +9,15 @@ const geistSans = Geist({
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono"],
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "Адвокат Маркабаев Е.Б.",
   description:
-    "Адвокат Маркабаев Е.Б.: уголовные и гражданские дела, семейные споры, документы, представительство в суде. WhatsApp/Telegram: 87775430791.",
+    "Адвокат Маркабаев Е.Б.: уголовные и гражданские дела, семейные споры, документы, представительство в суде.",
   metadataBase: new URL("https://advokatvko.vercel.app"),
-  openGraph: {
-    title: "Адвокат Маркабаев Ерлан Бапашевич",
-    description:
-      "Юридическая помощь по гражданским и уголовным делам. Консультация онлайн и очно.",
-    url: "https://advokatvko.vercel.app",
-    siteName: "Advokat VKO",
-    locale: "ru_RU",
-    type: "website",
-    images: ["/og.jpg"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Адвокат в Усть-Каменогорске — Advokat VKO",
-    description:
-      "Юридическая помощь по гражданским и уголовным делам. Консультация онлайн и очно.",
-    images: ["/og.jpg"],
-  },
 };
 
 export default function RootLayout({
@@ -45,40 +28,44 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
-        {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-HG01KQMSV6"
           strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="ga-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
             gtag('js', new Date());
             gtag('config', 'G-HG01KQMSV6');
+          `}
+        </Script>
 
+        <Script id="ga-events" strategy="afterInteractive">
+          {`
             document.addEventListener('click', function(e) {
-              const target = e.target.closest('a');
-              if (!target) return;
+              const link = e.target.closest('a');
+              if (!link) return;
 
-              const href = target.getAttribute('href') || '';
+              const href = link.getAttribute('href') || '';
 
               if (href.startsWith('tel:')) {
-                gtag('event', 'click_phone', {
+                window.gtag('event', 'click_phone', {
                   event_category: 'engagement',
                   event_label: href
                 });
               }
 
               if (href.includes('wa.me')) {
-                gtag('event', 'click_whatsapp', {
+                window.gtag('event', 'click_whatsapp', {
                   event_category: 'engagement',
                   event_label: href
                 });
               }
 
               if (href.includes('t.me')) {
-                gtag('event', 'click_telegram', {
+                window.gtag('event', 'click_telegram', {
                   event_category: 'engagement',
                   event_label: href
                 });
