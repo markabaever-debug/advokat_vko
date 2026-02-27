@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 
 type DocItem = {
   id: string;
@@ -64,12 +65,16 @@ export default function Home() {
 
   const goPrev = () => {
     if (openIndex === null) return;
-    setOpenIndex((prev) => (prev === null ? null : (prev - 1 + docs.length) % docs.length));
+    setOpenIndex((prev) =>
+      prev === null ? null : (prev - 1 + docs.length) % docs.length
+    );
   };
 
   const goNext = () => {
     if (openIndex === null) return;
-    setOpenIndex((prev) => (prev === null ? null : (prev + 1) % docs.length));
+    setOpenIndex((prev) =>
+      prev === null ? null : (prev + 1) % docs.length
+    );
   };
 
   useEffect(() => {
@@ -80,9 +85,11 @@ export default function Home() {
       if (e.key === "ArrowRight") goNext();
     };
 
-    if (openIndex !== null) window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (openIndex !== null)
+      window.addEventListener("keydown", onKeyDown);
+
+    return () =>
+      window.removeEventListener("keydown", onKeyDown);
   }, [openIndex]);
 
   return (
@@ -167,12 +174,13 @@ export default function Home() {
         </p>
 
         <div className="servicesGrid" style={{ marginTop: 20 }}>
-          <div className="serviceCard">
+          
+          <Link href="/ugolovnyj-advokat-ust-kamenogorsk" className="serviceCard">
             <h3 className="serviceCardTitle">⚖️ Уголовные дела</h3>
             <p className="serviceCardText">
               Защита и представительство по уголовным делам, участие на стадии следствия и суда.
             </p>
-          </div>
+          </Link>
 
           <div className="serviceCard">
             <h3 className="serviceCardTitle">📄 Гражданские дела</h3>
@@ -194,6 +202,7 @@ export default function Home() {
               Споры с государственными органами, оспаривание решений и действий должностных лиц.
             </p>
           </div>
+
         </div>
       </section>
 
@@ -240,7 +249,6 @@ export default function Home() {
         Информация на сайте носит справочный характер и не является публичной офертой.
       </footer>
 
-      {/* MODAL */}
       {openDoc && openIndex !== null && (
         <div
           className="modalOverlay"
@@ -257,7 +265,7 @@ export default function Home() {
               </div>
 
               <div className="modalActions">
-                <button type="button" className="modalBtn" onClick={goPrev} title="Предыдущий (←)">
+                <button type="button" className="modalBtn" onClick={goPrev}>
                   ← Назад
                 </button>
 
@@ -265,7 +273,7 @@ export default function Home() {
                   {openIndex + 1}/{docs.length}
                 </div>
 
-                <button type="button" className="modalBtn" onClick={goNext} title="Следующий (→)">
+                <button type="button" className="modalBtn" onClick={goNext}>
                   Вперёд →
                 </button>
 
@@ -273,7 +281,11 @@ export default function Home() {
                   Открыть PDF
                 </a>
 
-                <button type="button" className="modalBtn" onClick={() => setOpenIndex(null)} title="Закрыть (Esc)">
+                <button
+                  type="button"
+                  className="modalBtn"
+                  onClick={() => setOpenIndex(null)}
+                >
                   ✕ Закрыть
                 </button>
               </div>
