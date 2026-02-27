@@ -9,7 +9,7 @@ const geistSans = Geist({
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-geist-mono"],
   subsets: ["latin"],
 });
 
@@ -56,6 +56,34 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-HG01KQMSV6');
+
+            document.addEventListener('click', function(e) {
+              const target = e.target.closest('a');
+              if (!target) return;
+
+              const href = target.getAttribute('href') || '';
+
+              if (href.startsWith('tel:')) {
+                gtag('event', 'click_phone', {
+                  event_category: 'engagement',
+                  event_label: href
+                });
+              }
+
+              if (href.includes('wa.me')) {
+                gtag('event', 'click_whatsapp', {
+                  event_category: 'engagement',
+                  event_label: href
+                });
+              }
+
+              if (href.includes('t.me')) {
+                gtag('event', 'click_telegram', {
+                  event_category: 'engagement',
+                  event_label: href
+                });
+              }
+            });
           `}
         </Script>
       </head>
