@@ -3,12 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
-declare global {
-  interface Window {
-    dataLayer?: any[];
-  }
-}
-
 type DocItem = {
   id: string;
   title: string;
@@ -29,22 +23,6 @@ export default function Home() {
   const waText = encodeURIComponent("Здравствуйте! Нужна консультация адвоката");
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
   const tgLink = "https://t.me/ai_advokat_kz_bot";
-
-  const pushEvent = (eventName: string) => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: eventName });
-  };
-
-  const handleExternalClick = (
-    url: string,
-    eventName: string
-  ) => {
-    pushEvent(eventName);
-
-    setTimeout(() => {
-      window.open(url, "_blank", "noopener,noreferrer");
-    }, 120);
-  };
 
   const docs: DocItem[] = useMemo(
     () => [
@@ -126,19 +104,10 @@ export default function Home() {
         </div>
 
         <div style={{ display: "flex", gap: 10 }}>
-          <a
-            className="btn btnTG"
-            href={tgLink}
-            onClick={() => handleExternalClick(tgLink, "click_telegram")}
-          >
+          <a className="btn btnTG" href={tgLink} target="_blank" rel="noreferrer">
             Telegram
           </a>
-
-          <a
-            className="btn btnWA"
-            href={waLink}
-            onClick={() => handleExternalClick(waLink, "click_whatsapp")}
-          >
+          <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
             WhatsApp
           </a>
         </div>
@@ -151,8 +120,8 @@ export default function Home() {
             <h1 className="h1">{shortName}</h1>
 
             <p className="sub">
-              Адвокат, {city} ({region}). Гражданские и уголовные дела.
-              Судебная защита, документы, консультация онлайн и очно.
+              Адвокат, {city} ({region}). Гражданские и уголовные дела. Судебная защита,
+              документы, консультация онлайн и очно.
             </p>
 
             <div className="kpis">
@@ -162,27 +131,15 @@ export default function Home() {
             </div>
 
             <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a
-                className="btn btnPrimary"
-                href={`tel:${phoneCall}`}
-                onClick={() => pushEvent("click_phone")}
-              >
+              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
                 📞 Позвонить
               </a>
 
-              <a
-                className="btn btnWA"
-                href={waLink}
-                onClick={() => handleExternalClick(waLink, "click_whatsapp")}
-              >
+              <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
                 💬 WhatsApp
               </a>
 
-              <a
-                className="btn btnTG"
-                href={tgLink}
-                onClick={() => handleExternalClick(tgLink, "click_telegram")}
-              >
+              <a className="btn btnTG" href={tgLink} target="_blank" rel="noreferrer">
                 🤖 Telegram
               </a>
             </div>
@@ -217,33 +174,35 @@ export default function Home() {
         </p>
 
         <div className="servicesGrid" style={{ marginTop: 20 }}>
+          
           <Link href="/ugolovnyj-advokat-ust-kamenogorsk" className="serviceCard">
             <h3 className="serviceCardTitle">⚖️ Уголовные дела</h3>
             <p className="serviceCardText">
-              Защита и представительство по уголовным делам.
+              Защита и представительство по уголовным делам, участие на стадии следствия и суда.
             </p>
           </Link>
 
           <div className="serviceCard">
             <h3 className="serviceCardTitle">📄 Гражданские дела</h3>
             <p className="serviceCardText">
-              Взыскание долгов, семейные и наследственные споры.
+              Взыскание долгов по расписке, семейные и наследственные дела, споры о собственности.
             </p>
           </div>
 
           <div className="serviceCard">
             <h3 className="serviceCardTitle">🚗 Административные дела</h3>
             <p className="serviceCardText">
-              ДТП, обжалование штрафов, лишение прав.
+              ДТП, нарушения ПДД, обжалование штрафов, защита при лишении водительских прав.
             </p>
           </div>
 
           <div className="serviceCard">
             <h3 className="serviceCardTitle">🏛 Дела по АППК</h3>
             <p className="serviceCardText">
-              Споры с госорганами.
+              Споры с государственными органами, оспаривание решений и действий должностных лиц.
             </p>
           </div>
+
         </div>
       </section>
 
@@ -252,14 +211,97 @@ export default function Home() {
         <h2 className="h2">Об адвокате</h2>
 
         <p className="muted" style={{ marginTop: 10 }}>
-          {fullName}. Консультации и ведение дел:
-          уголовные, гражданские, семейные споры.
+          {fullName}. Консультации и ведение дел: уголовные, гражданские, семейные споры,
+          подготовка процессуальных документов, представительство в суде.
         </p>
+
+        <div style={{ marginTop: 20 }}>
+          <strong>Контакты:</strong>
+          <div>📞 {phoneDisplay}</div>
+          <div>📍 {city} ({region})</div>
+          <div>Telegram: t.me/ai_advokat_kz_bot</div>
+        </div>
+
+        <h3 style={{ marginTop: 25 }}>Документы и сертификаты</h3>
+        <p className="muted" style={{ marginTop: 8 }}>
+          Нажмите на документ для просмотра. В окне просмотра: ← → (листание), Esc (закрыть).
+        </p>
+
+        <div className="docsGrid">
+          {docs.map((d, idx) => (
+            <button
+              key={d.id}
+              type="button"
+              className="docCardBtn"
+              onClick={() => setOpenIndex(idx)}
+              aria-label={`Открыть: ${d.title}`}
+            >
+              <div className="docThumb">
+                <img src={d.thumb} alt={d.title} />
+              </div>
+              <div className="docLabel">{d.title}</div>
+            </button>
+          ))}
+        </div>
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
         Информация на сайте носит справочный характер и не является публичной офертой.
       </footer>
+
+      {openDoc && openIndex !== null && (
+        <div
+          className="modalOverlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label={openDoc.title}
+          onClick={() => setOpenIndex(null)}
+        >
+          <div className="modalPanel" onClick={(e) => e.stopPropagation()}>
+            <div className="modalHeader">
+              <div>
+                <div className="modalTitle">{openDoc.title}</div>
+                <div className="modalHint">← → листать • Esc закрыть</div>
+              </div>
+
+              <div className="modalActions">
+                <button type="button" className="modalBtn" onClick={goPrev}>
+                  ← Назад
+                </button>
+
+                <div className="modalCounter">
+                  {openIndex + 1}/{docs.length}
+                </div>
+
+                <button type="button" className="modalBtn" onClick={goNext}>
+                  Вперёд →
+                </button>
+
+                <a className="modalBtn" href={openDoc.pdf} target="_blank" rel="noreferrer">
+                  Открыть PDF
+                </a>
+
+                <button
+                  type="button"
+                  className="modalBtn"
+                  onClick={() => setOpenIndex(null)}
+                >
+                  ✕ Закрыть
+                </button>
+              </div>
+            </div>
+
+            <div className="modalBody">
+              <iframe
+                key={openDoc.pdf}
+                className="modalFrame"
+                src={`${openDoc.pdf}#view=FitH`}
+                title={openDoc.title}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
