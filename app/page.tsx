@@ -24,13 +24,11 @@ export default function Home() {
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
   const tgLink = "https://t.me/ai_advokat_kz_bot";
 
-  // 🔥 Задержка открытия внешней ссылки (чтобы GTM успел сработать)
   const handleExternalClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     url: string
   ) => {
     e.preventDefault();
-
     setTimeout(() => {
       window.open(url, "_blank", "noopener,noreferrer");
     }, 250);
@@ -106,6 +104,7 @@ export default function Home() {
 
   return (
     <main className="container">
+      {/* HEADER */}
       <header className="nav">
         <div className="brand">
           ⚖️ {shortName}
@@ -172,8 +171,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div
-            style={{
+          <div style={{
               width: 160,
               height: 220,
               borderRadius: 14,
@@ -181,13 +179,51 @@ export default function Home() {
               border: "2px solid rgba(255,255,255,0.15)",
               boxShadow: "0 15px 35px rgba(0,0,0,0.45)",
               flexShrink: 0,
-            }}
-          >
+            }}>
             <img
               src="/me.jpg"
               alt="Адвокат Маркабаев Е.Б."
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section className="panel" style={{ marginTop: 30 }}>
+        <h2 className="h2">Основные направления</h2>
+
+        <p className="muted" style={{ marginTop: 10 }}>
+          Юридическая помощь в {city} ({region})
+        </p>
+
+        <div className="servicesGrid" style={{ marginTop: 20 }}>
+          <Link href="/ugolovnyj-advokat-ust-kamenogorsk" className="serviceCard">
+            <h3 className="serviceCardTitle">⚖️ Уголовные дела</h3>
+            <p className="serviceCardText">
+              Защита и представительство по уголовным делам, участие на стадии следствия и суда.
+            </p>
+          </Link>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">📄 Гражданские дела</h3>
+            <p className="serviceCardText">
+              Взыскание долгов по расписке, семейные и наследственные дела, споры о собственности.
+            </p>
+          </div>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">🚗 Административные дела</h3>
+            <p className="serviceCardText">
+              ДТП, нарушения ПДД, обжалование штрафов, защита при лишении водительских прав.
+            </p>
+          </div>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">🏛 Дела по АППК</h3>
+            <p className="serviceCardText">
+              Споры с государственными органами, оспаривание решений и действий должностных лиц.
+            </p>
           </div>
         </div>
       </section>
