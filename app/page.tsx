@@ -24,6 +24,17 @@ export default function Home() {
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
   const tgLink = "https://t.me/ai_advokat_kz_bot";
 
+  // 🔥 Функция задержки перехода (критично для GTM)
+  const handleExternalClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    url: string
+  ) => {
+    e.preventDefault();
+    setTimeout(() => {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }, 200);
+  };
+
   const docs: DocItem[] = useMemo(
     () => [
       {
@@ -94,7 +105,6 @@ export default function Home() {
 
   return (
     <main className="container">
-      {/* HEADER */}
       <header className="nav">
         <div className="brand">
           ⚖️ {shortName}
@@ -104,16 +114,23 @@ export default function Home() {
         </div>
 
         <div style={{ display: "flex", gap: 10 }}>
-          <a className="btn btnTG" href={tgLink} target="_blank" rel="noreferrer">
+          <a
+            className="btn btnTG"
+            href={tgLink}
+            onClick={(e) => handleExternalClick(e, tgLink)}
+          >
             Telegram
           </a>
-          <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
+          <a
+            className="btn btnWA"
+            href={waLink}
+            onClick={(e) => handleExternalClick(e, waLink)}
+          >
             WhatsApp
           </a>
         </div>
       </header>
 
-      {/* HERO */}
       <section className="panel" style={{ marginTop: 20 }}>
         <div style={{ display: "flex", gap: 30, alignItems: "flex-start", flexWrap: "wrap" }}>
           <div style={{ flex: 1, minWidth: 260 }}>
@@ -135,11 +152,19 @@ export default function Home() {
                 📞 Позвонить
               </a>
 
-              <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
+              <a
+                className="btn btnWA"
+                href={waLink}
+                onClick={(e) => handleExternalClick(e, waLink)}
+              >
                 💬 WhatsApp
               </a>
 
-              <a className="btn btnTG" href={tgLink} target="_blank" rel="noreferrer">
+              <a
+                className="btn btnTG"
+                href={tgLink}
+                onClick={(e) => handleExternalClick(e, tgLink)}
+              >
                 🤖 Telegram
               </a>
             </div>
@@ -165,143 +190,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SERVICES */}
-      <section className="panel" style={{ marginTop: 30 }}>
-        <h2 className="h2">Основные направления</h2>
-
-        <p className="muted" style={{ marginTop: 10 }}>
-          Юридическая помощь в {city} ({region})
-        </p>
-
-        <div className="servicesGrid" style={{ marginTop: 20 }}>
-          
-          <Link href="/ugolovnyj-advokat-ust-kamenogorsk" className="serviceCard">
-            <h3 className="serviceCardTitle">⚖️ Уголовные дела</h3>
-            <p className="serviceCardText">
-              Защита и представительство по уголовным делам, участие на стадии следствия и суда.
-            </p>
-          </Link>
-
-          <div className="serviceCard">
-            <h3 className="serviceCardTitle">📄 Гражданские дела</h3>
-            <p className="serviceCardText">
-              Взыскание долгов по расписке, семейные и наследственные дела, споры о собственности.
-            </p>
-          </div>
-
-          <div className="serviceCard">
-            <h3 className="serviceCardTitle">🚗 Административные дела</h3>
-            <p className="serviceCardText">
-              ДТП, нарушения ПДД, обжалование штрафов, защита при лишении водительских прав.
-            </p>
-          </div>
-
-          <div className="serviceCard">
-            <h3 className="serviceCardTitle">🏛 Дела по АППК</h3>
-            <p className="serviceCardText">
-              Споры с государственными органами, оспаривание решений и действий должностных лиц.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ABOUT */}
-      <section className="panel" style={{ marginTop: 30 }}>
-        <h2 className="h2">Об адвокате</h2>
-
-        <p className="muted" style={{ marginTop: 10 }}>
-          {fullName}. Консультации и ведение дел: уголовные, гражданские, семейные споры,
-          подготовка процессуальных документов, представительство в суде.
-        </p>
-
-        <div style={{ marginTop: 20 }}>
-          <strong>Контакты:</strong>
-          <div>📞 {phoneDisplay}</div>
-          <div>📍 {city} ({region})</div>
-          <div>Telegram: t.me/ai_advokat_kz_bot</div>
-        </div>
-
-        <h3 style={{ marginTop: 25 }}>Документы и сертификаты</h3>
-        <p className="muted" style={{ marginTop: 8 }}>
-          Нажмите на документ для просмотра. В окне просмотра: ← → (листание), Esc (закрыть).
-        </p>
-
-        <div className="docsGrid">
-          {docs.map((d, idx) => (
-            <button
-              key={d.id}
-              type="button"
-              className="docCardBtn"
-              onClick={() => setOpenIndex(idx)}
-              aria-label={`Открыть: ${d.title}`}
-            >
-              <div className="docThumb">
-                <img src={d.thumb} alt={d.title} />
-              </div>
-              <div className="docLabel">{d.title}</div>
-            </button>
-          ))}
-        </div>
-      </section>
-
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
         Информация на сайте носит справочный характер и не является публичной офертой.
       </footer>
-
-      {openDoc && openIndex !== null && (
-        <div
-          className="modalOverlay"
-          role="dialog"
-          aria-modal="true"
-          aria-label={openDoc.title}
-          onClick={() => setOpenIndex(null)}
-        >
-          <div className="modalPanel" onClick={(e) => e.stopPropagation()}>
-            <div className="modalHeader">
-              <div>
-                <div className="modalTitle">{openDoc.title}</div>
-                <div className="modalHint">← → листать • Esc закрыть</div>
-              </div>
-
-              <div className="modalActions">
-                <button type="button" className="modalBtn" onClick={goPrev}>
-                  ← Назад
-                </button>
-
-                <div className="modalCounter">
-                  {openIndex + 1}/{docs.length}
-                </div>
-
-                <button type="button" className="modalBtn" onClick={goNext}>
-                  Вперёд →
-                </button>
-
-                <a className="modalBtn" href={openDoc.pdf} target="_blank" rel="noreferrer">
-                  Открыть PDF
-                </a>
-
-                <button
-                  type="button"
-                  className="modalBtn"
-                  onClick={() => setOpenIndex(null)}
-                >
-                  ✕ Закрыть
-                </button>
-              </div>
-            </div>
-
-            <div className="modalBody">
-              <iframe
-                key={openDoc.pdf}
-                className="modalFrame"
-                src={`${openDoc.pdf}#view=FitH`}
-                title={openDoc.title}
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </main>
   );
 }
