@@ -3,6 +3,12 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
+declare global {
+  interface Window {
+    dataLayer?: any[];
+  }
+}
+
 type DocItem = {
   id: string;
   title: string;
@@ -24,14 +30,20 @@ export default function Home() {
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
   const tgLink = "https://t.me/ai_advokat_kz_bot";
 
+  const pushEvent = (eventName: string) => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: eventName });
+  };
+
   const handleExternalClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    url: string
+    url: string,
+    eventName: string
   ) => {
-    e.preventDefault();
+    pushEvent(eventName);
+
     setTimeout(() => {
       window.open(url, "_blank", "noopener,noreferrer");
-    }, 250);
+    }, 120);
   };
 
   const docs: DocItem[] = useMemo(
@@ -117,14 +129,15 @@ export default function Home() {
           <a
             className="btn btnTG"
             href={tgLink}
-            onClick={(e) => handleExternalClick(e, tgLink)}
+            onClick={() => handleExternalClick(tgLink, "click_telegram")}
           >
             Telegram
           </a>
+
           <a
             className="btn btnWA"
             href={waLink}
-            onClick={(e) => handleExternalClick(e, waLink)}
+            onClick={() => handleExternalClick(waLink, "click_whatsapp")}
           >
             WhatsApp
           </a>
@@ -138,8 +151,8 @@ export default function Home() {
             <h1 className="h1">{shortName}</h1>
 
             <p className="sub">
-              Адвокат, {city} ({region}). Гражданские и уголовные дела. Судебная защита,
-              документы, консультация онлайн и очно.
+              Адвокат, {city} ({region}). Гражданские и уголовные дела.
+              Судебная защита, документы, консультация онлайн и очно.
             </p>
 
             <div className="kpis">
@@ -149,14 +162,18 @@ export default function Home() {
             </div>
 
             <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
+              <a
+                className="btn btnPrimary"
+                href={`tel:${phoneCall}`}
+                onClick={() => pushEvent("click_phone")}
+              >
                 📞 Позвонить
               </a>
 
               <a
                 className="btn btnWA"
                 href={waLink}
-                onClick={(e) => handleExternalClick(e, waLink)}
+                onClick={() => handleExternalClick(waLink, "click_whatsapp")}
               >
                 💬 WhatsApp
               </a>
@@ -164,14 +181,15 @@ export default function Home() {
               <a
                 className="btn btnTG"
                 href={tgLink}
-                onClick={(e) => handleExternalClick(e, tgLink)}
+                onClick={() => handleExternalClick(tgLink, "click_telegram")}
               >
                 🤖 Telegram
               </a>
             </div>
           </div>
 
-          <div style={{
+          <div
+            style={{
               width: 160,
               height: 220,
               borderRadius: 14,
@@ -179,7 +197,8 @@ export default function Home() {
               border: "2px solid rgba(255,255,255,0.15)",
               boxShadow: "0 15px 35px rgba(0,0,0,0.45)",
               flexShrink: 0,
-            }}>
+            }}
+          >
             <img
               src="/me.jpg"
               alt="Адвокат Маркабаев Е.Б."
@@ -201,31 +220,41 @@ export default function Home() {
           <Link href="/ugolovnyj-advokat-ust-kamenogorsk" className="serviceCard">
             <h3 className="serviceCardTitle">⚖️ Уголовные дела</h3>
             <p className="serviceCardText">
-              Защита и представительство по уголовным делам, участие на стадии следствия и суда.
+              Защита и представительство по уголовным делам.
             </p>
           </Link>
 
           <div className="serviceCard">
             <h3 className="serviceCardTitle">📄 Гражданские дела</h3>
             <p className="serviceCardText">
-              Взыскание долгов по расписке, семейные и наследственные дела, споры о собственности.
+              Взыскание долгов, семейные и наследственные споры.
             </p>
           </div>
 
           <div className="serviceCard">
             <h3 className="serviceCardTitle">🚗 Административные дела</h3>
             <p className="serviceCardText">
-              ДТП, нарушения ПДД, обжалование штрафов, защита при лишении водительских прав.
+              ДТП, обжалование штрафов, лишение прав.
             </p>
           </div>
 
           <div className="serviceCard">
             <h3 className="serviceCardTitle">🏛 Дела по АППК</h3>
             <p className="serviceCardText">
-              Споры с государственными органами, оспаривание решений и действий должностных лиц.
+              Споры с госорганами.
             </p>
           </div>
         </div>
+      </section>
+
+      {/* ABOUT */}
+      <section className="panel" style={{ marginTop: 30 }}>
+        <h2 className="h2">Об адвокате</h2>
+
+        <p className="muted" style={{ marginTop: 10 }}>
+          {fullName}. Консультации и ведение дел:
+          уголовные, гражданские, семейные споры.
+        </p>
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
