@@ -1,4 +1,5 @@
 // lib/tracking.ts
+
 export type LeadType = "phone" | "whatsapp" | "telegram";
 
 declare global {
