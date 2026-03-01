@@ -4,15 +4,15 @@ export type LeadType = "phone" | "whatsapp" | "telegram";
 
 declare global {
   interface Window {
-    dataLayer: any[];
+    datalayer: any[];
   }
 }
 
 const pushToDataLayer = (eventName: string) => {
   if (typeof window === "undefined") return;
 
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
+  window.datalayer = window.datalayer || [];
+  window.datalayer.push({
     event: eventName,
     timestamp: Date.now(),
   });
@@ -20,9 +20,9 @@ const pushToDataLayer = (eventName: string) => {
 
 export const trackLead = (type: LeadType) => {
   const eventMap: Record<LeadType, string> = {
-    phone: "lead_phone_click",
-    whatsapp: "lead_whatsapp_click",
-    telegram: "lead_telegram_click",
+   phone: "click_phone",
+whatsapp: "click_whatsapp",
+telegram: "click_telegram",
   };
 
   pushToDataLayer(eventMap[type]);
