@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-
+import { trackLead, trackAndOpen } from "@/lib/tracking";
 type DocItem = {
   id: string;
   title: string;
