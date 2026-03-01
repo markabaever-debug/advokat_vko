@@ -20,9 +20,9 @@ const pushToDataLayer = (eventName: string) => {
 
 export const trackLead = (type: LeadType) => {
   const eventMap: Record<LeadType, string> = {
-    phone: "lead_phone_click",
-    whatsapp: "lead_whatsapp_click",
-    telegram: "lead_telegram_click",
+    23 phone: "click_phone",
+24 whatsapp: "click_whatsapp",
+25 telegram: "click_telegram",
   };
 
   pushToDataLayer(eventMap[type]);
