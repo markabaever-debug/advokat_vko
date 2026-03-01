@@ -26,44 +26,41 @@ export default function Home() {
   const phoneCall = "+77775430791";
   const waNumber = "77775430791";
 
-  const waText = encodeURIComponent("Здравствуйте! Нужна консультация адвоката");
+  const waText = encodeURIComponent(
+    "Здравствуйте! Нужна консультация адвоката"
+  );
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
   const tgLink = "https://t.me/ai_advokat_kz_bot";
 
-  // ===============================
-  // TRACKING LAYER (архитектурно правильно)
-  // ===============================
+  // ================= TRACKING =================
 
-  const trackEvent = (eventName: string) => {
-    if (typeof window !== "undefined" && window.dataLayer) {
-      window.dataLayer.push({
-        event: eventName,
-      });
+  const pushEvent = (eventName: string) => {
+    if (typeof window !== "undefined") {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: eventName });
     }
   };
 
-  const trackAndRedirect = (eventName: string, url: string) => {
-    trackEvent(eventName);
-
-    // Даём GTM 300мс на отправку
+  const trackAndOpen = (eventName: string, url: string) => {
+    pushEvent(eventName);
     setTimeout(() => {
-      window.open(url, "_blank");
-    }, 300);
+      window.open(url, "_blank", "noopener,noreferrer");
+    }, 250);
   };
 
   const handlePhoneClick = () => {
-    trackEvent("lead_phone_click");
+    pushEvent("lead_phone_click");
   };
 
   const handleWhatsAppClick = () => {
-    trackAndRedirect("lead_whatsapp_click", waLink);
+    trackAndOpen("lead_whatsapp_click", waLink);
   };
 
   const handleTelegramClick = () => {
-    trackAndRedirect("lead_telegram_click", tgLink);
+    trackAndOpen("lead_telegram_click", tgLink);
   };
 
-  // ===============================
+  // ================= DOCUMENTS =================
 
   const docs: DocItem[] = useMemo(
     () => [
@@ -129,12 +126,14 @@ export default function Home() {
     if (openIndex !== null)
       window.addEventListener("keydown", onKeyDown);
 
-    return () =>
-      window.removeEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [openIndex]);
+
+  // ================= RENDER =================
 
   return (
     <main className="container">
+      {/* HEADER */}
       <header className="nav">
         <div className="brand">
           ⚖️ {shortName}
@@ -153,14 +152,22 @@ export default function Home() {
         </div>
       </header>
 
+      {/* HERO */}
       <section className="panel" style={{ marginTop: 20 }}>
-        <div style={{ display: "flex", gap: 30, alignItems: "flex-start", flexWrap: "wrap" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 30,
+            alignItems: "flex-start",
+            flexWrap: "wrap",
+          }}
+        >
           <div style={{ flex: 1, minWidth: 260 }}>
             <h1 className="h1">{shortName}</h1>
 
             <p className="sub">
-              Адвокат, {city} ({region}). Гражданские и уголовные дела. Судебная защита,
-              документы, консультация онлайн и очно.
+              Адвокат, {city} ({region}). Гражданские и уголовные дела.
+              Судебная защита, документы, консультация онлайн и очно.
             </p>
 
             <div className="ctaRow" style={{ marginTop: 20 }}>
@@ -181,8 +188,60 @@ export default function Home() {
               </button>
             </div>
           </div>
+
+          <div
+            style={{
+              width: 160,
+              height: 220,
+              borderRadius: 14,
+              overflow: "hidden",
+              border: "2px solid rgba(255,255,255,0.15)",
+              boxShadow: "0 15px 35px rgba(0,0,0,0.45)",
+              flexShrink: 0,
+            }}
+          >
+            <img
+              src="/me.jpg"
+              alt="Адвокат Маркабаев Е.Б."
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </div>
         </div>
       </section>
+
+      {/* SERVICES */}
+      <section className="panel" style={{ marginTop: 30 }}>
+        <h2 className="h2">Основные направления</h2>
+
+        <div className="servicesGrid" style={{ marginTop: 20 }}>
+          <Link
+            href="/ugolovnyj-advokat-ust-kamenogorsk"
+            className="serviceCard"
+          >
+            <h3 className="serviceCardTitle">⚖️ Уголовные дела</h3>
+            <p className="serviceCardText">
+              Защита и представительство по уголовным делам.
+            </p>
+          </Link>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">📄 Гражданские дела</h3>
+          </div>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">🚗 Административные дела</h3>
+          </div>
+
+          <div className="serviceCard">
+            <h3 className="serviceCardTitle">🏛 Дела по АППК</h3>
+          </div>
+        </div>
+      </section>
+
+      <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
+        Информация на сайте носит справочный характер и не является публичной
+        офертой.
+      </footer>
     </main>
   );
 }
