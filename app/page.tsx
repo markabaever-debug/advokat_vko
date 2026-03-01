@@ -104,12 +104,20 @@ export default function Home() {
         </div>
 
         <div style={{ display: "flex", gap: 10 }}>
-          <a className="btn btnTG" href={tgLink} target="_blank" rel="noreferrer">
+          <button
+            type="button"
+            className="btn btnTG"
+            onClick={() => trackAndOpen("telegram", tgLink)}
+          >
             Telegram
-          </a>
-          <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
+          </button>
+          <button
+            type="button"
+            className="btn btnWA"
+            onClick={() => trackAndOpen("whatsapp", waLink)}
+          >
             WhatsApp
-          </a>
+          </button>
         </div>
       </header>
 
@@ -131,17 +139,29 @@ export default function Home() {
             </div>
 
             <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
+              <a
+                className="btn btnPrimary"
+                href={`tel:${phoneCall}`}
+                onClick={() => trackLead("phone")}
+              >
                 📞 Позвонить
               </a>
 
-              <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
+              <button
+                type="button"
+                className="btn btnWA"
+                onClick={() => trackAndOpen("whatsapp", waLink)}
+              >
                 💬 WhatsApp
-              </a>
+              </button>
 
-              <a className="btn btnTG" href={tgLink} target="_blank" rel="noreferrer">
+              <button
+                type="button"
+                className="btn btnTG"
+                onClick={() => trackAndOpen("telegram", tgLink)}
+              >
                 🤖 Telegram
-              </a>
+              </button>
             </div>
           </div>
 
