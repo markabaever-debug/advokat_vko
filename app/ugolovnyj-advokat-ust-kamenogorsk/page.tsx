@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function UgolovnyAdvokatPage() {
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
+  const [memoOpen, setMemoOpen] = useState(false);
   const fullName = "Маркабаев Ерлан Бапашевич";
   const city = "Усть-Каменогорск";
   const region = "ВКО";
@@ -16,7 +17,138 @@ export default function UgolovnyAdvokatPage() {
 
   return (
     <main className="container">
-      
+      {/* Плавающая кнопка — Памятка при задержании */}
+      <div className="memoFloatingWrap">
+        <button
+          type="button"
+          className="memoFloatingBtn"
+          onClick={() => setMemoOpen(true)}
+          aria-label="Открыть памятку при задержании и допросе"
+        >
+          🚨 ПАМЯТКА ПРИ ЗАДЕРЖАНИИ И ДОПРОСЕ — ПРОЧИТАТЬ НЕМЕДЛЕННО
+        </button>
+      </div>
+
+      {/* Модальное окно с памяткой */}
+      {memoOpen && (
+        <div
+          className="modalOverlay"
+          onClick={() => setMemoOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="memo-title"
+        >
+          <div
+            className="modalPanel memoModalPanel"
+            onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+          >
+            <div className="modalHeader">
+              <h2 id="memo-title" className="memoModalTitle">
+                🚨 Памятка при задержании и допросе
+              </h2>
+              <button
+                type="button"
+                className="modalBtn"
+                onClick={() => setMemoOpen(false)}
+                aria-label="Закрыть"
+              >
+                ✕ Закрыть
+              </button>
+            </div>
+            <div className="memoModalBody">
+              <section className="memoBlock">
+                <h3>⚖️ ВЫ ИМЕЕТЕ ПРАВО МОЛЧАТЬ</h3>
+                <p>
+                  Согласно ст. 77 Конституции Республики Казахстан никто не обязан свидетельствовать против себя, супруга и близких родственников.
+                </p>
+                <p><strong>Вы вправе:</strong></p>
+                <ul>
+                  <li>отказаться от дачи показаний</li>
+                  <li>не отвечать на вопросы</li>
+                  <li>не подписывать объяснения</li>
+                  <li>не признавать вину</li>
+                </ul>
+                <p className="memoNote">Использование молчания не является признанием вины.</p>
+              </section>
+
+              <section className="memoBlock">
+                <h3>🛡 ВЫ ИМЕЕТЕ ПРАВО НА АДВОКАТА</h3>
+                <p>
+                  Согласно ст. 26 и 67 УПК РК вы имеете право на защитника с момента задержания или первого допроса.
+                </p>
+                <p className="memoNote">Без адвоката вы вправе отказаться от любых показаний.</p>
+              </section>
+
+              <section className="memoBlock memoBlockHighlight">
+                <h3>❗ ГЛАВНОЕ ПРАВИЛО</h3>
+                <p className="memoLead">НИЧЕГО НЕ ГОВОРИТЬ БЕЗ АДВОКАТА</p>
+                <p>Никогда не:</p>
+                <ul>
+                  <li>не давайте объяснения «просто поговорить»</li>
+                  <li>не подписывайте протоколы</li>
+                  <li>не пишите объяснительные</li>
+                  <li>не верьте словам «это формальность»</li>
+                  <li>не соглашайтесь &quot;для облегчения&quot;</li>
+                </ul>
+                <p className="memoNote">Любое ваше слово фиксируется и может быть использовано против вас.</p>
+              </section>
+
+              <section className="memoBlock">
+                <h3>🚨 ЧТО СКАЗАТЬ СРАЗУ</h3>
+                <p>Спокойно и уверенно заявите:</p>
+                <blockquote className="memoQuote">
+                  «На основании ст. 77 Конституции РК и ст. 26, 67 УПК РК буду давать показания только в присутствии адвоката».
+                </blockquote>
+                <p>Повторяйте это на любые вопросы. Не объясняйте. Не оправдывайтесь. Не подписывайте.</p>
+              </section>
+
+              <section className="memoBlock">
+                <h3>⛔ ПОЧЕМУ НЕЛЬЗЯ БЕЗ АДВОКАТА</h3>
+                <p>
+                  Большинство обвинительных доказательств появляются после первых объяснений без защиты.
+                </p>
+                <p>Без адвоката:</p>
+                <ul>
+                  <li>фиксируются оговорки</li>
+                  <li>создаются противоречия</li>
+                  <li>формируется база обвинения</li>
+                  <li>получают признательные фразы</li>
+                </ul>
+                <p className="memoNote">После этого изменить позицию крайне сложно. Первые часы решают исход дела.</p>
+              </section>
+
+              <section className="memoBlock">
+                <h3>📞 АДВОКАТ НУЖЕН СРОЧНО ЕСЛИ</h3>
+                <ul>
+                  <li>вас задержали</li>
+                  <li>вызывают на допрос</li>
+                  <li>проводят обыск</li>
+                  <li>изъяли телефон</li>
+                  <li>вызывают как свидетеля</li>
+                  <li>угрожают уголовным делом</li>
+                </ul>
+                <p className="memoNote">Чем раньше подключается адвокат — тем сильнее защита.</p>
+              </section>
+
+              <section className="memoBlock memoBlockCta">
+                <h3>⚖️ ВАШ АДВОКАТ И ЗАЩИТНИК</h3>
+                <p className="memoLead">{fullName}</p>
+                <ul className="memoServices">
+                  <li>Уголовная защита</li>
+                  <li>Срочный выезд</li>
+                  <li>Конфиденциальные консультации</li>
+                  <li>Полное сопровождение дела</li>
+                </ul>
+                <a className="btn btnWA memoCtaLink" href={waLink} target="_blank" rel="noreferrer">
+                  📲 WhatsApp: 8-777-543-07-91
+                </a>
+                <p className="memoDisclaimer">Адвокатская тайна гарантирована законом</p>
+              </section>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* HERO */}
       <section className="panel" style={{ marginTop: 20 }}>
         <div style={{ display: "flex", gap: 30, flexWrap: "wrap", alignItems: "flex-start" }}>
