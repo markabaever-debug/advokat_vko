@@ -69,7 +69,13 @@ export default function UgolovnyAdvokatPage() {
             <img
               src="/me.jpg"
               alt="Адвокат Маркабаев Ерлан Бапашевич"
-              style={{ width: "100%", maxWidth: "100%", height: "100%", objectFit: "cover" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "top",
+                borderRadius: "12px",
+              }}
             />
           </div>
         </div>
