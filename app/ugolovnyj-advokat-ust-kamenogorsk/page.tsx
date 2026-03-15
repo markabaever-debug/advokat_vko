@@ -72,8 +72,9 @@ export default function UgolovnyAdvokatPage() {
               style={{
                 width: "100%",
                 height: "100%",
+                display: "block",
                 objectFit: "cover",
-                objectPosition: "top",
+                objectPosition: "center 20%",
                 borderRadius: "12px",
               }}
             />
