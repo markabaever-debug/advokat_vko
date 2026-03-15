@@ -61,7 +61,6 @@ export default function Home() {
   );
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
   const openDoc = openIndex === null ? null : docs[openIndex];
 
   const goPrev = () => {
@@ -224,99 +223,6 @@ export default function Home() {
             </p>
           </div>
 
-        </div>
-      </section>
-
-      {/* ЭТАПЫ РАБОТЫ */}
-      <section className="panel" style={{ marginTop: 30 }}>
-        <h2 className="h2">Этапы работы</h2>
-        <p className="muted" style={{ marginTop: 10 }}>
-          От первой консультации до защиты в суде
-        </p>
-        <div className="stagesGrid">
-          <div className="stageCard">
-            <span className="stageIcon" aria-hidden>💬</span>
-            <h3 className="stageCardTitle">Консультация</h3>
-          </div>
-          <div className="stageCard">
-            <span className="stageIcon" aria-hidden>📋</span>
-            <h3 className="stageCardTitle">Анализ дела</h3>
-          </div>
-          <div className="stageCard">
-            <span className="stageIcon" aria-hidden>🎯</span>
-            <h3 className="stageCardTitle">Стратегия</h3>
-          </div>
-          <div className="stageCard">
-            <span className="stageIcon" aria-hidden>🛡️</span>
-            <h3 className="stageCardTitle">Защита</h3>
-          </div>
-        </div>
-      </section>
-
-      {/* ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ */}
-      <section className="panel" style={{ marginTop: 30 }}>
-        <h2 className="h2">Часто задаваемые вопросы</h2>
-        <p className="muted" style={{ marginTop: 10 }}>
-          Ответы на типичные вопросы клиентов
-        </p>
-        <div className="faqList">
-          <div
-            className="faqItem"
-            data-open={faqOpenIndex === 0}
-          >
-            <button
-              type="button"
-              className="faqTrigger"
-              onClick={() => setFaqOpenIndex((i: number | null) => (i === 0 ? null : 0))}
-              aria-expanded={faqOpenIndex === 0}
-            >
-              Возможен ли срочный выезд?
-              <span className="faqTriggerIcon">▼</span>
-            </button>
-            <div className="faqContent">
-              <div className="faqContentInner">
-                Да. При необходимости возможен срочный выезд к клиенту (в том числе в СИЗО, изолятор, к месту происшествия). Свяжитесь по телефону или мессенджеру — обсудим сроки и условия.
-              </div>
-            </div>
-          </div>
-          <div
-            className="faqItem"
-            data-open={faqOpenIndex === 1}
-          >
-            <button
-              type="button"
-              className="faqTrigger"
-              onClick={() => setFaqOpenIndex((i: number | null) => (i === 1 ? null : 1))}
-              aria-expanded={faqOpenIndex === 1}
-            >
-              Гарантирована ли конфиденциальность?
-              <span className="faqTriggerIcon">▼</span>
-            </button>
-            <div className="faqContent">
-              <div className="faqContentInner">
-                Адвокатская тайна защищена законом. Вся информация, полученная в рамках оказания юридической помощи, не подлежит разглашению. Консультации и переписка строго конфиденциальны.
-              </div>
-            </div>
-          </div>
-          <div
-            className="faqItem"
-            data-open={faqOpenIndex === 2}
-          >
-            <button
-              type="button"
-              className="faqTrigger"
-              onClick={() => setFaqOpenIndex((i: number | null) => (i === 2 ? null : 2))}
-              aria-expanded={faqOpenIndex === 2}
-            >
-              Как формируется стоимость услуг?
-              <span className="faqTriggerIcon">▼</span>
-            </button>
-            <div className="faqContent">
-              <div className="faqContentInner">
-                Стоимость зависит от категории дела, объёма работы и этапов (консультация, ведение на следствии, представительство в суде). Точная сумма обсуждается после анализа ситуации. Возможна поэтапная оплата.
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
