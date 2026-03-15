@@ -58,7 +58,7 @@ export default function UgolovnyAdvokatPage() {
           <div
             style={{
               width: 210,
-              height: 154,
+              height: 216,
               borderRadius: 14,
               overflow: "hidden",
               border: "2px solid rgba(255,255,255,0.15)",
