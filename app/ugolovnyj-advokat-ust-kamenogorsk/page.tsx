@@ -6,7 +6,7 @@ export default function UgolovnyAdvokatPage() {
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
   const [memoOpen, setMemoOpen] = useState(false);
   const fullName = "Маркабаев Ерлан Бапашевич";
-  const city = "Усть-Каменогорск";
+  const city = "Усть-Каменогорске";
   const region = "ВКО";
 
   const phoneCall = "+77775430791";
@@ -59,7 +59,7 @@ export default function UgolovnyAdvokatPage() {
               <section className="memoBlock">
                 <h3>⚖️ ВЫ ИМЕЕТЕ ПРАВО МОЛЧАТЬ</h3>
                 <p>
-                  Согласно ст. 77 Конституции Республики Казахстан никто не обязан свидетельствовать против себя, супруга и близких родственников.
+                  Согласно <strong>ст. 77</strong> Конституции Республики Казахстан никто не обязан свидетельствовать против себя, супруга и близких родственников.
                 </p>
                 <p><strong>Вы вправе:</strong></p>
                 <ul>
@@ -74,7 +74,7 @@ export default function UgolovnyAdvokatPage() {
               <section className="memoBlock">
                 <h3>🛡 ВЫ ИМЕЕТЕ ПРАВО НА АДВОКАТА</h3>
                 <p>
-                  Согласно ст. 26 и 67 УПК РК вы имеете право на защитника с момента задержания или первого допроса.
+                  Согласно <strong>ст. 26 и 67</strong> УПК РК вы имеете право на защитника с момента задержания или первого допроса.
                 </p>
                 <p className="memoNote">Без адвоката вы вправе отказаться от любых показаний.</p>
               </section>
@@ -83,12 +83,12 @@ export default function UgolovnyAdvokatPage() {
                 <h3>❗ ГЛАВНОЕ ПРАВИЛО</h3>
                 <p className="memoLead">НИЧЕГО НЕ ГОВОРИТЬ БЕЗ АДВОКАТА</p>
                 <p>Никогда не:</p>
-                <ul>
-                  <li>не давайте объяснения «просто поговорить»</li>
-                  <li>не подписывайте протоколы</li>
-                  <li>не пишите объяснительные</li>
-                  <li>не верьте словам «это формальность»</li>
-                  <li>не соглашайтесь &quot;для облегчения&quot;</li>
+                <ul className="memoListDanger">
+                  <li><span className="memoDangerIcon">🛑</span> не давайте объяснения «просто поговорить»</li>
+                  <li><span className="memoDangerIcon">🛑</span> не подписывайте протоколы</li>
+                  <li><span className="memoDangerIcon">🛑</span> не пишите объяснительные</li>
+                  <li><span className="memoDangerIcon">🛑</span> не верьте словам «это формальность»</li>
+                  <li><span className="memoDangerIcon">🛑</span> не соглашайтесь &quot;для облегчения&quot;</li>
                 </ul>
                 <p className="memoNote">Любое ваше слово фиксируется и может быть использовано против вас.</p>
               </section>
@@ -97,9 +97,9 @@ export default function UgolovnyAdvokatPage() {
                 <h3>🚨 ЧТО СКАЗАТЬ СРАЗУ</h3>
                 <p>Спокойно и уверенно заявите:</p>
                 <blockquote className="memoQuote">
-                  «На основании ст. 77 Конституции РК и ст. 26, 67 УПК РК буду давать показания только в присутствии адвоката».
+                  «На основании <strong>ст. 77</strong> Конституции РК и <strong>ст. 26, 67</strong> УПК РК буду давать показания только в присутствии адвоката».
                 </blockquote>
-                <p>Повторяйте это на любые вопросы. Не объясняйте. Не оправдывайтесь. Не подписывайте.</p>
+                <p>Повторяйте это на любые вопросы. <span className="memoDangerText">Не объясняйте. Не оправдывайтесь. Не подписывайте.</span></p>
               </section>
 
               <section className="memoBlock">
@@ -139,9 +139,22 @@ export default function UgolovnyAdvokatPage() {
                   <li>Конфиденциальные консультации</li>
                   <li>Полное сопровождение дела</li>
                 </ul>
-                <a className="btn btnWA memoCtaLink" href={waLink} target="_blank" rel="noreferrer">
-                  📲 WhatsApp: 8-777-543-07-91
-                </a>
+                <div className="memoCtaButtons">
+                  <a
+                    className="btn btnPrimary memoCtaLink"
+                    href={`tel:${phoneCall}`}
+                  >
+                    📞 Позвонить: 8-777-543-07-91
+                  </a>
+                  <a
+                    className="btn btnWA memoCtaLink"
+                    href={waLink}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    💬 WhatsApp: 8-777-543-07-91
+                  </a>
+                </div>
                 <p className="memoDisclaimer">Адвокатская тайна гарантирована законом</p>
               </section>
             </div>
