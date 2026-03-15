@@ -315,6 +315,63 @@ a {
   border: 0;
 }
 
+/* ===== FLOATING CONTACT BUTTONS ===== */
+
+.floating-contact {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.floating-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.floating-btn-phone {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.floating-btn-wa {
+  background: #25d366;
+}
+
+.floating-btn-tg {
+  background: #229ed9;
+}
+
+@media (max-width: 768px) {
+  .floating-contact {
+    bottom: 16px;
+    right: 16px;
+    gap: 10px;
+  }
+
+  .floating-btn {
+    width: 48px;
+    height: 48px;
+  }
+}
+
 /* ===== FOOTER ===== */
 
 footer {
