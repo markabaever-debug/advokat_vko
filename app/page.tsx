@@ -189,26 +189,26 @@ export default function Home() {
             </p>
           </Link>
 
-          <div className="serviceCard serviceCardStatic">
+          <Link href="/grazhdanskie-dela-ust-kamenogorsk" className="serviceCard">
             <h3 className="serviceCardTitle">📄 Гражданские дела</h3>
             <p className="serviceCardText">
               Взыскание долгов по расписке, семейные и наследственные дела, споры о собственности.
             </p>
-          </div>
+          </Link>
 
-          <div className="serviceCard serviceCardStatic">
+          <Link href="/administrativnye-dela-ust-kamenogorsk" className="serviceCard">
             <h3 className="serviceCardTitle">🚗 Административные дела</h3>
             <p className="serviceCardText">
               ДТП, нарушения ПДД, обжалование штрафов, защита при лишении водительских прав.
             </p>
-          </div>
+          </Link>
 
-          <div className="serviceCard serviceCardStatic">
+          <Link href="/spory-s-gosorganami-ust-kamenogorsk" className="serviceCard">
             <h3 className="serviceCardTitle">🏛 Дела по АППК</h3>
             <p className="serviceCardText">
               Споры с государственными органами, оспаривание решений и действий должностных лиц.
             </p>
-          </div>
+          </Link>
 
         </div>
       </section>

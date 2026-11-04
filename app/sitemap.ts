@@ -18,6 +18,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/grazhdanskie-dela-ust-kamenogorsk`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/administrativnye-dela-ust-kamenogorsk`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/spory-s-gosorganami-ust-kamenogorsk`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/politika-konfidencialnosti`,
       lastModified,
       changeFrequency: "yearly",
