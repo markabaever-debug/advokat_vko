@@ -2,12 +2,37 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { HeroPhoto } from "@/components/HeroPhoto";
+import { StagesAccordion, type Stage } from "@/components/StagesAccordion";
 
 export default function GrazhdanskieDelaPage() {
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
   const fullName = "Маркабаев Ерлан Бапашевич";
   const city = "Усть-Каменогорске";
   const region = "ВКО";
+
+  const stages: Stage[] = [
+    {
+      icon: "💬",
+      title: "Консультация",
+      text: "Разбираем суть спора, ваши документы и сроки. Объясняю возможные пути: переговоры, претензия, мировое соглашение или обращение в суд, и что потребуется для каждого из них.",
+    },
+    {
+      icon: "📋",
+      title: "Анализ документов",
+      text: "Изучаю договоры, расписки, переписку, правоустанавливающие и иные документы. Определяю, какие доказательства есть, каких не хватает и как их получить, в том числе через адвокатский запрос.",
+    },
+    {
+      icon: "🎯",
+      title: "Подготовка позиции",
+      text: "Готовлю претензию, исковое заявление или возражение на иск, расчёт требований, ходатайства об истребовании доказательств и вызове свидетелей.",
+    },
+    {
+      icon: "⚖️",
+      title: "Представительство в суде",
+      text: "Участвую в судебных заседаниях, представляю доказательства, допрашиваю свидетелей, выступаю в прениях. При необходимости обжалую решение в апелляционном и кассационном порядке.",
+    },
+  ];
 
   const phoneCall = "+77775430791";
   const waNumber = "77775430791";
@@ -43,6 +68,9 @@ export default function GrazhdanskieDelaPage() {
           ⚖️ Маркабаев Е.Б.
           <span className="badge">Усть-Каменогорск • {region}</span>
         </Link>
+        <Link href="/" className="btn navHomeBtn" aria-label="Вернуться на главную">
+          ← На главную
+        </Link>
       </header>
 
       {/* HERO */}
@@ -72,30 +100,7 @@ export default function GrazhdanskieDelaPage() {
             </div>
           </div>
 
-          <div
-            style={{
-              width: 210,
-              height: 216,
-              borderRadius: 14,
-              overflow: "hidden",
-              border: "2px solid rgba(255,255,255,0.15)",
-              boxShadow: "0 15px 35px rgba(0,0,0,0.45)",
-              flexShrink: 0,
-            }}
-          >
-            <img
-              src="/me.jpg"
-              alt="Адвокат Маркабаев Ерлан Бапашевич"
-              style={{
-                width: "100%",
-                height: "100%",
-                display: "block",
-                objectFit: "cover",
-                objectPosition: "center 20%",
-                borderRadius: "12px",
-              }}
-            />
-          </div>
+          <HeroPhoto />
         </div>
       </section>
 
@@ -124,26 +129,9 @@ export default function GrazhdanskieDelaPage() {
       <section className="panel" style={{ marginTop: 30 }}>
         <h2 className="h2">Этапы работы</h2>
         <p className="muted" style={{ marginTop: 10 }}>
-          От первой консультации до представительства в суде
+          От первой консультации до представительства в суде. Нажмите на этап, чтобы раскрыть описание.
         </p>
-        <div className="stagesGrid">
-          <div className="stageCard">
-            <span className="stageIcon" aria-hidden>💬</span>
-            <h3 className="stageCardTitle">Консультация</h3>
-          </div>
-          <div className="stageCard">
-            <span className="stageIcon" aria-hidden>📋</span>
-            <h3 className="stageCardTitle">Анализ документов</h3>
-          </div>
-          <div className="stageCard">
-            <span className="stageIcon" aria-hidden>🎯</span>
-            <h3 className="stageCardTitle">Подготовка позиции</h3>
-          </div>
-          <div className="stageCard">
-            <span className="stageIcon" aria-hidden>⚖️</span>
-            <h3 className="stageCardTitle">Представительство в суде</h3>
-          </div>
-        </div>
+        <StagesAccordion stages={stages} />
       </section>
 
       {/* ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ */}

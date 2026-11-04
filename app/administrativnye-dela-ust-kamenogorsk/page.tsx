@@ -2,12 +2,37 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { HeroPhoto } from "@/components/HeroPhoto";
+import { StagesAccordion, type Stage } from "@/components/StagesAccordion";
 
 export default function AdministrativnyeDelaPage() {
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
   const fullName = "Маркабаев Ерлан Бапашевич";
   const city = "Усть-Каменогорске";
   const region = "ВКО";
+
+  const stages: Stage[] = [
+    {
+      icon: "💬",
+      title: "Консультация",
+      text: "Разбираем, что произошло и какие документы у вас на руках: протокол, постановление, акт освидетельствования. Определяем сроки — для обжалования они короткие, поэтому важно не откладывать.",
+    },
+    {
+      icon: "📋",
+      title: "Анализ материалов",
+      text: "Изучаю протокол, схему ДТП, видеозаписи, акт освидетельствования и другие материалы: правильно ли они составлены, соответствуют ли фактическим обстоятельствам, есть ли процессуальные нарушения.",
+    },
+    {
+      icon: "🎯",
+      title: "Подготовка позиции",
+      text: "Готовлю объяснения и замечания, ходатайства об истребовании видеозаписей, вызове свидетелей, назначении экспертизы, а при наличии постановления — жалобу на него.",
+    },
+    {
+      icon: "🛡️",
+      title: "Защита в суде",
+      text: "Участвую в рассмотрении дела в суде или в уполномоченном органе, представляю доводы и доказательства, при необходимости обжалую принятое решение.",
+    },
+  ];
 
   const phoneCall = "+77775430791";
   const waNumber = "77775430791";
@@ -43,6 +68,9 @@ export default function AdministrativnyeDelaPage() {
           ⚖️ Маркабаев Е.Б.
           <span className="badge">Усть-Каменогорск • {region}</span>
         </Link>
+        <Link href="/" className="btn navHomeBtn" aria-label="Вернуться на главную">
+          ← На главную
+        </Link>
       </header>
 
       {/* HERO */}
@@ -72,30 +100,7 @@ export default function AdministrativnyeDelaPage() {
             </div>
           </div>
 
-          <div
-            style={{
-              width: 210,
-              height: 216,
-              borderRadius: 14,
-              overflow: "hidden",
-              border: "2px solid rgba(255,255,255,0.15)",
-              boxShadow: "0 15px 35px rgba(0,0,0,0.45)",
-              flexShrink: 0,
-            }}
-          >
-            <img
-              src="/me.jpg"
-              alt="Адвокат Маркабаев Ерлан Бапашевич"
-              style={{
-                width: "100%",
-                height: "100%",
-                display: "block",
-                objectFit: "cover",
-                objectPosition: "center 20%",
-                borderRadius: "12px",
-              }}
-            />
-          </div>
+          <HeroPhoto />
         </div>
       </section>
 
@@ -122,26 +127,9 @@ export default function AdministrativnyeDelaPage() {
       <section className="panel" style={{ marginTop: 30 }}>
         <h2 className="h2">Этапы работы</h2>
         <p className="muted" style={{ marginTop: 10 }}>
-          От первой консультации до защиты в суде
+          От первой консультации до защиты в суде. Нажмите на этап, чтобы раскрыть описание.
         </p>
-        <div className="stagesGrid">
-          <div className="stageCard">
-            <span className="stageIcon" aria-hidden>💬</span>
-            <h3 className="stageCardTitle">Консультация</h3>
-          </div>
-          <div className="stageCard">
-            <span className="stageIcon" aria-hidden>📋</span>
-            <h3 className="stageCardTitle">Анализ материалов</h3>
-          </div>
-          <div className="stageCard">
-            <span className="stageIcon" aria-hidden>🎯</span>
-            <h3 className="stageCardTitle">Подготовка позиции</h3>
-          </div>
-          <div className="stageCard">
-            <span className="stageIcon" aria-hidden>🛡️</span>
-            <h3 className="stageCardTitle">Защита в суде</h3>
-          </div>
-        </div>
+        <StagesAccordion stages={stages} />
       </section>
 
       {/* ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ */}
