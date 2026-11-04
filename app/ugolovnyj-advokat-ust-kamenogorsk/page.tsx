@@ -16,7 +16,6 @@ export default function UgolovnyAdvokatPage() {
   const address = "070010, г. Усть-Каменогорск, ул. Бориса Александрова, д. 3, офис 101";
   const waText = encodeURIComponent("Здравствуйте! Нужна срочная помощь по уголовному делу");
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
-  const tgLink = "https://t.me/ai_advokat_kz_bot";
 
   return (
     <main className="container">
@@ -98,7 +97,7 @@ export default function UgolovnyAdvokatPage() {
                   <li><span className="memoDangerIcon">🛑</span> не пишите объяснительные без адвоката;</li>
                   <li><span className="memoDangerIcon">🛑</span> не верьте словам «это формальность».</li>
                 </ul>
-                <p className="memoNote">Любое ваше слово фиксируется и может быть использовано против вас.</p>
+                <p className="memoNote">Всё сказанное вами может быть занесено в протокол и использовано как доказательство.</p>
               </section>
 
               <section className="memoBlock">
@@ -120,7 +119,7 @@ export default function UgolovnyAdvokatPage() {
               <section className="memoBlock">
                 <h3>⛔ ПОЧЕМУ НЕЛЬЗЯ БЕЗ АДВОКАТА</h3>
                 <p>
-                  Большинство обвинительных доказательств появляются после первых объяснений без защиты.
+                  Объяснения и показания, данные без защитника в первые часы, нередко становятся основой обвинения.
                 </p>
                 <p>Без адвоката:</p>
                 <ul>
@@ -129,7 +128,7 @@ export default function UgolovnyAdvokatPage() {
                   <li>формируется база обвинения</li>
                   <li>получают признательные фразы</li>
                 </ul>
-                <p className="memoNote">После этого изменить позицию крайне сложно. Первые часы решают исход дела.</p>
+                <p className="memoNote">Отказаться от них потом можно, но они всё равно могут быть использованы как доказательство (часть шестая статьи 64 УПК РК). Поэтому защитника нужно пригласить до первого допроса.</p>
               </section>
 
               <section className="memoBlock">
@@ -191,14 +190,14 @@ export default function UgolovnyAdvokatPage() {
             </h1>
 
             <p className="sub">
-              {fullName}. Более 10 лет практики по уголовным делам. 
+              {fullName}. Более 10 лет юридической практики, адвокат с 2019 года.
               Срочная защита на стадии задержания, следствия и суда.
             </p>
 
             <div className="kpis">
-              <div className="kpi">✅ Срочный выезд 24/7</div>
+              <div className="kpi">✅ Срочный выезд по договорённости</div>
               <div className="kpi">✅ Конфиденциальность</div>
-              <div className="kpi">✅ Опыт более 10 лет</div>
+              <div className="kpi">✅ Адвокат с 2019 года</div>
             </div>
 
             <div className="ctaRow" style={{ marginTop: 20 }}>
@@ -208,10 +207,6 @@ export default function UgolovnyAdvokatPage() {
 
               <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
                 💬 WhatsApp
-              </a>
-
-              <a className="btn btnTG" href={tgLink} target="_blank" rel="noreferrer">
-                🤖 Telegram
               </a>
             </div>
           </div>
@@ -375,6 +370,14 @@ export default function UgolovnyAdvokatPage() {
           <Link href="/politika-konfidencialnosti" style={{ textDecoration: "underline" }}>
             Политика конфиденциальности
           </Link>
+          {" · "}
+          <button
+            type="button"
+            className="footerLinkBtn"
+            onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))}
+          >
+            Настройки cookie
+          </button>
         </div>
       </footer>
 

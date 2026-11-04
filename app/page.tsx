@@ -25,7 +25,6 @@ export default function Home() {
 
   const waText = encodeURIComponent("Здравствуйте! Нужна консультация адвоката");
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
-  const tgLink = "https://t.me/ai_advokat_kz_bot";
 
   const docs: DocItem[] = useMemo(
     () => [
@@ -109,13 +108,6 @@ export default function Home() {
         <div style={{ display: "flex", gap: 10 }}>
           <button
             type="button"
-            className="btn btnTG"
-            onClick={() => trackAndOpen("telegram", tgLink)}
-          >
-            Telegram
-          </button>
-          <button
-            type="button"
             className="btn btnWA"
             onClick={() => trackAndOpen("whatsapp", waLink)}
           >
@@ -156,14 +148,6 @@ export default function Home() {
                 onClick={() => trackAndOpen("whatsapp", waLink)}
               >
                 💬 WhatsApp
-              </button>
-
-              <button
-                type="button"
-                className="btn btnTG"
-                onClick={() => trackAndOpen("telegram", tgLink)}
-              >
-                🤖 Telegram
               </button>
             </div>
           </div>
@@ -245,7 +229,6 @@ export default function Home() {
             ✉️ <a href={`mailto:${email}`}>{email}</a>
           </div>
           <div>📍 {address}</div>
-          <div>Telegram: t.me/ai_advokat_kz_bot</div>
         </div>
 
         <h3 style={{ marginTop: 25 }}>Документы и сертификаты</h3>
@@ -283,6 +266,14 @@ export default function Home() {
           <Link href="/politika-konfidencialnosti" style={{ textDecoration: "underline" }}>
             Политика конфиденциальности
           </Link>
+          {" · "}
+          <button
+            type="button"
+            className="footerLinkBtn"
+            onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))}
+          >
+            Настройки cookie
+          </button>
         </div>
       </footer>
 

@@ -1,6 +1,6 @@
 // lib/tracking.ts
 
-export type LeadType = "phone" | "whatsapp" | "telegram";
+export type LeadType = "phone" | "whatsapp";
 
 declare global {
   interface Window {
@@ -22,7 +22,6 @@ export const trackLead = (type: LeadType) => {
   const eventMap: Record<LeadType, string> = {
     phone: "lead_phone_click",
     whatsapp: "lead_whatsapp_click",
-    telegram: "lead_telegram_click",
   };
 
   pushToDataLayer(eventMap[type]);

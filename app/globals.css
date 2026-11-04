@@ -122,16 +122,6 @@ a {
   background-color: #1ebe5d !important;
 }
 
-.btn.btnTG {
-  background-color: #229ED9 !important;
-  color: #ffffff !important;
-  border: none !important;
-}
-
-.btn.btnTG:hover {
-  background-color: #1b8ec4 !important;
-}
-
 /* ===== CTA ROW ===== */
 
 .ctaRow {
@@ -475,10 +465,6 @@ a {
   background: #25d366;
 }
 
-.floating-btn-tg {
-  background: #229ed9;
-}
-
 @media (max-width: 768px) {
   .floating-contact {
     bottom: 16px;
@@ -695,6 +681,17 @@ footer a {
   text-decoration: underline;
 }
 
+.footerLinkBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 /* ===== COOKIE / ANALYTICS NOTICE ===== */
 
 .cookieNotice {
@@ -728,6 +725,12 @@ footer a {
 
 .cookieNoticeText a {
   text-decoration: underline;
+}
+
+.cookieNoticeButtons {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .cookieNoticeBtn {
