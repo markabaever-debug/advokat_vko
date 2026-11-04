@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 export default function UgolovnyAdvokatPage() {
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
@@ -19,6 +20,14 @@ export default function UgolovnyAdvokatPage() {
 
   return (
     <main className="container">
+      {/* HEADER */}
+      <header className="nav">
+        <Link href="/" className="brand" aria-label="На главную">
+          ⚖️ Маркабаев Е.Б.
+          <span className="badge">Усть-Каменогорск • {region}</span>
+        </Link>
+      </header>
+
       {/* Плавающая кнопка — Памятка при задержании */}
       <div className="memoFloatingWrap">
         <button
@@ -61,7 +70,7 @@ export default function UgolovnyAdvokatPage() {
               <section className="memoBlock">
                 <h3>⚖️ ВЫ ИМЕЕТЕ ПРАВО МОЛЧАТЬ</h3>
                 <p>
-                  Согласно <strong>пункту 2 статьи 19</strong> Конституции Республики Казахстан никто не обязан давать показания против самого себя, супруга (супруги) и близких родственников.
+                  Согласно <strong>пункту 2 статьи 19</strong> Конституции Республики Казахстан никто не обязан давать показания против самого себя, супруга (супруги) и близких родственников, круг которых определяется законом.
                 </p>
                 <p>Если вы задержаны или признаны подозреваемым, вы вправе (<strong>часть девятая статьи 64 УПК РК</strong>):</p>
                 <ul>
@@ -150,7 +159,7 @@ export default function UgolovnyAdvokatPage() {
                     className="btn btnPrimary memoCtaLink"
                     href={`tel:${phoneCall}`}
                   >
-                    📞 Позвонить: 8-777-543-07-91
+                    📞 Позвонить: +7 777 543 07 91
                   </a>
                   <a
                     className="btn btnWA memoCtaLink"
@@ -158,11 +167,15 @@ export default function UgolovnyAdvokatPage() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    💬 WhatsApp: 8-777-543-07-91
+                    💬 WhatsApp: +7 777 543 07 91
                   </a>
                 </div>
                 <p className="memoDisclaimer">Адвокатская тайна гарантирована законом</p>
               </section>
+
+              <p className="memoDisclaimer" style={{ textAlign: "center", marginTop: 20 }}>
+                Нормы приведены по состоянию на ноябрь 2026 г.
+              </p>
             </div>
           </div>
         </div>
@@ -357,6 +370,11 @@ export default function UgolovnyAdvokatPage() {
         </div>
         <div style={{ marginTop: 8 }}>
           Информация на сайте носит справочный характер и не является публичной офертой.
+        </div>
+        <div style={{ marginTop: 6 }}>
+          <Link href="/politika-konfidencialnosti" style={{ textDecoration: "underline" }}>
+            Политика конфиденциальности
+          </Link>
         </div>
       </footer>
 

@@ -16,7 +16,7 @@ export default function Home() {
   const city = "Усть-Каменогорск";
   const region = "ВКО";
 
-  const phoneDisplay = "7775430791";
+  const phoneDisplay = "+7 777 543 07 91";
   const phoneCall = "+77775430791";
   const waNumber = "77775430791";
 
@@ -193,7 +193,7 @@ export default function Home() {
         <h2 className="h2">Основные направления</h2>
 
         <p className="muted" style={{ marginTop: 10 }}>
-          Юридическая помощь в {city} ({region})
+          Юридическая помощь в Усть-Каменогорске ({region})
         </p>
 
         <div className="servicesGrid" style={{ marginTop: 20 }}>
@@ -205,21 +205,21 @@ export default function Home() {
             </p>
           </Link>
 
-          <div className="serviceCard">
+          <div className="serviceCard serviceCardStatic">
             <h3 className="serviceCardTitle">📄 Гражданские дела</h3>
             <p className="serviceCardText">
               Взыскание долгов по расписке, семейные и наследственные дела, споры о собственности.
             </p>
           </div>
 
-          <div className="serviceCard">
+          <div className="serviceCard serviceCardStatic">
             <h3 className="serviceCardTitle">🚗 Административные дела</h3>
             <p className="serviceCardText">
               ДТП, нарушения ПДД, обжалование штрафов, защита при лишении водительских прав.
             </p>
           </div>
 
-          <div className="serviceCard">
+          <div className="serviceCard serviceCardStatic">
             <h3 className="serviceCardTitle">🏛 Дела по АППК</h3>
             <p className="serviceCardText">
               Споры с государственными органами, оспаривание решений и действий должностных лиц.
@@ -278,6 +278,11 @@ export default function Home() {
         </div>
         <div style={{ marginTop: 8 }}>
           Информация на сайте носит справочный характер и не является публичной офертой.
+        </div>
+        <div style={{ marginTop: 6 }}>
+          <Link href="/politika-konfidencialnosti" style={{ textDecoration: "underline" }}>
+            Политика конфиденциальности
+          </Link>
         </div>
       </footer>
 
