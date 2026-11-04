@@ -109,7 +109,7 @@ export default function Home() {
         <div style={{ display: "flex", gap: 10 }}>
           <button
             type="button"
-            className="btn btnWA"
+            className="btn btnWA navBtn"
             onClick={() => trackAndOpen("whatsapp", waLink)}
           >
             WhatsApp
@@ -119,8 +119,8 @@ export default function Home() {
 
       {/* HERO */}
       <section className="panel" style={{ marginTop: 20 }}>
-        <div style={{ display: "flex", gap: 30, alignItems: "flex-start", flexWrap: "wrap" }}>
-          <div style={{ flex: 1, minWidth: 260 }}>
+        <div className="heroRow">
+          <div className="heroText">
             <h1 className="h1">{shortName}</h1>
 
             <p className="sub">

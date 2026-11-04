@@ -50,7 +50,7 @@ export default function UgolovnyAdvokatPage() {
           ⚖️ Маркабаев Е.Б.
           <span className="badge">Усть-Каменогорск • {region}</span>
         </Link>
-        <Link href="/" className="btn navHomeBtn" aria-label="Вернуться на главную">
+        <Link href="/" className="btn navHomeBtn navBtn" aria-label="Вернуться на главную">
           ← На главную
         </Link>
       </header>
@@ -210,9 +210,8 @@ export default function UgolovnyAdvokatPage() {
 
       {/* HERO */}
       <section className="panel" style={{ marginTop: 20 }}>
-        <div style={{ display: "flex", gap: 30, flexWrap: "wrap", alignItems: "flex-start" }}>
-          
-          <div style={{ flex: 1, minWidth: 260 }}>
+        <div className="heroRow">
+          <div className="heroText">
             <h1 className="h1">
               Уголовный адвокат в {city}
             </h1>

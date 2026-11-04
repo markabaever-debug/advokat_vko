@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+html {
+  /* Резервируем место под полосу прокрутки, чтобы её появление/исчезновение
+     не сдвигало страницу по горизонтали между страницами. */
+  scrollbar-gutter: stable;
+}
+
 html, body {
   padding: 0;
   margin: 0;
@@ -63,6 +69,39 @@ a {
 .navHomeBtn {
   white-space: nowrap;
   text-decoration: none;
+}
+
+/* Единая высота правой кнопки в шапке (WhatsApp на главной,
+   «← На главную» на подстраницах) — чтобы высота шапки, а значит и
+   вертикальное положение hero, совпадали на всех страницах.
+   box-sizing: border-box уже задан глобально, поэтому разница в рамке
+   (у .btnWA её нет, у .btn есть) не меняет итоговую высоту. */
+.navBtn {
+  height: 40px;
+}
+
+/* ===== HERO LAYOUT (единое положение фото на всех страницах) ===== */
+
+.heroRow {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.heroText {
+  flex: 1;
+  min-width: 260px;
+}
+
+@media (max-width: 768px) {
+  /* На мобильном фото — сверху блока (над текстом), одинаково на всех
+     страницах; длина текста не влияет на положение фото. */
+  .heroRow {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+  }
 }
 
 /* ===== TEXT ===== */
