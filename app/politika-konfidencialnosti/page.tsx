@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Политика конфиденциальности — Адвокат Маркабаев Е.Б.",
   description:
     "Какие данные собирает сайт, цели обработки, хранение на зарубежных сервисах (Vercel, Google) и контакт для обращений.",
+  alternates: {
+    canonical: "/politika-konfidencialnosti",
+  },
 };
 
 const email = "advokatvko.rk@gmail.com";

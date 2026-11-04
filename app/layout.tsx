@@ -18,7 +18,10 @@ export const metadata: Metadata = {
   title: "Адвокат Маркабаев Е.Б.",
   description:
     "Адвокат Маркабаев Е.Б.: уголовные и гражданские дела, семейные споры, документы, представительство в суде.",
-  metadataBase: new URL("https://advokatvko.vercel.app"),
+  metadataBase: new URL("https://www.markabaev.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Адвокат Маркабаев Е.Б.",
     description:
@@ -57,8 +60,8 @@ export default function RootLayout({
               name: "Адвокат Маркабаев Е.Б.",
               description:
                 "Адвокат в Усть-Каменогорске (ВКО): уголовные, гражданские и административные дела, защита в суде, документы, консультация.",
-              url: "https://advokatvko.vercel.app",
-              image: "https://advokatvko.vercel.app/og.jpg",
+              url: "https://www.markabaev.com",
+              image: "https://www.markabaev.com/og.jpg",
               telephone: "+77775430791",
               email: "advokatvko.rk@gmail.com",
               areaServed: "Усть-Каменогорск",

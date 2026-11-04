@@ -1,6 +1,6 @@
 # advokat_vko — сайт адвоката Маркабаева Е.Б.
 
-Next.js (App Router), публикуется на Vercel: https://advokatvko.vercel.app
+Next.js (App Router), хостинг Vercel. Основной адрес: https://www.markabaev.com (домен куплен в Vercel; markabaev.com → www; прежний advokatvko.vercel.app тоже ведёт на проект).
 
 ## Публикация сайта — правила
 - **Автопубликация.** Vercel разворачивает продакшн при каждом push в ветку `main`. Поэтому **любые правки делать только в отдельных ветках**, никогда не коммитить и не пушить прямо в `main`.
