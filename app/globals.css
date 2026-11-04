@@ -106,16 +106,19 @@ a {
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(10px);
-  /* По умолчанию скрыта над экраном; появляется плавно (fade + slide). */
+  /* По умолчанию скрыта над экраном; появляется плавно (fade + slide).
+     Видимостью управляет html[data-hero-visible] (ранний скрипт в layout). */
   opacity: 0;
   transform: translateY(-100%);
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
 }
 
-.stickyBar[data-shown="true"] {
+html[data-hero-visible="false"] .stickyBar {
   opacity: 1;
   transform: translateY(0);
+  visibility: visible;
   pointer-events: auto;
 }
 
@@ -206,7 +209,7 @@ a {
   }
 
   /* Пока закреплённая полоса видна — прячем плавающие кнопки, чтобы не дублировать */
-  body[data-sticky-visible="true"] .floating-contact {
+  html[data-hero-visible="false"] .floating-contact {
     display: none;
   }
 }

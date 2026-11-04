@@ -40,6 +40,34 @@ export const metadata: Metadata = {
   },
 };
 
+// Выполняется до гидратации (инлайн в конце <body>, hero уже в DOM).
+// Переключает html[data-hero-visible] = виден ли hero; полоса управляется этим
+// атрибутом через CSS, поэтому не зависит от загрузки клиентского бандла.
+const heroVisibilityScript = `
+(function () {
+  var root = document.documentElement;
+  var hero = document.querySelector('[data-hero]');
+  if (!hero) return;
+  function apply(v) { root.setAttribute('data-hero-visible', v ? 'true' : 'false'); }
+  try {
+    var io = new IntersectionObserver(function (e) { apply(e[0].isIntersecting); }, { threshold: 0 });
+    io.observe(hero);
+  } catch (e) {}
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      apply(hero.getBoundingClientRect().bottom > 0);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  apply(hero.getBoundingClientRect().bottom > 0);
+})();
+`;
+
 export default function RootLayout({
   children,
 }: {
@@ -82,6 +110,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        {/* Ранний скрипт: следит за hero и переключает html[data-hero-visible]
+            ещё до гидратации React, чтобы закреплённая полоса появлялась за
+            один кадр (IntersectionObserver + запасной обработчик scroll). */}
+        <script dangerouslySetInnerHTML={{ __html: heroVisibilityScript }} />
         <FloatingContactButtons />
         <CookieNotice />
       </body>
