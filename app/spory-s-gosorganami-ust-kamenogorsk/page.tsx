@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StagesAccordion, type Stage } from "@/components/StagesAccordion";
+import { StickyBar } from "@/components/StickyBar";
 
 export default function SporyGosorganamiPage() {
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
@@ -62,21 +63,15 @@ export default function SporyGosorganamiPage() {
 
   return (
     <main className="container">
-      {/* HEADER */}
-      <header className="nav">
-        <Link href="/" className="brand" aria-label="На главную">
-          ⚖️ Маркабаев Е.Б.
-          <span className="badge">Усть-Каменогорск • {region}</span>
-        </Link>
-        <Link href="/" className="btn navHomeBtn navBtn" aria-label="Вернуться на главную">
-          ← На главную
-        </Link>
-      </header>
+      <StickyBar phoneCall={phoneCall} waLink={waLink} showHome />
 
       {/* HERO */}
-      <section className="panel" style={{ marginTop: 20 }}>
+      <section className="panel" style={{ marginTop: 20 }} data-hero>
         <div className="heroRow">
           <div className="heroText">
+            <Link href="/" className="btn heroBackBtn" aria-label="На главную">
+              ← На главную
+            </Link>
             <h1 className="h1">Адвокат по спорам с госорганами в {city}</h1>
 
             <p className="sub">

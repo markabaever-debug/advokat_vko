@@ -8,6 +8,8 @@ html {
   /* Резервируем место под полосу прокрутки, чтобы её появление/исчезновение
      не сдвигало страницу по горизонтали между страницами. */
   scrollbar-gutter: stable;
+  /* Чтобы якорные переходы не прятались под закреплённой полосой. */
+  scroll-padding-top: 72px;
 }
 
 html, body {
@@ -78,6 +80,135 @@ a {
    (у .btnWA её нет, у .btn есть) не меняет итоговую высоту. */
 .navBtn {
   height: 40px;
+}
+
+/* Небольшая кнопка-ссылка «← На главную» внутри hero (над H1) на подстраницах */
+.heroBackBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 13px;
+  text-decoration: none;
+  margin-bottom: 14px;
+}
+
+/* ===== STICKY COMPACT BAR ===== */
+
+.stickyBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9000;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: rgba(15, 23, 42, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  /* По умолчанию скрыта над экраном; появляется плавно (fade + slide). */
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.stickyBar[data-shown="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.stickyBarInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 56px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.stickyBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.stickyAvatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.stickyName {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stickyNameShort {
+  display: none;
+}
+
+.stickyActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.stickyBtn {
+  height: 38px;
+  padding: 0 14px;
+  font-size: 13px;
+  gap: 6px;
+}
+
+.stickyBtn.stickyBtnHome {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.stickyBtnIcon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+/* На мобильном: короткое имя и кнопки-иконки без подписей */
+@media (max-width: 768px) {
+  .stickyBarInner {
+    padding: 0 14px;
+  }
+
+  .stickyNameFull {
+    display: none;
+  }
+
+  .stickyNameShort {
+    display: inline;
+  }
+
+  .stickyBtn {
+    padding: 0;
+    width: 38px;
+    justify-content: center;
+  }
+
+  .stickyBtnLabel {
+    display: none;
+  }
+
+  /* Пока закреплённая полоса видна — прячем плавающие кнопки, чтобы не дублировать */
+  body[data-sticky-visible="true"] .floating-contact {
+    display: none;
+  }
 }
 
 /* ===== HERO LAYOUT (единое положение фото на всех страницах) ===== */

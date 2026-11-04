@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { trackLead, trackAndOpen } from "@/lib/tracking";
 import { HeroPhoto } from "@/components/HeroPhoto";
+import { StickyBar } from "@/components/StickyBar";
 type DocItem = {
   id: string;
   title: string;
@@ -97,28 +98,10 @@ export default function Home() {
 
   return (
     <main className="container">
-      {/* HEADER */}
-      <header className="nav">
-        <div className="brand">
-          ⚖️ {shortName}
-          <span className="badge">
-            {city} • {region}
-          </span>
-        </div>
-
-        <div style={{ display: "flex", gap: 10 }}>
-          <button
-            type="button"
-            className="btn btnWA navBtn"
-            onClick={() => trackAndOpen("whatsapp", waLink)}
-          >
-            WhatsApp
-          </button>
-        </div>
-      </header>
+      <StickyBar phoneCall={phoneCall} waLink={waLink} />
 
       {/* HERO */}
-      <section className="panel" style={{ marginTop: 20 }}>
+      <section className="panel" style={{ marginTop: 20 }} data-hero>
         <div className="heroRow">
           <div className="heroText">
             <h1 className="h1">{shortName}</h1>
