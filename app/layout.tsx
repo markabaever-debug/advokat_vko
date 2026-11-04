@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { FloatingContactButtons } from "@/components/FloatingContactButtons";
 import { CookieNotice } from "@/components/CookieNotice";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// Шрифты Geist не используются (в CSS — системный стек), поэтому их загрузку
+// убрали: меньше блокирующих запросов и быстрее первый рендер. Внешний вид
+// не меняется.
 
 export const metadata: Metadata = {
   title: "Адвокат Маркабаев Е.Б.",
@@ -106,9 +99,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
         {children}
         {/* Ранний скрипт: следит за hero и переключает html[data-hero-visible]
             ещё до гидратации React, чтобы закреплённая полоса появлялась за
