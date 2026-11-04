@@ -1,13 +1,11 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StagesAccordion, type Stage } from "@/components/StagesAccordion";
 import { StickyBar } from "@/components/StickyBar";
+import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
+import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 
 export default function AdministrativnyeDelaPage() {
-  const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
   const fullName = "Маркабаев Ерлан Бапашевич";
   const city = "Усть-Каменогорске";
   const region = "ВКО";
@@ -42,7 +40,7 @@ export default function AdministrativnyeDelaPage() {
   const waText = encodeURIComponent("Здравствуйте! Нужна консультация по административному делу");
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
 
-  const faq = [
+  const faq: FaqItem[] = [
     {
       q: "Что делать, если в отношении меня составлен протокол об административном правонарушении?",
       a: "Внимательно прочитайте протокол. Вы вправе дать объяснения, сделать замечания по содержанию и оформлению протокола и указать, с чем не согласны, а также воспользоваться помощью защитника. Свяжитесь с адвокатом как можно раньше — до рассмотрения дела.",
@@ -133,24 +131,7 @@ export default function AdministrativnyeDelaPage() {
         <p className="muted" style={{ marginTop: 10 }}>
           Ответы на типичные вопросы клиентов
         </p>
-        <div className="faqList">
-          {faq.map((item, idx) => (
-            <div key={idx} className="faqItem" data-open={faqOpenIndex === idx}>
-              <button
-                type="button"
-                className="faqTrigger"
-                onClick={() => setFaqOpenIndex((i: number | null) => (i === idx ? null : idx))}
-                aria-expanded={faqOpenIndex === idx}
-              >
-                {item.q}
-                <span className="faqTriggerIcon">▼</span>
-              </button>
-              <div className="faqContent">
-                <div className="faqContentInner">{item.a}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <FaqAccordion items={faq} />
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
@@ -166,13 +147,7 @@ export default function AdministrativnyeDelaPage() {
             Политика конфиденциальности
           </Link>
           {" · "}
-          <button
-            type="button"
-            className="footerLinkBtn"
-            onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))}
-          >
-            Настройки cookie
-          </button>
+          <CookieSettingsButton />
         </div>
       </footer>
     </main>

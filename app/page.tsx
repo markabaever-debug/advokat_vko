@@ -1,16 +1,9 @@
-"use client";
-
-import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { trackLead, trackAndOpen } from "@/lib/tracking";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StickyBar } from "@/components/StickyBar";
-type DocItem = {
-  id: string;
-  title: string;
-  pdf: string;
-  thumb: string;
-};
+import { HeroLeadButtons } from "@/components/HeroLeadButtons";
+import { DocsGallery } from "@/components/DocsGallery";
+import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 
 export default function Home() {
   const shortName = "Маркабаев Е.Б.";
@@ -27,74 +20,6 @@ export default function Home() {
 
   const waText = encodeURIComponent("Здравствуйте! Нужна консультация адвоката");
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
-
-  const docs: DocItem[] = useMemo(
-    () => [
-      {
-        id: "license",
-        title: "Лицензия на занятие адвокатской деятельностью",
-        pdf: "/docs/license.pdf",
-        thumb: "/docs/thumbs/license.jpg",
-      },
-      {
-        id: "insurance",
-        title: "Страхование адвокатской деятельности",
-        pdf: "/docs/insurance.pdf",
-        thumb: "/docs/thumbs/insurance.jpg",
-      },
-      {
-        id: "cert1",
-        title: "Повышение квалификации (1)",
-        pdf: "/docs/cert-1.pdf",
-        thumb: "/docs/thumbs/cert-1.jpg",
-      },
-      {
-        id: "cert2",
-        title: "Повышение квалификации (2)",
-        pdf: "/docs/cert-2.pdf",
-        thumb: "/docs/thumbs/cert-2.jpg",
-      },
-      {
-        id: "cert3",
-        title: "Повышение квалификации (3)",
-        pdf: "/docs/cert-3.pdf",
-        thumb: "/docs/thumbs/cert-3.jpg",
-      },
-    ],
-    []
-  );
-
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const openDoc = openIndex === null ? null : docs[openIndex];
-
-  const goPrev = () => {
-    if (openIndex === null) return;
-    setOpenIndex((prev) =>
-      prev === null ? null : (prev - 1 + docs.length) % docs.length
-    );
-  };
-
-  const goNext = () => {
-    if (openIndex === null) return;
-    setOpenIndex((prev) =>
-      prev === null ? null : (prev + 1) % docs.length
-    );
-  };
-
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (openIndex === null) return;
-      if (e.key === "Escape") setOpenIndex(null);
-      if (e.key === "ArrowLeft") goPrev();
-      if (e.key === "ArrowRight") goNext();
-    };
-
-    if (openIndex !== null)
-      window.addEventListener("keydown", onKeyDown);
-
-    return () =>
-      window.removeEventListener("keydown", onKeyDown);
-  }, [openIndex]);
 
   return (
     <main className="container">
@@ -117,23 +42,7 @@ export default function Home() {
               <div className="kpi">✅ Суд / переговоры</div>
             </div>
 
-            <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a
-                className="btn btnPrimary"
-                href={`tel:${phoneCall}`}
-                onClick={() => trackLead("phone")}
-              >
-                📞 Позвонить
-              </a>
-
-              <button
-                type="button"
-                className="btn btnWA"
-                onClick={() => trackAndOpen("whatsapp", waLink)}
-              >
-                💬 WhatsApp
-              </button>
-            </div>
+            <HeroLeadButtons phoneCall={phoneCall} waLink={waLink} />
           </div>
 
           <HeroPhoto alt="Адвокат Маркабаев Е.Б." />
@@ -149,7 +58,7 @@ export default function Home() {
         </p>
 
         <div className="servicesGrid" style={{ marginTop: 20 }}>
-          
+
           <Link href="/ugolovnyj-advokat-ust-kamenogorsk" className="serviceCard">
             <h3 className="serviceCardTitle">⚖️ Уголовные дела</h3>
             <p className="serviceCardText">
@@ -204,22 +113,7 @@ export default function Home() {
           Нажмите на документ для просмотра. В окне просмотра: ← → (листание), Esc (закрыть).
         </p>
 
-        <div className="docsGrid">
-          {docs.map((d, idx) => (
-            <button
-              key={d.id}
-              type="button"
-              className="docCardBtn"
-              onClick={() => setOpenIndex(idx)}
-              aria-label={`Открыть: ${d.title}`}
-            >
-              <div className="docThumb">
-                <img src={d.thumb} alt={d.title} />
-              </div>
-              <div className="docLabel">{d.title}</div>
-            </button>
-          ))}
-        </div>
+        <DocsGallery />
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
@@ -235,69 +129,9 @@ export default function Home() {
             Политика конфиденциальности
           </Link>
           {" · "}
-          <button
-            type="button"
-            className="footerLinkBtn"
-            onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))}
-          >
-            Настройки cookie
-          </button>
+          <CookieSettingsButton />
         </div>
       </footer>
-
-      {openDoc && openIndex !== null && (
-        <div
-          className="modalOverlay"
-          role="dialog"
-          aria-modal="true"
-          aria-label={openDoc.title}
-          onClick={() => setOpenIndex(null)}
-        >
-          <div className="modalPanel" onClick={(e) => e.stopPropagation()}>
-            <div className="modalHeader">
-              <div>
-                <div className="modalTitle">{openDoc.title}</div>
-                <div className="modalHint">← → листать • Esc закрыть</div>
-              </div>
-
-              <div className="modalActions">
-                <button type="button" className="modalBtn" onClick={goPrev}>
-                  ← Назад
-                </button>
-
-                <div className="modalCounter">
-                  {openIndex + 1}/{docs.length}
-                </div>
-
-                <button type="button" className="modalBtn" onClick={goNext}>
-                  Вперёд →
-                </button>
-
-                <a className="modalBtn" href={openDoc.pdf} target="_blank" rel="noreferrer">
-                  Открыть PDF
-                </a>
-
-                <button
-                  type="button"
-                  className="modalBtn"
-                  onClick={() => setOpenIndex(null)}
-                >
-                  ✕ Закрыть
-                </button>
-              </div>
-            </div>
-
-            <div className="modalBody">
-              <iframe
-                key={openDoc.pdf}
-                className="modalFrame"
-                src={`${openDoc.pdf}#view=FitH`}
-                title={openDoc.title}
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </main>
   );
 }

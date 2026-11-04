@@ -1,13 +1,11 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StagesAccordion, type Stage } from "@/components/StagesAccordion";
 import { StickyBar } from "@/components/StickyBar";
+import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
+import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 
 export default function GrazhdanskieDelaPage() {
-  const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
   const fullName = "Маркабаев Ерлан Бапашевич";
   const city = "Усть-Каменогорске";
   const region = "ВКО";
@@ -42,7 +40,7 @@ export default function GrazhdanskieDelaPage() {
   const waText = encodeURIComponent("Здравствуйте! Нужна консультация по гражданскому делу");
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
 
-  const faq = [
+  const faq: FaqItem[] = [
     {
       q: "С чего начать, если возник спор?",
       a: "Начните с консультации. На ней мы разберём документы и обстоятельства, оценим перспективы и определим порядок дальнейших действий: досудебное урегулирование или обращение в суд.",
@@ -135,24 +133,7 @@ export default function GrazhdanskieDelaPage() {
         <p className="muted" style={{ marginTop: 10 }}>
           Ответы на типичные вопросы клиентов
         </p>
-        <div className="faqList">
-          {faq.map((item, idx) => (
-            <div key={idx} className="faqItem" data-open={faqOpenIndex === idx}>
-              <button
-                type="button"
-                className="faqTrigger"
-                onClick={() => setFaqOpenIndex((i: number | null) => (i === idx ? null : idx))}
-                aria-expanded={faqOpenIndex === idx}
-              >
-                {item.q}
-                <span className="faqTriggerIcon">▼</span>
-              </button>
-              <div className="faqContent">
-                <div className="faqContentInner">{item.a}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <FaqAccordion items={faq} />
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
@@ -168,13 +149,7 @@ export default function GrazhdanskieDelaPage() {
             Политика конфиденциальности
           </Link>
           {" · "}
-          <button
-            type="button"
-            className="footerLinkBtn"
-            onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))}
-          >
-            Настройки cookie
-          </button>
+          <CookieSettingsButton />
         </div>
       </footer>
     </main>
