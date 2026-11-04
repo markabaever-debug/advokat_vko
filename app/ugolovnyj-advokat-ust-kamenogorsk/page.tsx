@@ -11,6 +11,8 @@ export default function UgolovnyAdvokatPage() {
 
   const phoneCall = "+77775430791";
   const waNumber = "77775430791";
+  const email = "advokatvko.rk@gmail.com";
+  const address = "070010, г. Усть-Каменогорск, ул. Бориса Александрова, д. 3, офис 101";
   const waText = encodeURIComponent("Здравствуйте! Нужна срочная помощь по уголовному делу");
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
   const tgLink = "https://t.me/ai_advokat_kz_bot";
@@ -349,7 +351,13 @@ export default function UgolovnyAdvokatPage() {
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
-        Информация на сайте носит справочный характер и не является публичной офертой.
+        <div>📍 {address}</div>
+        <div>
+          ✉️ <a href={`mailto:${email}`} style={{ color: "inherit" }}>{email}</a>
+        </div>
+        <div style={{ marginTop: 8 }}>
+          Информация на сайте носит справочный характер и не является публичной офертой.
+        </div>
       </footer>
 
     </main>

@@ -20,6 +20,9 @@ export default function Home() {
   const phoneCall = "+77775430791";
   const waNumber = "77775430791";
 
+  const email = "advokatvko.rk@gmail.com";
+  const address = "070010, г. Усть-Каменогорск, ул. Бориса Александрова, д. 3, офис 101";
+
   const waText = encodeURIComponent("Здравствуйте! Нужна консультация адвоката");
   const waLink = `https://wa.me/${waNumber}?text=${waText}`;
   const tgLink = "https://t.me/ai_advokat_kz_bot";
@@ -238,7 +241,10 @@ export default function Home() {
         <div style={{ marginTop: 20 }}>
           <strong>Контакты:</strong>
           <div>📞 {phoneDisplay}</div>
-          <div>📍 {city} ({region})</div>
+          <div>
+            ✉️ <a href={`mailto:${email}`}>{email}</a>
+          </div>
+          <div>📍 {address}</div>
           <div>Telegram: t.me/ai_advokat_kz_bot</div>
         </div>
 
@@ -266,7 +272,13 @@ export default function Home() {
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
-        Информация на сайте носит справочный характер и не является публичной офертой.
+        <div>📍 {address}</div>
+        <div>
+          ✉️ <a href={`mailto:${email}`} style={{ color: "inherit" }}>{email}</a>
+        </div>
+        <div style={{ marginTop: 8 }}>
+          Информация на сайте носит справочный характер и не является публичной офертой.
+        </div>
       </footer>
 
       {openDoc && openIndex !== null && (
