@@ -72,20 +72,27 @@ export function DocsGallery() {
   return (
     <>
       <div className="docsGrid">
-        {docs.map((d, idx) => (
-          <button
-            key={d.id}
-            type="button"
-            className="docCardBtn"
-            onClick={() => setOpenIndex(idx)}
-            aria-label={`Открыть: ${d.title}`}
-          >
-            <div className="docThumb">
-              <img src={d.thumb} alt={d.title} />
-            </div>
-            <div className="docLabel">{d.title}</div>
-          </button>
-        ))}
+        {docs.map((d, idx) => {
+          const base = d.thumb.replace(/\.jpg$/, "");
+          return (
+            <button
+              key={d.id}
+              type="button"
+              className="docCardBtn"
+              onClick={() => setOpenIndex(idx)}
+              aria-label={`Открыть: ${d.title}`}
+            >
+              <div className="docThumb">
+                <picture>
+                  <source type="image/avif" srcSet={`${base}.avif`} />
+                  <source type="image/webp" srcSet={`${base}.webp`} />
+                  <img src={d.thumb} alt={d.title} loading="lazy" decoding="async" />
+                </picture>
+              </div>
+              <div className="docLabel">{d.title}</div>
+            </button>
+          );
+        })}
       </div>
 
       {openDoc && openIndex !== null && (

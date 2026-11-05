@@ -18,7 +18,11 @@ export function StickyBar({ phoneCall, waLink, showHome = false }: Props) {
     <div className="stickyBar">
       <div className="stickyBarInner">
         <div className="stickyBrand">
-          <img src="/me.jpg" alt="" className="stickyAvatar" />
+          <picture>
+            <source type="image/avif" srcSet="/me-avatar.avif" />
+            <source type="image/webp" srcSet="/me-avatar.webp" />
+            <img src="/me-320.jpg" alt="" className="stickyAvatar" width={38} height={38} loading="lazy" decoding="async" />
+          </picture>
           <span className="stickyName">
             <span className="stickyNameFull">Маркабаев Е.Б., адвокат</span>
             <span className="stickyNameShort">Маркабаев Е.Б.</span>
