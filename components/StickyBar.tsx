@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { LangSwitch } from "@/components/LangSwitch";
+import { HomeLink } from "@/components/HomeLink";
 
 type Props = {
   phoneCall: string;
@@ -34,10 +34,10 @@ export function StickyBar({ phoneCall, waLink, showHome = false }: Props) {
           <LangSwitch />
 
           {showHome && (
-            <Link href="/" className="btn stickyBtn stickyBtnHome" aria-label="На главную">
+            <HomeLink className="btn stickyBtn stickyBtnHome" ariaLabel="На главную">
               <span className="stickyBtnIcon" aria-hidden>←</span>
               <span className="stickyBtnLabel">На главную</span>
-            </Link>
+            </HomeLink>
           )}
 
           <a href={`tel:${phoneCall}`} className="btn btnPrimary stickyBtn" aria-label="Позвонить">

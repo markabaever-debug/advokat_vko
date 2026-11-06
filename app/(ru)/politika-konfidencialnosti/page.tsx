@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { LangSwitch } from "@/components/LangSwitch";
+import { HomeLink } from "@/components/HomeLink";
 import { pageAlternates } from "@/lib/metadata";
 
 const SLUG = "/politika-konfidencialnosti";
@@ -18,10 +20,11 @@ export default function PrivacyPolicyPage() {
     <main className="container">
       {/* HEADER */}
       <header className="nav">
-        <Link href="/" className="brand" aria-label="На главную">
+        <HomeLink className="brand" ariaLabel="На главную">
           ⚖️ Маркабаев Е.Б.
           <span className="badge">Усть-Каменогорск • ВКО</span>
-        </Link>
+        </HomeLink>
+        <LangSwitch />
       </header>
 
       <section className="panel" style={{ marginTop: 20 }}>

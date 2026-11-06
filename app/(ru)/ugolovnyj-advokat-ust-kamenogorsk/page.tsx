@@ -3,6 +3,7 @@ import { HeroPhoto } from "@/components/HeroPhoto";
 import { StagesAccordion, type Stage } from "@/components/StagesAccordion";
 import { StickyBar } from "@/components/StickyBar";
 import { LangSwitch } from "@/components/LangSwitch";
+import { HomeLink } from "@/components/HomeLink";
 import { MemoButton } from "@/components/MemoButton";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
@@ -68,9 +69,9 @@ export default function UgolovnyAdvokatPage() {
         <div className="heroRow">
           <div className="heroText">
             <LangSwitch />
-            <Link href="/" className="btn heroBackBtn" aria-label="На главную">
+            <HomeLink className="btn heroBackBtn" ariaLabel="На главную">
               ← На главную
-            </Link>
+            </HomeLink>
             <h1 className="h1">
               Уголовный адвокат в {city}
             </h1>
