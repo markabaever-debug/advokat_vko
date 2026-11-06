@@ -2,6 +2,7 @@ import Link from "next/link";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StagesAccordion, type Stage } from "@/components/StagesAccordion";
 import { StickyBar } from "@/components/StickyBar";
+import { LangSwitch } from "@/components/LangSwitch";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 
@@ -67,6 +68,7 @@ export default function AdministrativnyeDelaPage() {
       <section className="panel" style={{ marginTop: 20 }} data-hero>
         <div className="heroRow">
           <div className="heroText">
+            <LangSwitch />
             <Link href="/" className="btn heroBackBtn" aria-label="На главную">
               ← На главную
             </Link>

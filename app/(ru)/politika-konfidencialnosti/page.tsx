@@ -1,13 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/metadata";
+
+const SLUG = "/politika-konfidencialnosti";
 
 export const metadata: Metadata = {
   title: "Политика конфиденциальности — Адвокат Маркабаев Е.Б.",
   description:
     "Какие данные собирает сайт, цели обработки, хранение на зарубежных сервисах (Vercel, Google) и контакт для обращений.",
-  alternates: {
-    canonical: "/politika-konfidencialnosti",
-  },
+  alternates: pageAlternates(SLUG, `/kz${SLUG}`, SLUG),
 };
 
 const email = "advokatvko.rk@gmail.com";

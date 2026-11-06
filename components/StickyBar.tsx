@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LangSwitch } from "@/components/LangSwitch";
 
 type Props = {
   phoneCall: string;
@@ -8,7 +9,7 @@ type Props = {
 };
 
 // Закреплённая компактная полоса сверху. Её видимость управляется не React, а
-// ранним скриптом в app/layout.tsx (см. heroVisibilityScript): он навешивает
+// ранним скриптом в components/SiteFooterScripts.tsx (heroVisibilityScript): он навешивает
 // IntersectionObserver + запасной обработчик scroll ещё ДО гидратации и
 // переключает атрибут html[data-hero-visible]. Благодаря этому полоса
 // появляется/скрывается за один кадр, не дожидаясь загрузки клиентского JS.
@@ -30,6 +31,8 @@ export function StickyBar({ phoneCall, waLink, showHome = false }: Props) {
         </div>
 
         <div className="stickyActions">
+          <LangSwitch />
+
           {showHome && (
             <Link href="/" className="btn stickyBtn stickyBtnHome" aria-label="На главную">
               <span className="stickyBtnIcon" aria-hidden>←</span>
