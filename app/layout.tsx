@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     description: "Уголовные, гражданские и административные дела. Усть-Каменогорск (ВКО).",
     images: ["/og.jpg"],
   },
+  verification: {
+    yandex: "f3983c7d853b2b3d",
+  },
 };
 
 // Выполняется до гидратации (инлайн в конце <body>, hero уже в DOM).
