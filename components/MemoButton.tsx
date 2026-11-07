@@ -137,7 +137,7 @@ function MemoBodyRu({ fullName, phoneCall, waLink }: BodyProps) {
         <blockquote className="memoQuote">
           «Прошу обеспечить участие защитника. На основании <strong>пункта 2 статьи 19</strong> Конституции Республики Казахстан и <strong>подпункта 6) части девятой статьи 64 УПК РК</strong> буду давать показания только в присутствии защитника».
         </blockquote>
-        <p>Повторяйте это на любые вопросы. <span className="memoDangerText">Не объясняйте. Не оправдывайтесь. Не подписывайте.</span></p>
+        <p>Повторяйте это на любые вопросы. <span className="memoDangerText">Не объясняйте. Не оправдывайтесь. Не подписывайте то, что не прочитали или с чем не согласны.</span></p>
       </section>
 
       <section className="memoBlock">
@@ -248,7 +248,7 @@ function MemoBodyKk({ fullName, phoneCall, waLink }: BodyProps) {
         <blockquote className="memoQuote">
           «Қорғаушының қатысуын қамтамасыз етуіңізді сұраймын. <strong>Қазақстан Республикасы Конституциясының 19-бабының 2-тармағы</strong> және <strong>ҚПК 64-бабы тоғызыншы бөлігінің 6) тармақшасы</strong> негізінде айғақтарды тек қорғаушының қатысуымен беремін».
         </blockquote>
-        <p>Кез келген сұраққа осыны қайталаңыз. <span className="memoDangerText">Түсіндірмеңіз. Ақталмаңыз. Қол қоймаңыз.</span></p>
+        <p>Кез келген сұраққа осыны қайталаңыз. <span className="memoDangerText">Түсіндірмеңіз. Ақталмаңыз. Оқымаған немесе келіспейтін құжатқа қол қоймаңыз.</span></p>
       </section>
 
       <section className="memoBlock">
