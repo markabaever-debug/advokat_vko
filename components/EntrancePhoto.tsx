@@ -4,7 +4,8 @@ import type { Lang } from "@/lib/i18n";
 
 // Фото входа в офис. Показывается ТОЛЬКО если файл public/vhod.jpg существует.
 // Проверка файла — на этапе сборки (серверный компонент, статическая генерация).
-// Если фото нет — компонент ничего не выводит (пустое место не занимает).
+// Если фото нет — компонент ничего не выводит.
+// Форматы по образцу оптимизации фото на сайте: AVIF → WebP → JPG, ленивая загрузка.
 export function EntrancePhoto({ lang = "ru" }: { lang?: Lang }) {
   const exists = fs.existsSync(path.join(process.cwd(), "public", "vhod.jpg"));
   if (!exists) return null;
@@ -14,9 +15,19 @@ export function EntrancePhoto({ lang = "ru" }: { lang?: Lang }) {
 
   return (
     <figure className="entrancePhoto">
-      {/* Обычный <img>: статичный файл из public, без next/image-оптимизации. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/vhod.jpg" alt={alt} loading="lazy" />
+      <picture>
+        <source srcSet="/vhod.avif" type="image/avif" />
+        <source srcSet="/vhod.webp" type="image/webp" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/vhod.jpg"
+          alt={alt}
+          width={900}
+          height={676}
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
       <figcaption className="entrancePhotoCaption">{caption}</figcaption>
     </figure>
   );

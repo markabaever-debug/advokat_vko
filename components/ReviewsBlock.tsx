@@ -11,12 +11,14 @@ export function ReviewsBlock({ lang = "ru" }: { lang?: Lang }) {
         subtitle: "Клиенттердің 2ГИС-тегі бағалары.",
         countLabel: "2ГИС-тегі баға саны",
         button: "2ГИС-тегі барлық пікірлер",
+        addReview: "Пікір қалдыру",
       }
     : {
         title: "Отзывы",
         subtitle: "Оценки клиентов в 2ГИС.",
         countLabel: "Оценок в 2ГИС",
         button: "Все отзывы в 2ГИС",
+        addReview: "Оставить отзыв",
       };
 
   return (
@@ -36,15 +38,24 @@ export function ReviewsBlock({ lang = "ru" }: { lang?: Lang }) {
 
       <p className="muted" style={{ marginTop: 8 }}>{t.subtitle}</p>
 
-      <a
-        className="btn btnPrimary"
-        href={maps.gis2Card}
-        target="_blank"
-        rel="noreferrer nofollow"
-        style={{ marginTop: 16 }}
-      >
-        {t.button}
-      </a>
+      <div className="reviewsButtons">
+        <a
+          className="btn btnPrimary"
+          href={maps.gis2Card}
+          target="_blank"
+          rel="noreferrer nofollow"
+        >
+          {t.button}
+        </a>
+        <a
+          className="btn"
+          href={maps.gis2AddReview}
+          target="_blank"
+          rel="noreferrer nofollow"
+        >
+          {t.addReview}
+        </a>
+      </div>
     </section>
   );
 }

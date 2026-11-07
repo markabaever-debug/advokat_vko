@@ -1,3 +1,5 @@
+import { geo } from "@/lib/business";
+
 // Разметка организации (schema.org) — общая для обеих языковых версий.
 export function StructuredData() {
   return (
@@ -22,6 +24,11 @@ export function StructuredData() {
             addressRegion: "ВКО",
             streetAddress: "ул. Бориса Александрова, д. 3, офис 101",
             addressCountry: "KZ",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: geo.lat,
+            longitude: geo.lon,
           },
         }),
       }}

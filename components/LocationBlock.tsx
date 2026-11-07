@@ -18,8 +18,8 @@ export function LocationBlock({
         title: "Бізді қалай табуға болады",
         landmark: "1-қабат, 101-кеңсе",
         gis: "2ГИС-те маршрут",
-        google: "Google Карталарда ашу",
-        mapAria: "Картаны Google Карталарда ашу",
+        google: "Google Карталарында ашу",
+        mapAria: "Картаны Google Карталарында ашу",
         mapChip: "Картаны ашу ↗",
       }
     : {
