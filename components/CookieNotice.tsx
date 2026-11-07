@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { ui, type Lang } from "@/lib/i18n";
 
 const STORAGE_KEY = "cookie-consent"; // "granted" | "denied"
 const GTM_ID = "GTM-MNCSPZM6";
@@ -24,7 +25,9 @@ function loadGtm() {
   document.head.appendChild(s);
 }
 
-export function CookieNotice() {
+export function CookieNotice({ lang = "ru" }: { lang?: Lang }) {
+  const t = ui[lang];
+  const privacyHref = lang === "kk" ? "/kz/politika-konfidencialnosti" : "/politika-konfidencialnosti";
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -72,19 +75,19 @@ export function CookieNotice() {
     <div
       className="cookieNotice"
       role="dialog"
-      aria-label="Уведомление об аналитике и файлах cookie"
+      aria-label={t.cookieDialog}
     >
       <div className="cookieNoticeText">
-        Сайт может использовать файлы cookie и сервисы аналитики Google (серверы за
-        рубежом) для подсчёта посещений. Подробнее — в{" "}
-        <Link href="/politika-konfidencialnosti">политике конфиденциальности</Link>.
+        {t.cookieBefore}
+        <Link href={privacyHref}>{t.cookieLink}</Link>
+        {t.cookieAfter}
       </div>
       <div className="cookieNoticeButtons">
         <button type="button" className="btn btnPrimary cookieNoticeBtn" onClick={accept}>
-          Принять
+          {t.accept}
         </button>
         <button type="button" className="btn cookieNoticeBtn" onClick={decline}>
-          Отклонить
+          {t.decline}
         </button>
       </div>
     </div>

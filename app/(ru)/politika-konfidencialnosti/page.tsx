@@ -1,13 +1,16 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { LangSwitch } from "@/components/LangSwitch";
+import { HomeLink } from "@/components/HomeLink";
+import { pageAlternates } from "@/lib/metadata";
+
+const SLUG = "/politika-konfidencialnosti";
 
 export const metadata: Metadata = {
   title: "Политика конфиденциальности — Адвокат Маркабаев Е.Б.",
   description:
     "Какие данные собирает сайт, цели обработки, хранение на зарубежных сервисах (Vercel, Google) и контакт для обращений.",
-  alternates: {
-    canonical: "/politika-konfidencialnosti",
-  },
+  alternates: pageAlternates(SLUG, `/kz${SLUG}`, SLUG),
 };
 
 const email = "advokatvko.rk@gmail.com";
@@ -17,10 +20,11 @@ export default function PrivacyPolicyPage() {
     <main className="container">
       {/* HEADER */}
       <header className="nav">
-        <Link href="/" className="brand" aria-label="На главную">
+        <HomeLink className="brand" ariaLabel="На главную">
           ⚖️ Маркабаев Е.Б.
           <span className="badge">Усть-Каменогорск • ВКО</span>
-        </Link>
+        </HomeLink>
+        <LangSwitch />
       </header>
 
       <section className="panel" style={{ marginTop: 20 }}>

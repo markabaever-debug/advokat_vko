@@ -1,9 +1,16 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StickyBar } from "@/components/StickyBar";
+import { LangSwitch } from "@/components/LangSwitch";
 import { HeroLeadButtons } from "@/components/HeroLeadButtons";
 import { DocsGallery } from "@/components/DocsGallery";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
+import { pageAlternates } from "@/lib/metadata";
+
+export const metadata: Metadata = {
+  alternates: pageAlternates("/", "/kz", "/"),
+};
 
 export default function Home() {
   const shortName = "Маркабаев Е.Б.";
@@ -29,6 +36,7 @@ export default function Home() {
       <section className="panel" style={{ marginTop: 20 }} data-hero>
         <div className="heroRow">
           <div className="heroText">
+            <LangSwitch />
             <h1 className="h1">{shortName}</h1>
 
             <p className="sub">
