@@ -48,7 +48,7 @@ export default function KzUgolovnyAdvokatPage() {
   const faq: FaqItem[] = [
     {
       q: "Шұғыл келу мүмкін бе?",
-      a: "Иә. Қажет болса, клиентке шұғыл келу мүмкін (оның ішінде тергеу изоляторына, қамау изоляторына, оқиға орнына). Телефон немесе мессенджер арқылы хабарласыңыз — мерзімдер мен шарттарды талқылаймыз.",
+      a: "Иә. Қажет болса, клиентке шұғыл келу мүмкін (оның ішінде тергеу изоляторына, уақытша ұстау изоляторына, оқиға орнына). Телефон немесе мессенджер арқылы хабарласыңыз — мерзімдер мен шарттарды талқылаймыз.",
     },
     {
       q: "Құпиялылыққа кепілдік бар ма?",
@@ -71,7 +71,7 @@ export default function KzUgolovnyAdvokatPage() {
     <main className="container">
       <StickyBar phoneCall={phoneCall} waLink={waLink} showHome lang="kk" />
 
-      <MemoButton fullName={fullName} phoneCall={phoneCall} waLink={waLink} />
+      <MemoButton fullName={fullName} phoneCall={phoneCall} waLink={waLink} lang="kk" />
 
       {/* HERO */}
       <section className="panel" style={{ marginTop: 20 }} data-hero>

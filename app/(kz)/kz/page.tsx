@@ -86,14 +86,14 @@ export default function KzHome() {
           <Link href="/kz/administrativnye-dela-ust-kamenogorsk" className="serviceCard">
             <h3 className="serviceCardTitle">🚗 Әкімшілік істер</h3>
             <p className="serviceCardText">
-              ЖКО, жол қозғалысы ережелерін бұзу, айыппұлдарға шағым жасау, көлік жүргізу құқығынан айыру кезінде қорғау.
+              ЖКО, жол қозғалысы ережелерін бұзу, айыппұлдарға шағым жасау, көлік құралдарын басқару құқығынан айыру кезінде қорғау.
             </p>
           </Link>
 
           <Link href="/kz/spory-s-gosorganami-ust-kamenogorsk" className="serviceCard">
             <h3 className="serviceCardTitle">🏛 ӘРПК бойынша істер</h3>
             <p className="serviceCardText">
-              Мемлекеттік органдармен даулар, лауазымды адамдардың шешімдері мен әрекеттерін даулау.
+              Мемлекеттік органдармен даулар, лауазымды адамдардың шешімдері мен әрекеттеріне шағым жасау.
             </p>
           </Link>
 
