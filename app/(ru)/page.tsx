@@ -6,6 +6,8 @@ import { LangSwitch } from "@/components/LangSwitch";
 import { HeroLeadButtons } from "@/components/HeroLeadButtons";
 import { DocsGallery } from "@/components/DocsGallery";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
+import { ReviewsBlock } from "@/components/ReviewsBlock";
+import { LocationBlock } from "@/components/LocationBlock";
 import { pageAlternates } from "@/lib/metadata";
 
 export const metadata: Metadata = {
@@ -98,6 +100,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* REVIEWS */}
+      <ReviewsBlock />
+
       {/* ABOUT */}
       <section className="panel" style={{ marginTop: 30 }}>
         <h2 className="h2">Об адвокате</h2>
@@ -123,6 +128,9 @@ export default function Home() {
 
         <DocsGallery />
       </section>
+
+      {/* LOCATION */}
+      <LocationBlock address={address} />
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
         <div>📍 {address}</div>
