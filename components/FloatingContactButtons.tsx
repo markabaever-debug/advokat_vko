@@ -1,21 +1,23 @@
 "use client";
 
 import { trackLead, trackAndOpen } from "@/lib/tracking";
+import { ui, type Lang } from "@/lib/i18n";
 
 const phoneCall = "+77775430791";
 const waNumber = "77775430791";
 const waText = encodeURIComponent("Здравствуйте, хочу получить консультацию.");
 const waLink = `https://wa.me/${waNumber}?text=${waText}`;
 
-export function FloatingContactButtons() {
+export function FloatingContactButtons({ lang = "ru" }: { lang?: Lang }) {
+  const t = ui[lang];
   return (
     <div className="floating-contact">
       <a
         href={`tel:${phoneCall}`}
         onClick={() => trackLead("phone")}
         className="floating-btn floating-btn-phone"
-        title="Позвонить"
-        aria-label="Позвонить"
+        title={t.call}
+        aria-label={t.call}
       >
         <PhoneIcon />
       </a>
@@ -23,8 +25,8 @@ export function FloatingContactButtons() {
         type="button"
         onClick={() => trackAndOpen("whatsapp", waLink)}
         className="floating-btn floating-btn-wa"
-        title="WhatsApp"
-        aria-label="Написать в WhatsApp"
+        title={t.whatsapp}
+        aria-label={t.writeWhatsapp}
       >
         <WhatsAppIcon />
       </button>

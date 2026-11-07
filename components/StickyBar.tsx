@@ -1,11 +1,13 @@
 import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
+import { ui, type Lang } from "@/lib/i18n";
 
 type Props = {
   phoneCall: string;
   waLink: string;
   // На подстраницах показываем ещё и кнопку «← На главную»
   showHome?: boolean;
+  lang?: Lang;
 };
 
 // Закреплённая компактная полоса сверху. Её видимость управляется не React, а
@@ -14,7 +16,8 @@ type Props = {
 // переключает атрибут html[data-hero-visible]. Благодаря этому полоса
 // появляется/скрывается за один кадр, не дожидаясь загрузки клиентского JS.
 // Сам компонент — чисто презентационный, без состояния и эффектов.
-export function StickyBar({ phoneCall, waLink, showHome = false }: Props) {
+export function StickyBar({ phoneCall, waLink, showHome = false, lang = "ru" }: Props) {
+  const t = ui[lang];
   return (
     <div className="stickyBar">
       <div className="stickyBarInner">
@@ -34,15 +37,15 @@ export function StickyBar({ phoneCall, waLink, showHome = false }: Props) {
           <LangSwitch />
 
           {showHome && (
-            <HomeLink className="btn stickyBtn stickyBtnHome" ariaLabel="На главную">
+            <HomeLink className="btn stickyBtn stickyBtnHome" ariaLabel={t.home}>
               <span className="stickyBtnIcon" aria-hidden>←</span>
-              <span className="stickyBtnLabel">На главную</span>
+              <span className="stickyBtnLabel">{t.home}</span>
             </HomeLink>
           )}
 
-          <a href={`tel:${phoneCall}`} className="btn btnPrimary stickyBtn" aria-label="Позвонить">
+          <a href={`tel:${phoneCall}`} className="btn btnPrimary stickyBtn" aria-label={t.call}>
             <span className="stickyBtnIcon" aria-hidden>📞</span>
-            <span className="stickyBtnLabel">Позвонить</span>
+            <span className="stickyBtnLabel">{t.call}</span>
           </a>
 
           <a
@@ -50,10 +53,10 @@ export function StickyBar({ phoneCall, waLink, showHome = false }: Props) {
             target="_blank"
             rel="noreferrer"
             className="btn btnWA stickyBtn"
-            aria-label="WhatsApp"
+            aria-label={t.whatsapp}
           >
             <span className="stickyBtnIcon" aria-hidden>💬</span>
-            <span className="stickyBtnLabel">WhatsApp</span>
+            <span className="stickyBtnLabel">{t.whatsapp}</span>
           </a>
         </div>
       </div>

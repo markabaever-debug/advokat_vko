@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ui, type Lang } from "@/lib/i18n";
 
 type DocItem = {
   id: string;
@@ -9,41 +10,18 @@ type DocItem = {
   thumb: string;
 };
 
-const docs: DocItem[] = [
-  {
-    id: "license",
-    title: "Лицензия на занятие адвокатской деятельностью",
-    pdf: "/docs/license.pdf",
-    thumb: "/docs/thumbs/license.jpg",
-  },
-  {
-    id: "insurance",
-    title: "Страхование адвокатской деятельности",
-    pdf: "/docs/insurance.pdf",
-    thumb: "/docs/thumbs/insurance.jpg",
-  },
-  {
-    id: "cert1",
-    title: "Повышение квалификации (1)",
-    pdf: "/docs/cert-1.pdf",
-    thumb: "/docs/thumbs/cert-1.jpg",
-  },
-  {
-    id: "cert2",
-    title: "Повышение квалификации (2)",
-    pdf: "/docs/cert-2.pdf",
-    thumb: "/docs/thumbs/cert-2.jpg",
-  },
-  {
-    id: "cert3",
-    title: "Повышение квалификации (3)",
-    pdf: "/docs/cert-3.pdf",
-    thumb: "/docs/thumbs/cert-3.jpg",
-  },
-];
+// Галерея документов с модальным просмотром PDF (стрелки/Esc). Заголовки — по языку.
+export function DocsGallery({ lang = "ru" }: { lang?: Lang }) {
+  const t = ui[lang];
+  const openWord = lang === "kk" ? "Ашу" : "Открыть";
+  const docs: DocItem[] = [
+    { id: "license", title: t.docTitles.license, pdf: "/docs/license.pdf", thumb: "/docs/thumbs/license.jpg" },
+    { id: "insurance", title: t.docTitles.insurance, pdf: "/docs/insurance.pdf", thumb: "/docs/thumbs/insurance.jpg" },
+    { id: "cert1", title: `${t.docTitles.cert} (1)`, pdf: "/docs/cert-1.pdf", thumb: "/docs/thumbs/cert-1.jpg" },
+    { id: "cert2", title: `${t.docTitles.cert} (2)`, pdf: "/docs/cert-2.pdf", thumb: "/docs/thumbs/cert-2.jpg" },
+    { id: "cert3", title: `${t.docTitles.cert} (3)`, pdf: "/docs/cert-3.pdf", thumb: "/docs/thumbs/cert-3.jpg" },
+  ];
 
-// Галерея документов с модальным просмотром PDF (стрелки/Esc).
-export function DocsGallery() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const openDoc = openIndex === null ? null : docs[openIndex];
 
@@ -80,7 +58,7 @@ export function DocsGallery() {
               type="button"
               className="docCardBtn"
               onClick={() => setOpenIndex(idx)}
-              aria-label={`Открыть: ${d.title}`}
+              aria-label={`${openWord}: ${d.title}`}
             >
               <div className="docThumb">
                 <picture>
@@ -107,12 +85,12 @@ export function DocsGallery() {
             <div className="modalHeader">
               <div>
                 <div className="modalTitle">{openDoc.title}</div>
-                <div className="modalHint">← → листать • Esc закрыть</div>
+                <div className="modalHint">{t.modalHint}</div>
               </div>
 
               <div className="modalActions">
                 <button type="button" className="modalBtn" onClick={goPrev}>
-                  ← Назад
+                  {t.modalBack}
                 </button>
 
                 <div className="modalCounter">
@@ -120,11 +98,11 @@ export function DocsGallery() {
                 </div>
 
                 <button type="button" className="modalBtn" onClick={goNext}>
-                  Вперёд →
+                  {t.modalNext}
                 </button>
 
                 <a className="modalBtn" href={openDoc.pdf} target="_blank" rel="noreferrer">
-                  Открыть PDF
+                  {t.modalOpenPdf}
                 </a>
 
                 <button
@@ -132,7 +110,7 @@ export function DocsGallery() {
                   className="modalBtn"
                   onClick={() => setOpenIndex(null)}
                 >
-                  ✕ Закрыть
+                  {t.modalClose}
                 </button>
               </div>
             </div>

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { StructuredData } from "@/components/StructuredData";
 import { SiteFooterScripts } from "@/components/SiteFooterScripts";
-import { TranslationPending } from "@/components/TranslationPending";
 import { baseMetadata } from "@/lib/metadata";
 import "../globals.css";
 
 // Корневой layout казахской версии (подпуть /kz). Язык — kk (SSR <html lang="kk">).
-// Пока тексты русские с плашкой «перевод готовится» (TranslationPending вверху body).
+// Страницы переведены на казахский (кроме памятки на /kz/ugolovnyj… — цитаты УПК/
+// Конституции будут из официального казахского текста отдельно).
 export const metadata: Metadata = baseMetadata;
 
 export default function KzRootLayout({
@@ -18,9 +18,8 @@ export default function KzRootLayout({
     <html lang="kk">
       <body>
         <StructuredData />
-        <TranslationPending />
         {children}
-        <SiteFooterScripts />
+        <SiteFooterScripts lang="kk" />
       </body>
     </html>
   );

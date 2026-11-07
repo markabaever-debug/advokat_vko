@@ -1,5 +1,6 @@
 import { FloatingContactButtons } from "@/components/FloatingContactButtons";
 import { CookieNotice } from "@/components/CookieNotice";
+import { type Lang } from "@/lib/i18n";
 
 // Выполняется до гидратации (инлайн в конце <body>, hero уже в DOM).
 // Переключает html[data-hero-visible] = виден ли hero; полоса управляется этим
@@ -31,12 +32,12 @@ const heroVisibilityScript = `
 
 // Общий «низ» <body> для обеих языковых версий: ранний hero-скрипт, плавающие кнопки,
 // баннер cookie и плашка «перевод готовится» (видна только на /kz).
-export function SiteFooterScripts() {
+export function SiteFooterScripts({ lang = "ru" }: { lang?: Lang }) {
   return (
     <>
       <script dangerouslySetInnerHTML={{ __html: heroVisibilityScript }} />
-      <FloatingContactButtons />
-      <CookieNotice />
+      <FloatingContactButtons lang={lang} />
+      <CookieNotice lang={lang} />
     </>
   );
 }
