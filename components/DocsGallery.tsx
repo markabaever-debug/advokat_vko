@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { ui, type Lang } from "@/lib/i18n";
 
 type DocItem = {
@@ -10,9 +11,9 @@ type DocItem = {
   thumb: string;
 };
 
-// Сертификаты — в порядке от новых к старым (по дате выдачи). Тема курса — дословно
-// с сертификата, на русском (и в RU, и в /kz). Файлы: public/docs/<file>.pdf,
-// миниатюры: public/docs/thumbs/<file>.{jpg,webp,avif}.
+// Сертификаты — в заданном порядке. Тема курса — дословно с сертификата, на русском
+// (и в RU, и в /kz). Файлы: public/docs/<file>.pdf, миниатюры:
+// public/docs/thumbs/<file>.{jpg,webp,avif}.
 const CERTS: { file: string; course: string; year: string }[] = [
   { file: "cert-5", course: "Судебная практика по спорам о возмещении вреда, причинённого источником повышенной опасности", year: "2026" },
   { file: "cert-4", course: "Кастомные боты и ИИ-ассистенты для юридических задач", year: "2026" },
@@ -23,15 +24,12 @@ const CERTS: { file: string; course: string; year: string }[] = [
   { file: "cert-6", course: "О некоторых вопросах по налогам и другим обязательным платежам адвокатов в 2026 году. Часть 1. Налоговые обязательства адвоката. Индивидуальный подоходный налог с 1 января 2026 года (Лекция 1)", year: "2026" },
 ];
 
-const DOCS_LIMIT = 6; // показываем первые 6, остальные — под кнопкой «Показать все»
+export const CERT_COUNT = CERTS.length; // число сертификатов (для ссылки «Ещё N …»)
 
-// Галерея документов с модальным просмотром PDF (стрелки/Esc). Заголовки — по языку.
-export function DocsGallery({ lang = "ru" }: { lang?: Lang }) {
+function buildDocs(lang: Lang): DocItem[] {
   const t = ui[lang];
-  const openWord = lang === "kk" ? "Ашу" : "Открыть";
   const certTitle = (course: string, year: string) => `${t.docTitles.cert}: «${course}» (${year})`;
-
-  const docs: DocItem[] = [
+  return [
     { id: "license", title: t.docTitles.license, pdf: "/docs/license.pdf", thumb: "/docs/thumbs/license.jpg" },
     { id: "insurance", title: t.docTitles.insurance, pdf: "/docs/insurance.pdf", thumb: "/docs/thumbs/insurance.jpg" },
     ...CERTS.map((c) => ({
@@ -41,15 +39,27 @@ export function DocsGallery({ lang = "ru" }: { lang?: Lang }) {
       thumb: `/docs/thumbs/${c.file}.jpg`,
     })),
   ];
+}
+
+// Галерея документов с модальным просмотром PDF (стрелки/Esc). Заголовки — по языку.
+// compact=true — на главной: только лицензия и страхование + ссылка «Ещё N сертификатов».
+// compact=false — на странице /dokumenty: все документы.
+export function DocsGallery({ lang = "ru", compact = false }: { lang?: Lang; compact?: boolean }) {
+  const t = ui[lang];
+  const openWord = lang === "kk" ? "Ашу" : "Открыть";
+  const allDocs = buildDocs(lang);
+  const docs = compact ? allDocs.slice(0, 2) : allDocs; // что открывается в просмотрщике
+  const moreCount = allDocs.length - 2;
+  const moreHref = lang === "kk" ? "/kz/dokumenty" : "/dokumenty";
+  const moreText = lang === "kk"
+    ? `Біліктілікті арттыру туралы тағы ${moreCount} сертификат →`
+    : `Ещё ${moreCount} сертификатов повышения квалификации →`;
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [showAll, setShowAll] = useState(false);
   const openDoc = openIndex === null ? null : docs[openIndex];
 
   const goPrev = () => {
-    setOpenIndex((prev) =>
-      prev === null ? null : (prev - 1 + docs.length) % docs.length
-    );
+    setOpenIndex((prev) => (prev === null ? null : (prev - 1 + docs.length) % docs.length));
   };
 
   const goNext = () => {
@@ -70,9 +80,8 @@ export function DocsGallery({ lang = "ru" }: { lang?: Lang }) {
 
   return (
     <>
-      <div className="docsGrid">
+      <div className={compact ? "docsCompact" : "docsGrid"}>
         {docs.map((d, idx) => {
-          if (!showAll && idx >= DOCS_LIMIT) return null;
           const base = d.thumb.replace(/\.jpg$/, "");
           return (
             <button
@@ -93,15 +102,13 @@ export function DocsGallery({ lang = "ru" }: { lang?: Lang }) {
             </button>
           );
         })}
-      </div>
 
-      {!showAll && docs.length > DOCS_LIMIT && (
-        <button type="button" className="btn docsShowAll" onClick={() => setShowAll(true)}>
-          {lang === "kk"
-            ? `Барлық құжаттар (${docs.length})`
-            : `Показать все документы (${docs.length})`}
-        </button>
-      )}
+        {compact && (
+          <Link className="docsMoreLink" href={moreHref}>
+            {moreText}
+          </Link>
+        )}
+      </div>
 
       {openDoc && openIndex !== null && (
         <div

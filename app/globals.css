@@ -1363,8 +1363,24 @@ footer a {
   font-style: normal;
 }
 
-/* Кнопка «Показать все документы (N)» под галереей документов */
-.docsShowAll { margin-top: 16px; }
+/* Компактная строка документов в «Об адвокате» на главной: 2 мини-миниатюры + ссылка */
+.docsCompact {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.docsCompact .docCardBtn { width: auto; }
+.docsCompact .docThumb {
+  width: 48px;
+  height: 64px;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+.docsCompact .docThumb::after { display: none; } /* скрыть бейдж «PDF» на мини */
+.docsCompact .docLabel { display: none; }
+.docsMoreLink { font-weight: 600; text-decoration: underline; }
 
 /* Плашка «перевод готовится» на казахских страницах (/kz) */
 .translatePending {

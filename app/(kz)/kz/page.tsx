@@ -147,12 +147,9 @@ export default function KzHome() {
           <div>🕐 Кеңседе қабылдау: дс–сб, 8:00–19:00. WhatsApp — кез келген уақытта.</div>
         </div>
 
-        <h3 style={{ marginTop: 25 }}>Құжаттар мен сертификаттар</h3>
-        <p className="muted" style={{ marginTop: 8 }}>
-          Құжатты қарау үшін оны басыңыз. Қарау терезесінде: ← → (парақтау), Esc (жабу).
-        </p>
-
-        <DocsGallery lang="kk" />
+        <div style={{ marginTop: 22 }}>
+          <DocsGallery compact lang="kk" />
+        </div>
       </section>
 
       {/* LOCATION */}
