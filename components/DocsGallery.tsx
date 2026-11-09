@@ -26,6 +26,15 @@ const CERTS: { file: string; course: string; year: string }[] = [
 
 export const CERT_COUNT = CERTS.length; // число сертификатов (для ссылки «Ещё N …»)
 
+// Русское склонение: 1 сертификат, 2–4 сертификата, 5+ сертификатов (с учётом 11–14).
+function ruPlural(n: number, one: string, few: string, many: string) {
+  const m10 = n % 10;
+  const m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return one;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return few;
+  return many;
+}
+
 function buildDocs(lang: Lang): DocItem[] {
   const t = ui[lang];
   const certTitle = (course: string, year: string) => `${t.docTitles.cert}: «${course}» (${year})`;
@@ -53,7 +62,7 @@ export function DocsGallery({ lang = "ru", compact = false }: { lang?: Lang; com
   const moreHref = lang === "kk" ? "/kz/dokumenty" : "/dokumenty";
   const moreText = lang === "kk"
     ? `Біліктілікті арттыру туралы тағы ${moreCount} сертификат →`
-    : `Ещё ${moreCount} сертификатов повышения квалификации →`;
+    : `Ещё ${moreCount} ${ruPlural(moreCount, "сертификат", "сертификата", "сертификатов")} повышения квалификации →`;
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const openDoc = openIndex === null ? null : docs[openIndex];
