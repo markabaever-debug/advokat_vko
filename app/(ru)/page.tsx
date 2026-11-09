@@ -2,12 +2,15 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StickyBar } from "@/components/StickyBar";
-import { LangSwitch } from "@/components/LangSwitch";
 import { HeroLeadButtons } from "@/components/HeroLeadButtons";
+import { HeroRating } from "@/components/HeroRating";
 import { DocsGallery } from "@/components/DocsGallery";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 import { ReviewsBlock } from "@/components/ReviewsBlock";
 import { LocationBlock } from "@/components/LocationBlock";
+import { WhatHappened } from "@/components/WhatHappened";
+import { AfterContact } from "@/components/AfterContact";
+import { AboutVideo } from "@/components/AboutVideo";
 import { pageAlternates } from "@/lib/metadata";
 
 export const metadata: Metadata = {
@@ -15,9 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const shortName = "Маркабаев Е.Б.";
   const fullName = "Маркабаев Ерлан Бапашевич";
-  const city = "Усть-Каменогорск";
   const region = "ВКО";
 
   const phoneDisplay = "+7 777 543 07 91";
@@ -38,12 +39,12 @@ export default function Home() {
       <section className="panel" style={{ marginTop: 20 }} data-hero>
         <div className="heroRow">
           <div className="heroText">
-            <LangSwitch />
-            <h1 className="h1">{shortName}</h1>
+            <h1 className="h1">Адвокат по уголовным делам в Усть‑Каменогорске</h1>
 
             <p className="sub">
-              Адвокат, {city} ({region}). Гражданские и уголовные дела. Судебная защита,
-              документы, консультация онлайн и очно.
+              Более 10 лет юридической практики, адвокат с 2019 года. Защита на следствии
+              и в суде всех инстанций, включая Верховный суд РК. Также гражданские и
+              административные дела.
             </p>
 
             <div className="kpis">
@@ -52,6 +53,8 @@ export default function Home() {
               <div className="kpi">✅ Суд / переговоры</div>
             </div>
 
+            <HeroRating />
+
             <HeroLeadButtons phoneCall={phoneCall} waLink={waLink} />
           </div>
 
@@ -59,12 +62,15 @@ export default function Home() {
         </div>
       </section>
 
+      {/* WHAT HAPPENED */}
+      <WhatHappened phoneCall={phoneCall} />
+
       {/* SERVICES */}
       <section className="panel" style={{ marginTop: 30 }}>
         <h2 className="h2">Основные направления</h2>
 
         <p className="muted" style={{ marginTop: 10 }}>
-          Юридическая помощь в Усть-Каменогорске ({region})
+          Юридическая помощь в Усть‑Каменогорске ({region})
         </p>
 
         <div className="servicesGrid" style={{ marginTop: 20 }}>
@@ -100,6 +106,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* AFTER CONTACT */}
+      <AfterContact />
+
       {/* REVIEWS */}
       <ReviewsBlock />
 
@@ -108,9 +117,22 @@ export default function Home() {
         <h2 className="h2">Об адвокате</h2>
 
         <p className="muted" style={{ marginTop: 10 }}>
-          {fullName}. Консультации и ведение дел: уголовные, гражданские, семейные споры,
-          подготовка процессуальных документов, представительство в суде.
+          {fullName}. Защита по уголовным делам на следствии и в суде, а также гражданские
+          и административные дела, споры с государственными органами, подготовка
+          процессуальных документов.
         </p>
+
+        <p style={{ marginTop: 12 }}>
+          Я отношусь к каждому делу с повышенной ответственностью: человек доверяет мне
+          свою свободу, права или будущее. Ценю пунктуальность, вежливое и доверительное
+          общение с клиентом — вы всегда знаете, что происходит по вашему делу. Постоянно
+          повышаю квалификацию и использую в работе современные технологии, в том числе
+          инструменты искусственного интеллекта для анализа материалов, с соблюдением
+          адвокатской тайны. Это позволяет работать быстрее и тщательнее, но позицию
+          защиты я всегда определяю лично.
+        </p>
+
+        <AboutVideo />
 
         <div style={{ marginTop: 20 }}>
           <strong>Контакты:</strong>
@@ -119,6 +141,7 @@ export default function Home() {
             ✉️ <a href={`mailto:${email}`}>{email}</a>
           </div>
           <div>📍 {address}</div>
+          <div>🕐 Приём в офисе: пн–сб, 8:00–19:00. WhatsApp — в любое время.</div>
         </div>
 
         <h3 style={{ marginTop: 25 }}>Документы и сертификаты</h3>

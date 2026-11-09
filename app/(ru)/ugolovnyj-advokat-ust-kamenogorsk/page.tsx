@@ -10,7 +10,7 @@ import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 
 export default function UgolovnyAdvokatPage() {
   const fullName = "Маркабаев Ерлан Бапашевич";
-  const city = "Усть-Каменогорске";
+  const city = "Усть‑Каменогорске";
   const region = "ВКО";
 
   const stages: Stage[] = [

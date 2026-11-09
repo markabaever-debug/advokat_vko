@@ -2,12 +2,15 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StickyBar } from "@/components/StickyBar";
-import { LangSwitch } from "@/components/LangSwitch";
 import { HeroLeadButtons } from "@/components/HeroLeadButtons";
+import { HeroRating } from "@/components/HeroRating";
 import { DocsGallery } from "@/components/DocsGallery";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 import { ReviewsBlock } from "@/components/ReviewsBlock";
 import { LocationBlock } from "@/components/LocationBlock";
+import { WhatHappened } from "@/components/WhatHappened";
+import { AfterContact } from "@/components/AfterContact";
+import { AboutVideo } from "@/components/AboutVideo";
 import { pageAlternates } from "@/lib/metadata";
 
 export const metadata: Metadata = {
@@ -17,7 +20,6 @@ export const metadata: Metadata = {
 };
 
 export default function KzHome() {
-  const shortName = "Маркабаев Е.Б.";
   const fullName = "Маркабаев Ерлан Бапашевич";
   const city = "Өскемен";
   const region = "ШҚО";
@@ -40,12 +42,12 @@ export default function KzHome() {
       <section className="panel" style={{ marginTop: 20 }} data-hero>
         <div className="heroRow">
           <div className="heroText">
-            <LangSwitch />
-            <h1 className="h1">{shortName}</h1>
+            <h1 className="h1">Өскемендегі қылмыстық істер жөніндегі адвокат</h1>
 
             <p className="sub">
-              Адвокат, {city} ({region}). Азаматтық және қылмыстық істер. Сотта қорғау,
-              құжаттар, онлайн және жеке консультация.
+              Заң тәжірибесі 10 жылдан астам, 2019 жылдан бері адвокат. Тергеуде және
+              барлық сатыдағы соттарда қорғау, оның ішінде ҚР Жоғарғы Сотында. Сондай-ақ
+              азаматтық және әкімшілік істер.
             </p>
 
             <div className="kpis">
@@ -54,12 +56,17 @@ export default function KzHome() {
               <div className="kpi">✅ Сот / келіссөздер</div>
             </div>
 
+            <HeroRating lang="kk" />
+
             <HeroLeadButtons phoneCall={phoneCall} waLink={waLink} lang="kk" />
           </div>
 
           <HeroPhoto alt="Адвокат Маркабаев Е.Б." />
         </div>
       </section>
+
+      {/* WHAT HAPPENED */}
+      <WhatHappened lang="kk" phoneCall={phoneCall} />
 
       {/* SERVICES */}
       <section className="panel" style={{ marginTop: 30 }}>
@@ -102,6 +109,9 @@ export default function KzHome() {
         </div>
       </section>
 
+      {/* AFTER CONTACT */}
+      <AfterContact lang="kk" />
+
       {/* REVIEWS */}
       <ReviewsBlock lang="kk" />
 
@@ -110,9 +120,22 @@ export default function KzHome() {
         <h2 className="h2">Адвокат туралы</h2>
 
         <p className="muted" style={{ marginTop: 10 }}>
-          {fullName}. Консультациялар және істерді жүргізу: қылмыстық, азаматтық, отбасылық
-          даулар, процестік құжаттарды дайындау, сотта өкілдік ету.
+          {fullName}. Қылмыстық істер бойынша тергеуде және сотта қорғау, сондай-ақ
+          азаматтық және әкімшілік істер, мемлекеттік органдармен даулар, процестік
+          құжаттарды дайындау.
         </p>
+
+        <p style={{ marginTop: 12 }}>
+          Әр іске жоғары жауапкершілікпен қараймын: адам маған өзінің бостандығын,
+          құқықтарын немесе болашағын сеніп тапсырады. Уақытқа ұқыптылықты, клиентпен
+          сыпайы әрі сенімді қарым-қатынасты бағалаймын — ісіңіздің барысынан әрдайым
+          хабардар боласыз. Біліктілігімді үнемі арттырамын және жұмысымда заманауи
+          технологияларды, соның ішінде материалдарды талдау үшін жасанды интеллект
+          құралдарын адвокаттық құпияны сақтай отырып қолданамын. Бұл жұмысты жылдам әрі
+          мұқият атқаруға мүмкіндік береді, бірақ қорғау ұстанымын әрдайым өзім айқындаймын.
+        </p>
+
+        <AboutVideo />
 
         <div style={{ marginTop: 20 }}>
           <strong>Байланыс:</strong>
@@ -121,6 +144,7 @@ export default function KzHome() {
             ✉️ <a href={`mailto:${email}`}>{email}</a>
           </div>
           <div>📍 {address}</div>
+          <div>🕐 Кеңседе қабылдау: дс–сб, 8:00–19:00. WhatsApp — кез келген уақытта.</div>
         </div>
 
         <h3 style={{ marginTop: 25 }}>Құжаттар мен сертификаттар</h3>

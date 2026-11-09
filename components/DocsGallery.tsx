@@ -14,12 +14,26 @@ type DocItem = {
 export function DocsGallery({ lang = "ru" }: { lang?: Lang }) {
   const t = ui[lang];
   const openWord = lang === "kk" ? "Ашу" : "Открыть";
+  // Темы сертификатов — по тексту на самих сертификатах. Название курса на русском
+  // (как на сертификате) в обеих версиях; где темы в списке нет — «Повышение
+  // квалификации» / «Біліктілікті арттыру». Порядок — cert-1 / cert-2 / cert-3.
+  const certCourse: (string | null)[] = [
+    "Практические примеры использования искусственного интеллекта в юридической практике", // cert-1
+    "Как составить иск, чтобы суд его не возвратил и удовлетворил", // cert-2
+    "Общая характеристика противодействия легализации (отмыванию) доходов и финансированию терроризма", // cert-3
+  ];
+  const certYear: (string | null)[] = ["2025", "2025", "2025"];
+  const certTitle = (i: number) =>
+    certCourse[i]
+      ? `${t.docTitles.cert}: «${certCourse[i]}»${certYear[i] ? ` (${certYear[i]})` : ""}`
+      : t.docTitles.cert;
+
   const docs: DocItem[] = [
     { id: "license", title: t.docTitles.license, pdf: "/docs/license.pdf", thumb: "/docs/thumbs/license.jpg" },
     { id: "insurance", title: t.docTitles.insurance, pdf: "/docs/insurance.pdf", thumb: "/docs/thumbs/insurance.jpg" },
-    { id: "cert1", title: `${t.docTitles.cert} (1)`, pdf: "/docs/cert-1.pdf", thumb: "/docs/thumbs/cert-1.jpg" },
-    { id: "cert2", title: `${t.docTitles.cert} (2)`, pdf: "/docs/cert-2.pdf", thumb: "/docs/thumbs/cert-2.jpg" },
-    { id: "cert3", title: `${t.docTitles.cert} (3)`, pdf: "/docs/cert-3.pdf", thumb: "/docs/thumbs/cert-3.jpg" },
+    { id: "cert1", title: certTitle(0), pdf: "/docs/cert-1.pdf", thumb: "/docs/thumbs/cert-1.jpg" },
+    { id: "cert2", title: certTitle(1), pdf: "/docs/cert-2.pdf", thumb: "/docs/thumbs/cert-2.jpg" },
+    { id: "cert3", title: certTitle(2), pdf: "/docs/cert-3.pdf", thumb: "/docs/thumbs/cert-3.jpg" },
   ];
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
