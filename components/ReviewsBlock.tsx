@@ -51,8 +51,6 @@ export function ReviewsBlock({ lang = "ru" }: { lang?: Lang }) {
         </p>
       )}
 
-      <p className="muted" style={{ marginTop: 8 }}>{t.subtitle}</p>
-
       <div className="reviewsButtons">
         <a
           className="btn btnPrimary"

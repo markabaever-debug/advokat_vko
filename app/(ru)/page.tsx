@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StickyBar } from "@/components/StickyBar";
-import { LangSwitch } from "@/components/LangSwitch";
 import { HeroLeadButtons } from "@/components/HeroLeadButtons";
+import { HeroRating } from "@/components/HeroRating";
 import { DocsGallery } from "@/components/DocsGallery";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 import { ReviewsBlock } from "@/components/ReviewsBlock";
@@ -40,8 +40,7 @@ export default function Home() {
       <section className="panel" style={{ marginTop: 20 }} data-hero>
         <div className="heroRow">
           <div className="heroText">
-            <LangSwitch />
-            <h1 className="h1">Адвокат по уголовным делам в Усть-Каменогорске</h1>
+            <h1 className="h1">Адвокат по уголовным делам в Усть‑Каменогорске</h1>
 
             <p className="sub">
               Более 10 лет юридической практики, адвокат с 2019 года. Защита на следствии
@@ -55,6 +54,8 @@ export default function Home() {
               <div className="kpi">✅ Суд / переговоры</div>
             </div>
 
+            <HeroRating />
+
             <HeroLeadButtons phoneCall={phoneCall} waLink={waLink} />
           </div>
 
@@ -63,14 +64,14 @@ export default function Home() {
       </section>
 
       {/* WHAT HAPPENED */}
-      <WhatHappened />
+      <WhatHappened phoneCall={phoneCall} />
 
       {/* SERVICES */}
       <section className="panel" style={{ marginTop: 30 }}>
         <h2 className="h2">Основные направления</h2>
 
         <p className="muted" style={{ marginTop: 10 }}>
-          Юридическая помощь в Усть-Каменогорске ({region})
+          Юридическая помощь в Усть‑Каменогорске ({region})
         </p>
 
         <div className="servicesGrid" style={{ marginTop: 20 }}>
@@ -117,8 +118,9 @@ export default function Home() {
         <h2 className="h2">Об адвокате</h2>
 
         <p className="muted" style={{ marginTop: 10 }}>
-          {fullName}. Консультации и ведение дел: уголовные, гражданские, семейные споры,
-          подготовка процессуальных документов, представительство в суде.
+          {fullName}. Защита по уголовным делам на следствии и в суде, а также гражданские
+          и административные дела, споры с государственными органами, подготовка
+          процессуальных документов.
         </p>
 
         <p style={{ marginTop: 12 }}>

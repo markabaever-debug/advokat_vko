@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StickyBar } from "@/components/StickyBar";
-import { LangSwitch } from "@/components/LangSwitch";
 import { HeroLeadButtons } from "@/components/HeroLeadButtons";
+import { HeroRating } from "@/components/HeroRating";
 import { DocsGallery } from "@/components/DocsGallery";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 import { ReviewsBlock } from "@/components/ReviewsBlock";
@@ -43,7 +43,6 @@ export default function KzHome() {
       <section className="panel" style={{ marginTop: 20 }} data-hero>
         <div className="heroRow">
           <div className="heroText">
-            <LangSwitch />
             <h1 className="h1">Өскемендегі қылмыстық істер жөніндегі адвокат</h1>
 
             <p className="sub">
@@ -58,6 +57,8 @@ export default function KzHome() {
               <div className="kpi">✅ Сот / келіссөздер</div>
             </div>
 
+            <HeroRating lang="kk" />
+
             <HeroLeadButtons phoneCall={phoneCall} waLink={waLink} lang="kk" />
           </div>
 
@@ -66,7 +67,7 @@ export default function KzHome() {
       </section>
 
       {/* WHAT HAPPENED */}
-      <WhatHappened lang="kk" />
+      <WhatHappened lang="kk" phoneCall={phoneCall} />
 
       {/* SERVICES */}
       <section className="panel" style={{ marginTop: 30 }}>
@@ -120,8 +121,9 @@ export default function KzHome() {
         <h2 className="h2">Адвокат туралы</h2>
 
         <p className="muted" style={{ marginTop: 10 }}>
-          {fullName}. Консультациялар және істерді жүргізу: қылмыстық, азаматтық, отбасылық
-          даулар, процестік құжаттарды дайындау, сотта өкілдік ету.
+          {fullName}. Қылмыстық істер бойынша тергеуде және сотта қорғау, сондай-ақ
+          азаматтық және әкімшілік істер, мемлекеттік органдармен даулар, процестік
+          құжаттарды дайындау.
         </p>
 
         <p style={{ marginTop: 12 }}>

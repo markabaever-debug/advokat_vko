@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import type { Lang } from "@/lib/i18n";
 import { Fillme } from "@/components/Fillme";
+import { CallButton } from "@/components/CallButton";
 
 // Блок «Что у вас случилось?» — 6 крупных кнопок-карточек, ведут на подходящую
 // существующую страницу (уголовная / административная / АППК). Казахские тексты —
@@ -17,7 +18,7 @@ const CARDS: Card[] = [
   { icon: "🏛", ru: "Спор с госорганом", kk: "Мемлекеттік органмен дау", slug: "spory-s-gosorganami-ust-kamenogorsk" },
 ];
 
-export function WhatHappened({ lang = "ru" }: { lang?: Lang }) {
+export function WhatHappened({ lang = "ru", phoneCall }: { lang?: Lang; phoneCall: string }) {
   const kk = lang === "kk";
   const base = kk ? "/kz" : "";
   const title = kk ? "Сізде не болды?" : "Что у вас случилось?";
@@ -33,10 +34,14 @@ export function WhatHappened({ lang = "ru" }: { lang?: Lang }) {
           <Link key={i} href={`${base}/${c.slug}`} className="troubleCard">
             <span className="troubleIcon" aria-hidden="true">{c.icon}</span>
             <span className="troubleLabel">{kk ? c.kk : c.ru}</span>
+            <span className="troubleArrow" aria-hidden="true">→</span>
           </Link>
         ))}
       </div>
-      <p className="muted troubleNote">{note}</p>
+      <div className="troubleCall">
+        <p className="troubleCallText">{note}</p>
+        <CallButton phoneCall={phoneCall} lang={lang} className="btn btnPrimary troubleCallBtn" />
+      </div>
     </section>
   );
 }
