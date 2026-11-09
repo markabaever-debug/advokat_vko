@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ui, type Lang } from "@/lib/i18n";
+import { YM_COUNTER_ID } from "@/lib/tracking";
 
 const STORAGE_KEY = "cookie-consent"; // "granted" | "denied"
 const GTM_ID = "GTM-MNCSPZM6";
@@ -25,6 +26,28 @@ function loadGtm() {
   document.head.appendChild(s);
 }
 
+// Загружает Яндекс.Метрику один раз. Вызывается только при согласии и только если
+// номер счётчика задан (YM_COUNTER_ID !== 0). Цели «call»/«whatsapp» — в lib/tracking.ts.
+function loadMetrika() {
+  if (typeof window === "undefined" || window.__ymLoaded || !YM_COUNTER_ID) return;
+  window.__ymLoaded = true;
+  window.ym = window.ym || function (...args: any[]) {
+    ((window.ym as any).a = (window.ym as any).a || []).push(args);
+  };
+  (window.ym as any).l = Number(new Date());
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = "https://mc.yandex.ru/metrika/tag.js";
+  document.head.appendChild(s);
+  window.ym(YM_COUNTER_ID, "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true });
+}
+
+// Аналитика после согласия: Google Tag Manager + Яндекс.Метрика.
+function loadAnalytics() {
+  loadGtm();
+  loadMetrika();
+}
+
 export function CookieNotice({ lang = "ru" }: { lang?: Lang }) {
   const t = ui[lang];
   const privacyHref = lang === "kk" ? "/kz/politika-konfidencialnosti" : "/politika-konfidencialnosti";
@@ -39,7 +62,7 @@ export function CookieNotice({ lang = "ru" }: { lang?: Lang }) {
     }
 
     if (choice === "granted") {
-      loadGtm();
+      loadAnalytics();
     } else if (choice !== "denied") {
       setVisible(true); // выбор ещё не сделан — показываем уведомление
     }
@@ -56,7 +79,7 @@ export function CookieNotice({ lang = "ru" }: { lang?: Lang }) {
     } catch {
       /* не удалось сохранить — аналитика включится только на эту сессию */
     }
-    loadGtm();
+    loadAnalytics();
     setVisible(false);
   };
 

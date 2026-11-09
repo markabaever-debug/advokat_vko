@@ -8,6 +8,10 @@ import { DocsGallery } from "@/components/DocsGallery";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 import { ReviewsBlock } from "@/components/ReviewsBlock";
 import { LocationBlock } from "@/components/LocationBlock";
+import { WhatHappened } from "@/components/WhatHappened";
+import { AfterContact } from "@/components/AfterContact";
+import { AboutVideo } from "@/components/AboutVideo";
+import { Fillme } from "@/components/Fillme";
 import { pageAlternates } from "@/lib/metadata";
 
 export const metadata: Metadata = {
@@ -15,9 +19,7 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const shortName = "Маркабаев Е.Б.";
   const fullName = "Маркабаев Ерлан Бапашевич";
-  const city = "Усть-Каменогорск";
   const region = "ВКО";
 
   const phoneDisplay = "+7 777 543 07 91";
@@ -39,11 +41,12 @@ export default function Home() {
         <div className="heroRow">
           <div className="heroText">
             <LangSwitch />
-            <h1 className="h1">{shortName}</h1>
+            <h1 className="h1">Адвокат по уголовным делам в Усть-Каменогорске</h1>
 
             <p className="sub">
-              Адвокат, {city} ({region}). Гражданские и уголовные дела. Судебная защита,
-              документы, консультация онлайн и очно.
+              Более 10 лет юридической практики, адвокат с 2019 года. Защита на следствии
+              и в суде всех инстанций, включая Верховный суд РК. Также гражданские и
+              административные дела.
             </p>
 
             <div className="kpis">
@@ -58,6 +61,9 @@ export default function Home() {
           <HeroPhoto alt="Адвокат Маркабаев Е.Б." />
         </div>
       </section>
+
+      {/* WHAT HAPPENED */}
+      <WhatHappened />
 
       {/* SERVICES */}
       <section className="panel" style={{ marginTop: 30 }}>
@@ -100,6 +106,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* AFTER CONTACT */}
+      <AfterContact />
+
       {/* REVIEWS */}
       <ReviewsBlock />
 
@@ -112,6 +121,12 @@ export default function Home() {
           подготовка процессуальных документов, представительство в суде.
         </p>
 
+        <p style={{ marginTop: 12 }}>
+          <Fillme>текст «Об адвокате» от первого лица</Fillme>
+        </p>
+
+        <AboutVideo />
+
         <div style={{ marginTop: 20 }}>
           <strong>Контакты:</strong>
           <div>📞 {phoneDisplay}</div>
@@ -119,6 +134,7 @@ export default function Home() {
             ✉️ <a href={`mailto:${email}`}>{email}</a>
           </div>
           <div>📍 {address}</div>
+          <div>🕐 Часы работы: <Fillme>часы работы</Fillme></div>
         </div>
 
         <h3 style={{ marginTop: 25 }}>Документы и сертификаты</h3>

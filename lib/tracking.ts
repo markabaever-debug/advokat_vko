@@ -2,9 +2,15 @@
 
 export type LeadType = "phone" | "whatsapp";
 
+// Номер счётчика Яндекс.Метрики. 0 — не подключено (скрипт не загружается).
+// [ЗАПОЛНИТЬ: номер счётчика Яндекс.Метрики]
+export const YM_COUNTER_ID = 0;
+
 declare global {
   interface Window {
     dataLayer: any[];
+    ym?: (...args: any[]) => void;
+    __ymLoaded?: boolean;
   }
 }
 
@@ -25,6 +31,12 @@ export const trackLead = (type: LeadType) => {
   };
 
   pushToDataLayer(eventMap[type]);
+
+  // Цель Яндекс.Метрики (reachGoal) — только если счётчик подключён и загружен (после согласия).
+  if (typeof window !== "undefined" && typeof window.ym === "function" && YM_COUNTER_ID) {
+    const goalMap: Record<LeadType, string> = { phone: "call", whatsapp: "whatsapp" };
+    window.ym(YM_COUNTER_ID, "reachGoal", goalMap[type]);
+  }
 };
 
 export const trackAndOpen = (type: LeadType, url: string) => {

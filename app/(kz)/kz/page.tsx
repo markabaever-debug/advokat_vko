@@ -8,6 +8,10 @@ import { DocsGallery } from "@/components/DocsGallery";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 import { ReviewsBlock } from "@/components/ReviewsBlock";
 import { LocationBlock } from "@/components/LocationBlock";
+import { WhatHappened } from "@/components/WhatHappened";
+import { AfterContact } from "@/components/AfterContact";
+import { AboutVideo } from "@/components/AboutVideo";
+import { Fillme } from "@/components/Fillme";
 import { pageAlternates } from "@/lib/metadata";
 
 export const metadata: Metadata = {
@@ -17,7 +21,6 @@ export const metadata: Metadata = {
 };
 
 export default function KzHome() {
-  const shortName = "Маркабаев Е.Б.";
   const fullName = "Маркабаев Ерлан Бапашевич";
   const city = "Өскемен";
   const region = "ШҚО";
@@ -41,11 +44,12 @@ export default function KzHome() {
         <div className="heroRow">
           <div className="heroText">
             <LangSwitch />
-            <h1 className="h1">{shortName}</h1>
+            <h1 className="h1">Өскемендегі қылмыстық істер жөніндегі адвокат</h1>
 
             <p className="sub">
-              Адвокат, {city} ({region}). Азаматтық және қылмыстық істер. Сотта қорғау,
-              құжаттар, онлайн және жеке консультация.
+              Заң тәжірибесі 10 жылдан астам, 2019 жылдан бері адвокат. Тергеуде және
+              барлық сатыдағы соттарда қорғау, оның ішінде ҚР Жоғарғы Сотында. Сондай-ақ
+              азаматтық және әкімшілік істер.
             </p>
 
             <div className="kpis">
@@ -60,6 +64,9 @@ export default function KzHome() {
           <HeroPhoto alt="Адвокат Маркабаев Е.Б." />
         </div>
       </section>
+
+      {/* WHAT HAPPENED */}
+      <WhatHappened lang="kk" />
 
       {/* SERVICES */}
       <section className="panel" style={{ marginTop: 30 }}>
@@ -102,6 +109,9 @@ export default function KzHome() {
         </div>
       </section>
 
+      {/* AFTER CONTACT */}
+      <AfterContact lang="kk" />
+
       {/* REVIEWS */}
       <ReviewsBlock lang="kk" />
 
@@ -114,6 +124,12 @@ export default function KzHome() {
           даулар, процестік құжаттарды дайындау, сотта өкілдік ету.
         </p>
 
+        <p style={{ marginTop: 12 }}>
+          <Fillme lang="kk">«Адвокат туралы» мәтіні, бірінші жақтан</Fillme>
+        </p>
+
+        <AboutVideo />
+
         <div style={{ marginTop: 20 }}>
           <strong>Байланыс:</strong>
           <div>📞 {phoneDisplay}</div>
@@ -121,6 +137,7 @@ export default function KzHome() {
             ✉️ <a href={`mailto:${email}`}>{email}</a>
           </div>
           <div>📍 {address}</div>
+          <div>🕐 Жұмыс уақыты: <Fillme lang="kk">жұмыс уақыты</Fillme></div>
         </div>
 
         <h3 style={{ marginTop: 25 }}>Құжаттар мен сертификаттар</h3>

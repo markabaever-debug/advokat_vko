@@ -1,5 +1,6 @@
 import type { Lang } from "@/lib/i18n";
 import { reviews, maps } from "@/lib/business";
+import { Fillme } from "@/components/Fillme";
 
 // Блок «Отзывы» на главной. Рейтинг и число оценок — из lib/business.ts (ручное
 // обновление). Тексты самих отзывов НЕ копируются — только ссылка в 2ГИС.
@@ -21,9 +22,23 @@ export function ReviewsBlock({ lang = "ru" }: { lang?: Lang }) {
         addReview: "Оставить отзыв",
       };
 
+  const quoteSign = "Клиент, 2ГИС";
+  const quoteHint = kk ? "пікір мәтіні" : "текст отзыва";
+
   return (
     <section className="panel" style={{ marginTop: 30 }}>
       <h2 className="h2">{t.title}</h2>
+
+      <div className="reviewQuotes">
+        {[1, 2, 3].map((n) => (
+          <figure key={n} className="reviewQuote">
+            <blockquote>
+              <Fillme lang={lang}>{quoteHint} {n}</Fillme>
+            </blockquote>
+            <figcaption>{quoteSign}</figcaption>
+          </figure>
+        ))}
+      </div>
 
       <div className="reviewsRating">
         <span className="reviewsStars" aria-hidden="true">★★★★★</span>
