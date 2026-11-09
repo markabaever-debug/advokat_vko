@@ -11,7 +11,6 @@ import { LocationBlock } from "@/components/LocationBlock";
 import { WhatHappened } from "@/components/WhatHappened";
 import { AfterContact } from "@/components/AfterContact";
 import { AboutVideo } from "@/components/AboutVideo";
-import { Fillme } from "@/components/Fillme";
 import { pageAlternates } from "@/lib/metadata";
 
 export const metadata: Metadata = {
@@ -124,7 +123,13 @@ export default function Home() {
         </p>
 
         <p style={{ marginTop: 12 }}>
-          <Fillme>текст «Об адвокате» от первого лица</Fillme>
+          Я отношусь к каждому делу с повышенной ответственностью: человек доверяет мне
+          свою свободу, права или будущее. Ценю пунктуальность, вежливое и доверительное
+          общение с клиентом — вы всегда знаете, что происходит по вашему делу. Постоянно
+          повышаю квалификацию и использую в работе современные технологии, в том числе
+          инструменты искусственного интеллекта для анализа материалов, с соблюдением
+          адвокатской тайны. Это позволяет работать быстрее и тщательнее, но позицию
+          защиты я всегда определяю лично.
         </p>
 
         <AboutVideo />
@@ -136,7 +141,7 @@ export default function Home() {
             ✉️ <a href={`mailto:${email}`}>{email}</a>
           </div>
           <div>📍 {address}</div>
-          <div>🕐 Часы работы: <Fillme>часы работы</Fillme></div>
+          <div>🕐 Приём в офисе: пн–сб, 8:00–19:00. WhatsApp — в любое время.</div>
         </div>
 
         <h3 style={{ marginTop: 25 }}>Документы и сертификаты</h3>

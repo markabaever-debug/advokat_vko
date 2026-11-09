@@ -11,7 +11,6 @@ import { LocationBlock } from "@/components/LocationBlock";
 import { WhatHappened } from "@/components/WhatHappened";
 import { AfterContact } from "@/components/AfterContact";
 import { AboutVideo } from "@/components/AboutVideo";
-import { Fillme } from "@/components/Fillme";
 import { pageAlternates } from "@/lib/metadata";
 
 export const metadata: Metadata = {
@@ -127,7 +126,13 @@ export default function KzHome() {
         </p>
 
         <p style={{ marginTop: 12 }}>
-          <Fillme lang="kk">«Адвокат туралы» мәтіні, бірінші жақтан</Fillme>
+          Әр іске жоғары жауапкершілікпен қараймын: адам маған өзінің бостандығын,
+          құқықтарын немесе болашағын сеніп тапсырады. Уақытқа ұқыптылықты, клиентпен
+          сыпайы әрі сенімді қарым-қатынасты бағалаймын — ісіңіздің барысынан әрдайым
+          хабардар боласыз. Біліктілігімді үнемі арттырамын және жұмысымда заманауи
+          технологияларды, соның ішінде материалдарды талдау үшін жасанды интеллект
+          құралдарын адвокаттық құпияны сақтай отырып қолданамын. Бұл жұмысты жылдам әрі
+          мұқият атқаруға мүмкіндік береді, бірақ қорғау ұстанымын әрдайым өзім айқындаймын.
         </p>
 
         <AboutVideo />
@@ -139,7 +144,7 @@ export default function KzHome() {
             ✉️ <a href={`mailto:${email}`}>{email}</a>
           </div>
           <div>📍 {address}</div>
-          <div>🕐 Жұмыс уақыты: <Fillme lang="kk">жұмыс уақыты</Fillme></div>
+          <div>🕐 Кеңседе қабылдау: дс–сб, 8:00–19:00. WhatsApp — кез келген уақытта.</div>
         </div>
 
         <h3 style={{ marginTop: 25 }}>Құжаттар мен сертификаттар</h3>
