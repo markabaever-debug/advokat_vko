@@ -10,33 +10,40 @@ type DocItem = {
   thumb: string;
 };
 
+// Сертификаты — в порядке от новых к старым (по дате выдачи). Тема курса — дословно
+// с сертификата, на русском (и в RU, и в /kz). Файлы: public/docs/<file>.pdf,
+// миниатюры: public/docs/thumbs/<file>.{jpg,webp,avif}.
+const CERTS: { file: string; course: string; year: string }[] = [
+  { file: "cert-7", course: "Общая характеристика противодействия отмыванию доходов/финансирования терроризма", year: "2026" },
+  { file: "cert-5", course: "Судебная практика по спорам о возмещении вреда, причинённого источником повышенной опасности", year: "2026" },
+  { file: "cert-4", course: "Кастомные боты и ИИ-ассистенты для юридических задач", year: "2026" },
+  { file: "cert-6", course: "О некоторых вопросах по налогам и другим обязательным платежам адвокатов в 2026 году. Часть 1. Налоговые обязательства адвоката. Индивидуальный подоходный налог с 1 января 2026 года (Лекция 1)", year: "2026" },
+  { file: "cert-3", course: "Общая характеристика противодействия легализации (отмыванию) доходов и финансированию терроризма", year: "2025" },
+  { file: "cert-1", course: "Практические примеры использования искусственного интеллекта в юридической практике", year: "2025" },
+  { file: "cert-2", course: "Как составить иск, чтобы суд его не возвратил и удовлетворил", year: "2025" },
+];
+
+const DOCS_LIMIT = 6; // показываем первые 6, остальные — под кнопкой «Показать все»
+
 // Галерея документов с модальным просмотром PDF (стрелки/Esc). Заголовки — по языку.
 export function DocsGallery({ lang = "ru" }: { lang?: Lang }) {
   const t = ui[lang];
   const openWord = lang === "kk" ? "Ашу" : "Открыть";
-  // Темы сертификатов — по тексту на самих сертификатах. Название курса на русском
-  // (как на сертификате) в обеих версиях; где темы в списке нет — «Повышение
-  // квалификации» / «Біліктілікті арттыру». Порядок — cert-1 / cert-2 / cert-3.
-  const certCourse: (string | null)[] = [
-    "Практические примеры использования искусственного интеллекта в юридической практике", // cert-1
-    "Как составить иск, чтобы суд его не возвратил и удовлетворил", // cert-2
-    "Общая характеристика противодействия легализации (отмыванию) доходов и финансированию терроризма", // cert-3
-  ];
-  const certYear: (string | null)[] = ["2025", "2025", "2025"];
-  const certTitle = (i: number) =>
-    certCourse[i]
-      ? `${t.docTitles.cert}: «${certCourse[i]}»${certYear[i] ? ` (${certYear[i]})` : ""}`
-      : t.docTitles.cert;
+  const certTitle = (course: string, year: string) => `${t.docTitles.cert}: «${course}» (${year})`;
 
   const docs: DocItem[] = [
     { id: "license", title: t.docTitles.license, pdf: "/docs/license.pdf", thumb: "/docs/thumbs/license.jpg" },
     { id: "insurance", title: t.docTitles.insurance, pdf: "/docs/insurance.pdf", thumb: "/docs/thumbs/insurance.jpg" },
-    { id: "cert1", title: certTitle(0), pdf: "/docs/cert-1.pdf", thumb: "/docs/thumbs/cert-1.jpg" },
-    { id: "cert2", title: certTitle(1), pdf: "/docs/cert-2.pdf", thumb: "/docs/thumbs/cert-2.jpg" },
-    { id: "cert3", title: certTitle(2), pdf: "/docs/cert-3.pdf", thumb: "/docs/thumbs/cert-3.jpg" },
+    ...CERTS.map((c) => ({
+      id: c.file,
+      title: certTitle(c.course, c.year),
+      pdf: `/docs/${c.file}.pdf`,
+      thumb: `/docs/thumbs/${c.file}.jpg`,
+    })),
   ];
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
   const openDoc = openIndex === null ? null : docs[openIndex];
 
   const goPrev = () => {
@@ -65,6 +72,7 @@ export function DocsGallery({ lang = "ru" }: { lang?: Lang }) {
     <>
       <div className="docsGrid">
         {docs.map((d, idx) => {
+          if (!showAll && idx >= DOCS_LIMIT) return null;
           const base = d.thumb.replace(/\.jpg$/, "");
           return (
             <button
@@ -86,6 +94,14 @@ export function DocsGallery({ lang = "ru" }: { lang?: Lang }) {
           );
         })}
       </div>
+
+      {!showAll && docs.length > DOCS_LIMIT && (
+        <button type="button" className="btn docsShowAll" onClick={() => setShowAll(true)}>
+          {lang === "kk"
+            ? `Барлық құжаттар (${docs.length})`
+            : `Показать все документы (${docs.length})`}
+        </button>
+      )}
 
       {openDoc && openIndex !== null && (
         <div

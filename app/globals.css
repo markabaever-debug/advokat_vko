@@ -1363,6 +1363,9 @@ footer a {
   font-style: normal;
 }
 
+/* Кнопка «Показать все документы (N)» под галереей документов */
+.docsShowAll { margin-top: 16px; }
+
 /* Плашка «перевод готовится» на казахских страницах (/kz) */
 .translatePending {
   background: #b45309;
