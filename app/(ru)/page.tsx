@@ -144,12 +144,9 @@ export default function Home() {
           <div>🕐 Приём в офисе: пн–сб, 8:00–19:00. WhatsApp — в любое время.</div>
         </div>
 
-        <h3 style={{ marginTop: 25 }}>Документы и сертификаты</h3>
-        <p className="muted" style={{ marginTop: 8 }}>
-          Нажмите на документ для просмотра. В окне просмотра: ← → (листание), Esc (закрыть).
-        </p>
-
-        <DocsGallery />
+        <div style={{ marginTop: 22 }}>
+          <DocsGallery compact />
+        </div>
       </section>
 
       {/* LOCATION */}
