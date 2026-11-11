@@ -17,6 +17,9 @@ const cspReportOnly = [
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'self'",
+  // Куда браузер шлёт отчёты о нарушениях (route /api/csp-report).
+  "report-uri /api/csp-report",
+  "report-to csp-endpoint",
 ].join("; ");
 
 // Заголовки безопасности для всех маршрутов.
@@ -34,6 +37,8 @@ const securityHeaders = [
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   // Отключение неиспользуемых браузерных API.
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+  // Группа приёмника отчётов для директивы report-to (Reporting API).
+  { key: "Reporting-Endpoints", value: 'csp-endpoint="/api/csp-report"' },
   // CSP — пока только отчёт о нарушениях (не блокирует).
   { key: "Content-Security-Policy-Report-Only", value: cspReportOnly },
 ];

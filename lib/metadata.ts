@@ -62,13 +62,14 @@ export function og(
   title: string,
   description: string,
   lang: "ru" | "kk" = "ru",
+  path?: string,
 ): Pick<Metadata, "openGraph" | "twitter"> {
   const isKz = lang === "kk";
   return {
     openGraph: {
       title,
       description,
-      url: isKz ? "/kz" : "/",
+      url: path ?? (isKz ? "/kz" : "/"),
       siteName: "Адвокат Маркабаев Е.Б.",
       locale: isKz ? "kk_KZ" : "ru_RU",
       alternateLocale: isKz ? "ru_RU" : "kk_KZ",

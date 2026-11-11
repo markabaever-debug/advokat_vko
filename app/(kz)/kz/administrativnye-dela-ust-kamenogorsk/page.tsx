@@ -7,14 +7,17 @@ import { HomeLink } from "@/components/HomeLink";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
 import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
-import { pageAlternates } from "@/lib/metadata";
+import { pageAlternates, og } from "@/lib/metadata";
 
 const SLUG = "/administrativnye-dela-ust-kamenogorsk";
+const title = "Өскемендегі әкімшілік істер жөніндегі адвокат — Маркабаев Е.Б.";
+const description =
+  "Өскемендегі (ШҚО) әкімшілік құқық бұзушылық туралы істер жөніндегі адвокат: ЖКО, құқықтан айыру, айыппұлдар, қаулыларға шағым жасау, сотта қорғау. Заң тәжірибесі 10 жылдан астам.";
 
 export const metadata: Metadata = {
-  title: "Өскемендегі әкімшілік істер жөніндегі адвокат — Маркабаев Е.Б.",
-  description:
-    "Өскемендегі (ШҚО) әкімшілік құқық бұзушылық туралы істер жөніндегі адвокат: ЖКО, құқықтан айыру, айыппұлдар, қаулыларға шағым жасау, сотта қорғау. Заң тәжірибесі 10 жылдан астам.",
+  title,
+  description,
+  ...og(title, description, "kk", `/kz${SLUG}`),
   alternates: pageAlternates(SLUG, `/kz${SLUG}`, `/kz${SLUG}`),
 };
 

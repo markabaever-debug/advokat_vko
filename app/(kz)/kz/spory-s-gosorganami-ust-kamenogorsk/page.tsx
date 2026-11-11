@@ -7,14 +7,17 @@ import { HomeLink } from "@/components/HomeLink";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
 import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
-import { pageAlternates } from "@/lib/metadata";
+import { pageAlternates, og } from "@/lib/metadata";
 
 const SLUG = "/spory-s-gosorganami-ust-kamenogorsk";
+const title = "Өскемендегі мемлекеттік органдармен даулар жөніндегі адвокат — Маркабаев Е.Б.";
+const description =
+  "Өскемендегі (ШҚО) әкімшілік талаптар (ӘРПК) жөніндегі адвокат: мемлекеттік органдардың шешімдері мен әрекеттеріне шағым жасау, зейнетақы және төлемдер туралы даулар, әкімдіктермен даулар. Заң тәжірибесі 10 жылдан астам.";
 
 export const metadata: Metadata = {
-  title: "Өскемендегі мемлекеттік органдармен даулар жөніндегі адвокат — Маркабаев Е.Б.",
-  description:
-    "Өскемендегі (ШҚО) әкімшілік талаптар (ӘРПК) жөніндегі адвокат: мемлекеттік органдардың шешімдері мен әрекеттеріне шағым жасау, зейнетақы және төлемдер туралы даулар, әкімдіктермен даулар. Заң тәжірибесі 10 жылдан астам.",
+  title,
+  description,
+  ...og(title, description, "kk", `/kz${SLUG}`),
   alternates: pageAlternates(SLUG, `/kz${SLUG}`, `/kz${SLUG}`),
 };
 

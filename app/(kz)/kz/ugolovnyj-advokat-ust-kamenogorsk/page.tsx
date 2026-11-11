@@ -8,14 +8,17 @@ import { MemoButton } from "@/components/MemoButton";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
 import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
-import { pageAlternates } from "@/lib/metadata";
+import { pageAlternates, og } from "@/lib/metadata";
 
 const SLUG = "/ugolovnyj-advokat-ust-kamenogorsk";
+const title = "Өскемендегі қылмыстық істер жөніндегі адвокат — Маркабаев Е.Б.";
+const description =
+  "Өскемендегі (ШҚО) қылмыстық істер жөніндегі адвокат. Заң тәжірибесі 10 жылдан астам, 2019 жылдан бері адвокат. Шұғыл қорғау. Лицензия №19007753.";
 
 export const metadata: Metadata = {
-  title: "Өскемендегі қылмыстық істер жөніндегі адвокат — Маркабаев Е.Б.",
-  description:
-    "Өскемендегі (ШҚО) қылмыстық істер жөніндегі адвокат. Заң тәжірибесі 10 жылдан астам, 2019 жылдан бері адвокат. Шұғыл қорғау. Лицензия №19007753.",
+  title,
+  description,
+  ...og(title, description, "kk", `/kz${SLUG}`),
   alternates: pageAlternates(SLUG, `/kz${SLUG}`, `/kz${SLUG}`),
 };
 
