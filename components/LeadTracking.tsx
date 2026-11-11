@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
-import { trackGenerateLead } from "@/lib/tracking";
+import { trackLead } from "@/lib/tracking";
 
-// Глобальный обработчик кликов: на любой ссылке <a> с tel: или WhatsApp
-// (wa.me / api.whatsapp.com) отправляет в GA4 событие generate_lead с параметром
-// method ("phone"/"whatsapp"). Работает на всех страницах (RU и /kz). WhatsApp-кнопки
-// (не ссылки) обрабатываются отдельно в trackAndOpen (lib/tracking.ts).
+// Глобальный обработчик кликов: по любой ссылке <a> с tel: отправляет в dataLayer
+// событие lead_phone_click, по ссылке WhatsApp (wa.me / api.whatsapp.com) —
+// lead_whatsapp_click (на эти события настроены теги GA4 и Google Ads в GTM).
+// Покрывает все ссылки сразу (шапка/sticky, hero, блоки, памятка, контакты), поэтому
+// отдельные onClick на ссылках не нужны — ровно одно событие на клик. WhatsApp-кнопки
+// (<button>, не ссылки) обрабатываются отдельно в trackAndOpen (lib/tracking.ts).
 export function LeadTracking() {
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -15,9 +17,9 @@ export function LeadTracking() {
       if (!a) return;
       const href = a.getAttribute("href") || "";
       if (href.startsWith("tel:")) {
-        trackGenerateLead("phone");
+        trackLead("phone");
       } else if (/wa\.me|api\.whatsapp\.com/i.test(href)) {
-        trackGenerateLead("whatsapp");
+        trackLead("whatsapp");
       }
     };
     document.addEventListener("click", onClick, true);

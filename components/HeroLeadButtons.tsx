@@ -1,6 +1,6 @@
 "use client";
 
-import { trackLead, trackAndOpen } from "@/lib/tracking";
+import { trackAndOpen } from "@/lib/tracking";
 import { ui, type Lang } from "@/lib/i18n";
 
 // Кнопки «Позвонить»/«WhatsApp» в hero главной с отправкой события аналитики.
@@ -16,11 +16,7 @@ export function HeroLeadButtons({
   const t = ui[lang];
   return (
     <div className="ctaRow" style={{ marginTop: 20 }}>
-      <a
-        className="btn btnPrimary"
-        href={`tel:${phoneCall}`}
-        onClick={() => trackLead("phone")}
-      >
+      <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
         📞 {t.call}
       </a>
 

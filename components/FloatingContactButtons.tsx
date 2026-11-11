@@ -1,6 +1,6 @@
 "use client";
 
-import { trackLead, trackAndOpen } from "@/lib/tracking";
+import { trackAndOpen } from "@/lib/tracking";
 import { ui, type Lang } from "@/lib/i18n";
 
 const phoneCall = "+77775430791";
@@ -14,7 +14,6 @@ export function FloatingContactButtons({ lang = "ru" }: { lang?: Lang }) {
     <div className="floating-contact">
       <a
         href={`tel:${phoneCall}`}
-        onClick={() => trackLead("phone")}
         className="floating-btn floating-btn-phone"
         title={t.call}
         aria-label={t.call}

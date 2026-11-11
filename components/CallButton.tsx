@@ -1,9 +1,7 @@
-"use client";
-
-import { trackLead } from "@/lib/tracking";
 import { ui, type Lang } from "@/lib/i18n";
 
-// Кнопка «Позвонить» с целью аналитики call (та же, что в hero/StickyBar).
+// Кнопка-ссылка «Позвонить». Событие аналитики lead_phone_click отправляет глобальный
+// обработчик LeadTracking по клику на любую ссылку tel: — отдельный onClick не нужен.
 export function CallButton({
   phoneCall,
   lang = "ru",
@@ -15,7 +13,7 @@ export function CallButton({
 }) {
   const t = ui[lang];
   return (
-    <a className={className} href={`tel:${phoneCall}`} onClick={() => trackLead("phone")}>
+    <a className={className} href={`tel:${phoneCall}`}>
       📞 {t.call}
     </a>
   );
