@@ -291,14 +291,16 @@ html[data-hero-visible="false"] .stickyBar {
 
 /* ===== BRAND BUTTON FIX (ВАЖНО) ===== */
 
+/* Тёмно-зелёный WhatsApp: белый текст даёт контраст 5,0:1 (норма WCAG AA — 4,5:1).
+   Прежний #25D366 давал только 1,98:1. Вид узнаваемо «вотсаповский». */
 .btn.btnWA {
-  background-color: #25D366 !important;
+  background-color: #0E7F57 !important;
   color: #ffffff !important;
   border: none !important;
 }
 
 .btn.btnWA:hover {
-  background-color: #1ebe5d !important;
+  background-color: #0B6B49 !important;
 }
 
 /* ===== CTA ROW ===== */
@@ -742,7 +744,7 @@ html[data-hero-visible="false"] .stickyBar {
 }
 
 .floating-btn-wa {
-  background: #25d366;
+  background: #0E7F57;
 }
 
 @media (max-width: 768px) {
