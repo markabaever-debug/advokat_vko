@@ -32,7 +32,7 @@ export const ui: Record<Lang, Strings> = {
     writeWhatsapp: "Написать в WhatsApp",
     home: "На главную",
     cookieBefore:
-      "Сайт может использовать файлы cookie и сервисы аналитики Google и Яндекс Метрика для подсчёта посещений. Подробнее — в ",
+      "После вашего согласия сайт использует файлы cookie и сервисы Google (Google Analytics и Google Реклама) для оценки посещаемости. Базовая анонимная статистика посещений (Vercel) собирается без файлов cookie. Подробнее — в ",
     cookieLink: "политике конфиденциальности",
     cookieAfter: ".",
     cookieDialog: "Уведомление об аналитике и файлах cookie",
@@ -58,7 +58,7 @@ export const ui: Record<Lang, Strings> = {
     writeWhatsapp: "WhatsApp-қа жазу",
     home: "Басты бетке",
     cookieBefore:
-      "Сайт келушілерді санау үшін cookie файлдарын және Google мен Яндекс Метрика аналитика қызметтерін пайдалануы мүмкін. Толығырақ — ",
+      "Сіздің келісіміңізден кейін сайт келуді бағалау үшін cookie файлдарын және Google қызметтерін (Google Analytics және Google Жарнама) пайдаланады. Базалық анонимді келу статистикасы (Vercel) cookie файлдарынсыз жиналады. Толығырақ — ",
     cookieLink: "құпиялылық саясатында",
     cookieAfter: ".",
     cookieDialog: "Аналитика және cookie файлдары туралы хабарлама",

@@ -14,6 +14,7 @@ import { AboutVideo } from "@/components/AboutVideo";
 import { pageAlternates } from "@/lib/metadata";
 
 export const metadata: Metadata = {
+  title: "Өскемендегі қылмыстық істер жөніндегі адвокат — Маркабаев Е.Б.",
   description:
     "Адвокат Маркабаев Е.Б.: қылмыстық және азаматтық істер, отбасылық даулар, құжаттар, сотта өкілдік ету.",
   alternates: pageAlternates("/", "/kz", "/kz"),
