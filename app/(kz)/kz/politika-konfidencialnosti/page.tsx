@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
 import { pageAlternates } from "@/lib/metadata";
+import { POLICY_VERSION } from "@/lib/business";
 
 const SLUG = "/politika-konfidencialnosti";
 
@@ -95,6 +96,13 @@ export default function KzPrivacyPolicyPage() {
           WhatsApp-тағы хат алмасу Meta компаниясының қызметі арқылы беріледі және оның
           шарттарымен реттеледі.
         </p>
+        <p style={{ marginTop: 10, lineHeight: 1.7 }}>
+          Cookie баннеріндегі «Қабылдау» түймесін басу арқылы сіз Google қызметтерінің
+          деректерді жинауына және өңдеуіне, оның ішінде оларды Қазақстан Республикасынан
+          тыс серверлерге трансшекаралық беруге келісім бересіз. Сіздің келісіміңізсіз Google
+          қызметтері қосылмайды. Келісімді кез келген уақытта «cookie баптаулары» түймесімен
+          қайтарып алуға болады.
+        </p>
 
         <h2 className="h2" style={{ marginTop: 28 }}>5. Сақтау мерзімі</h2>
         <p style={{ marginTop: 10, lineHeight: 1.7 }}>
@@ -126,7 +134,7 @@ export default function KzPrivacyPolicyPage() {
         </p>
 
         <p className="muted" style={{ marginTop: 28, fontSize: 13 }}>
-          Саясат жаңартылуы мүмкін. Ағымдағы редакция — 2026 жылғы қараша.
+          Саясат жаңартылуы мүмкін. Ағымдағы редакция — 2026 жылғы қараша (нұсқа {POLICY_VERSION}).
         </p>
       </section>
 

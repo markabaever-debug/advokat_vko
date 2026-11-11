@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
 import { pageAlternates } from "@/lib/metadata";
+import { POLICY_VERSION } from "@/lib/business";
 
 const SLUG = "/politika-konfidencialnosti";
 
@@ -97,6 +98,12 @@ export default function PrivacyPolicyPage() {
           на серверах Vercel и Google не хранится. Переписка в WhatsApp передаётся через
           сервис компании Meta и регулируется его условиями.
         </p>
+        <p style={{ marginTop: 10, lineHeight: 1.7 }}>
+          Нажимая «Принять» в баннере cookie, вы даёте согласие на сбор и обработку
+          данных сервисами Google, включая их трансграничную передачу на серверы за
+          пределами Республики Казахстан. Без вашего согласия сервисы Google не
+          подключаются. Согласие можно отозвать в любой момент кнопкой «Настройки cookie».
+        </p>
 
         <h2 className="h2" style={{ marginTop: 28 }}>5. Срок хранения</h2>
         <p style={{ marginTop: 10, lineHeight: 1.7 }}>
@@ -129,7 +136,7 @@ export default function PrivacyPolicyPage() {
         </p>
 
         <p className="muted" style={{ marginTop: 28, fontSize: 13 }}>
-          Политика может обновляться. Текущая редакция — ноябрь 2026 г.
+          Политика может обновляться. Текущая редакция — ноябрь 2026 г. (версия {POLICY_VERSION}).
         </p>
       </section>
 

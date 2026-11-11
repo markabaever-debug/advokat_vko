@@ -118,7 +118,7 @@ function MemoBodyRu({ fullName, phoneCall, waLink }: BodyProps) {
             💬 WhatsApp: +7 777 543 07 91
           </a>
         </div>
-        <p className="memoDisclaimer">Адвокатская тайна гарантирована законом</p>
+        <p className="memoDisclaimer">Адвокатская тайна охраняется законом</p>
       </section>
 
       <p className="memoDisclaimer" style={{ textAlign: "center", marginTop: 20 }}>
@@ -229,7 +229,7 @@ function MemoBodyKk({ fullName, phoneCall, waLink }: BodyProps) {
             💬 WhatsApp: +7 777 543 07 91
           </a>
         </div>
-        <p className="memoDisclaimer">Адвокаттық құпия заңмен кепілдендірілген</p>
+        <p className="memoDisclaimer">Адвокаттық құпия заңмен қорғалады</p>
       </section>
 
       <p className="memoDisclaimer" style={{ textAlign: "center", marginTop: 20 }}>
