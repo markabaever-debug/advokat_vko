@@ -4,9 +4,35 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ui, type Lang } from "@/lib/i18n";
 import { YM_COUNTER_ID } from "@/lib/tracking";
+import { POLICY_VERSION } from "@/lib/business";
 
 const STORAGE_KEY = "cookie-consent"; // "granted" | "denied"
 const GTM_ID = "GTM-MNCSPZM6";
+
+// Сохраняем выбор вместе с датой и версией политики; читаем с поддержкой старого
+// формата (когда хранилась просто строка "granted"/"denied").
+function saveConsent(choice: "granted" | "denied") {
+  try {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ choice, date: new Date().toISOString(), version: POLICY_VERSION }),
+    );
+  } catch {
+    /* хранилище недоступно — выбор действует только на эту сессию */
+  }
+}
+
+function readConsent(): "granted" | "denied" | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    if (raw === "granted" || raw === "denied") return raw; // старый формат
+    const obj = JSON.parse(raw);
+    return obj?.choice === "granted" || obj?.choice === "denied" ? obj.choice : null;
+  } catch {
+    return null;
+  }
+}
 
 declare global {
   interface Window {
@@ -54,12 +80,7 @@ export function CookieNotice({ lang = "ru" }: { lang?: Lang }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    let choice: string | null = null;
-    try {
-      choice = localStorage.getItem(STORAGE_KEY);
-    } catch {
-      // доступ к хранилищу запрещён — считаем согласие неданным
-    }
+    const choice = readConsent();
 
     if (choice === "granted") {
       loadAnalytics();
@@ -74,21 +95,13 @@ export function CookieNotice({ lang = "ru" }: { lang?: Lang }) {
   }, []);
 
   const accept = () => {
-    try {
-      localStorage.setItem(STORAGE_KEY, "granted");
-    } catch {
-      /* не удалось сохранить — аналитика включится только на эту сессию */
-    }
+    saveConsent("granted");
     loadAnalytics();
     setVisible(false);
   };
 
   const decline = () => {
-    try {
-      localStorage.setItem(STORAGE_KEY, "denied");
-    } catch {
-      /* не удалось сохранить — просто закрываем */
-    }
+    saveConsent("denied");
     setVisible(false);
   };
 

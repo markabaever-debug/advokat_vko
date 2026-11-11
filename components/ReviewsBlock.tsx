@@ -29,14 +29,16 @@ export function ReviewsBlock({ lang = "ru" }: { lang?: Lang }) {
     ? {
         title: "Пікірлер",
         subtitle: "Клиенттердің 2ГИС-тегі бағалары.",
-        countLabel: "2ГИС-тегі баға саны",
+        source: "2ГИС деректері бойынша (2026 ж. қараша)",
+        resultNote: "Әр істің нәтижесі оның мән-жайларына байланысты.",
         button: "2ГИС-тегі барлық пікірлер",
         addReview: "Пікір қалдыру",
       }
     : {
         title: "Отзывы",
         subtitle: "Оценки клиентов в 2ГИС.",
-        countLabel: "Оценок в 2ГИС",
+        source: "по данным 2ГИС (ноябрь 2026 г.)",
+        resultNote: "Результат по каждому делу зависит от его обстоятельств.",
         button: "Все отзывы в 2ГИС",
         addReview: "Оставить отзыв",
       };
@@ -59,11 +61,7 @@ export function ReviewsBlock({ lang = "ru" }: { lang?: Lang }) {
         <span className="reviewsScore">{reviews.rating}</span>
       </div>
 
-      {reviews.count > 0 && (
-        <p className="muted reviewsCount">
-          {t.countLabel}: {reviews.count}
-        </p>
-      )}
+      <p className="muted reviewsCount">{t.source}</p>
 
       <div className="reviewsButtons">
         <a
@@ -83,6 +81,10 @@ export function ReviewsBlock({ lang = "ru" }: { lang?: Lang }) {
           {t.addReview}
         </a>
       </div>
+
+      <p className="muted" style={{ marginTop: 14, fontSize: 12.5 }}>
+        {t.resultNote}
+      </p>
     </section>
   );
 }
