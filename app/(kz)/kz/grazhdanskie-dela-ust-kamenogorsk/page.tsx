@@ -5,15 +5,19 @@ import { StickyBar } from "@/components/StickyBar";
 import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
+import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
-import { pageAlternates } from "@/lib/metadata";
+import { pageAlternates, og } from "@/lib/metadata";
 
 const SLUG = "/grazhdanskie-dela-ust-kamenogorsk";
+const title = "Өскемендегі азаматтық істер жөніндегі адвокат — Маркабаев Е.Б.";
+const description =
+  "Өскемендегі (ШҚО) азаматтық істер жөніндегі адвокат: қарызды өндіріп алу, отбасылық және мұрагерлік даулар, меншік даулары, тұрғын үй даулары, МИБ және ПИК-ті сүйемелдеу, сотта өкілдік ету. Заң тәжірибесі 10 жылдан астам.";
 
 export const metadata: Metadata = {
-  title: "Өскемендегі азаматтық істер жөніндегі адвокат — Маркабаев Е.Б.",
-  description:
-    "Өскемендегі (ШҚО) азаматтық істер жөніндегі адвокат: қарызды өндіріп алу, отбасылық және мұрагерлік даулар, меншік даулары, тұрғын үй даулары, МИБ және ПИК-ті сүйемелдеу, сотта өкілдік ету. Заң тәжірибесі 10 жылдан астам.",
+  title,
+  description,
+  ...og(title, description, "kk", `/kz${SLUG}`),
   alternates: pageAlternates(SLUG, `/kz${SLUG}`, `/kz${SLUG}`),
 };
 
@@ -72,6 +76,7 @@ export default function KzGrazhdanskieDelaPage() {
 
   return (
     <main className="container">
+      <ServiceJsonLd lang="kk" slug="/grazhdanskie-dela-ust-kamenogorsk" breadcrumbName="Азаматтық істер жөніндегі адвокат" faq={faq} />
       <StickyBar phoneCall={phoneCall} waLink={waLink} showHome lang="kk" />
 
       {/* HERO */}
