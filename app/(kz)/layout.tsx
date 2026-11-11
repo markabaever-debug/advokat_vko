@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { StructuredData } from "@/components/StructuredData";
 import { SiteFooterScripts } from "@/components/SiteFooterScripts";
 import { baseMetadata } from "@/lib/metadata";
@@ -20,6 +21,7 @@ export default function KzRootLayout({
         <StructuredData />
         {children}
         <SiteFooterScripts lang="kk" />
+        <Analytics />
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { StructuredData } from "@/components/StructuredData";
 import { SiteFooterScripts } from "@/components/SiteFooterScripts";
 import { baseMetadata } from "@/lib/metadata";
@@ -19,6 +20,7 @@ export default function RuRootLayout({
         <StructuredData />
         {children}
         <SiteFooterScripts />
+        <Analytics />
       </body>
     </html>
   );
