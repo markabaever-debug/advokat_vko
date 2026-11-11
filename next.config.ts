@@ -7,7 +7,7 @@ const securityHeaders = [
   // Принудительный HTTPS на 2 года (сайт и так доступен только по https).
   {
     key: "Strict-Transport-Security",
-    value: "max-age=63072000; includeSubDomains; preload",
+    value: "max-age=63072000; includeSubDomains",
   },
   // Запрет «угадывания» MIME-типа содержимого браузером.
   { key: "X-Content-Type-Options", value: "nosniff" },

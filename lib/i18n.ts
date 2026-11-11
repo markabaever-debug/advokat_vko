@@ -58,7 +58,7 @@ export const ui: Record<Lang, Strings> = {
     writeWhatsapp: "WhatsApp-қа жазу",
     home: "Басты бетке",
     cookieBefore:
-      "Сіздің келісіміңізден кейін сайт келуді бағалау үшін cookie файлдарын және Google қызметтерін (Google Analytics және Google Жарнама) пайдаланады. Базалық анонимді келу статистикасы (Vercel) cookie файлдарынсыз жиналады. Толығырақ — ",
+      "Сіздің келісіміңізден кейін сайт келуді бағалау үшін cookie файлдарын және Google қызметтерін (Google Analytics және Google Ads) пайдаланады. Базалық анонимді келу статистикасы (Vercel) cookie файлдарынсыз жиналады. Толығырақ — ",
     cookieLink: "құпиялылық саясатында",
     cookieAfter: ".",
     cookieDialog: "Аналитика және cookie файлдары туралы хабарлама",
