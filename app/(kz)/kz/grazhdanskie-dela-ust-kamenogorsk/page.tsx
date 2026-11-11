@@ -5,6 +5,7 @@ import { StickyBar } from "@/components/StickyBar";
 import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
+import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 import { pageAlternates } from "@/lib/metadata";
 
@@ -72,6 +73,7 @@ export default function KzGrazhdanskieDelaPage() {
 
   return (
     <main className="container">
+      <ServiceJsonLd lang="kk" slug="/grazhdanskie-dela-ust-kamenogorsk" breadcrumbName="Азаматтық істер жөніндегі адвокат" faq={faq} />
       <StickyBar phoneCall={phoneCall} waLink={waLink} showHome lang="kk" />
 
       {/* HERO */}

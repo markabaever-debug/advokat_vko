@@ -11,10 +11,14 @@ import { LocationBlock } from "@/components/LocationBlock";
 import { WhatHappened } from "@/components/WhatHappened";
 import { AfterContact } from "@/components/AfterContact";
 import { AboutVideo } from "@/components/AboutVideo";
-import { pageAlternates } from "@/lib/metadata";
+import { pageAlternates, og } from "@/lib/metadata";
 
 export const metadata: Metadata = {
   title: "Адвокат по уголовным делам в Усть-Каменогорске — Маркабаев Е.Б.",
+  ...og(
+    "Адвокат по уголовным делам в Усть-Каменогорске — Маркабаев Е.Б.",
+    "Уголовные, гражданские и административные дела. Усть-Каменогорск (ВКО). Защита в суде, звонок и WhatsApp.",
+  ),
   alternates: pageAlternates("/", "/kz", "/"),
 };
 

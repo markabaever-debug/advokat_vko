@@ -1,8 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ui, type Lang } from "@/lib/i18n";
+
+// Просмотрщик открывается только по клику — грузим его код динамически (вне начального бандла).
+const DocViewer = dynamic(() => import("./DocViewer"), { ssr: false });
 
 type DocItem = {
   id: string;
@@ -75,18 +79,6 @@ export function DocsGallery({ lang = "ru", compact = false }: { lang?: Lang; com
     setOpenIndex((prev) => (prev === null ? null : (prev + 1) % docs.length));
   };
 
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (openIndex === null) return;
-      if (e.key === "Escape") setOpenIndex(null);
-      if (e.key === "ArrowLeft") goPrev();
-      if (e.key === "ArrowRight") goNext();
-    };
-
-    if (openIndex !== null) window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [openIndex]);
-
   return (
     <>
       <div className={compact ? "docsCompact" : "docsGrid"}>
@@ -120,57 +112,21 @@ export function DocsGallery({ lang = "ru", compact = false }: { lang?: Lang; com
       </div>
 
       {openDoc && openIndex !== null && (
-        <div
-          className="modalOverlay"
-          role="dialog"
-          aria-modal="true"
-          aria-label={openDoc.title}
-          onClick={() => setOpenIndex(null)}
-        >
-          <div className="modalPanel" onClick={(e) => e.stopPropagation()}>
-            <div className="modalHeader">
-              <div>
-                <div className="modalTitle">{openDoc.title}</div>
-                <div className="modalHint">{t.modalHint}</div>
-              </div>
-
-              <div className="modalActions">
-                <button type="button" className="modalBtn" onClick={goPrev}>
-                  {t.modalBack}
-                </button>
-
-                <div className="modalCounter">
-                  {openIndex + 1}/{docs.length}
-                </div>
-
-                <button type="button" className="modalBtn" onClick={goNext}>
-                  {t.modalNext}
-                </button>
-
-                <a className="modalBtn" href={openDoc.pdf} target="_blank" rel="noreferrer">
-                  {t.modalOpenPdf}
-                </a>
-
-                <button
-                  type="button"
-                  className="modalBtn"
-                  onClick={() => setOpenIndex(null)}
-                >
-                  {t.modalClose}
-                </button>
-              </div>
-            </div>
-
-            <div className="modalBody">
-              <iframe
-                key={openDoc.pdf}
-                className="modalFrame"
-                src={`${openDoc.pdf}#view=FitH`}
-                title={openDoc.title}
-              />
-            </div>
-          </div>
-        </div>
+        <DocViewer
+          doc={openDoc}
+          index={openIndex}
+          total={docs.length}
+          labels={{
+            hint: t.modalHint,
+            back: t.modalBack,
+            next: t.modalNext,
+            openPdf: t.modalOpenPdf,
+            close: t.modalClose,
+          }}
+          onPrev={goPrev}
+          onNext={goNext}
+          onClose={() => setOpenIndex(null)}
+        />
       )}
     </>
   );

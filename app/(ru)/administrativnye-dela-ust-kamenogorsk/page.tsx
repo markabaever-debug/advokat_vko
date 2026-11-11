@@ -5,6 +5,7 @@ import { StickyBar } from "@/components/StickyBar";
 import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
+import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 
 export default function AdministrativnyeDelaPage() {
@@ -63,6 +64,7 @@ export default function AdministrativnyeDelaPage() {
 
   return (
     <main className="container">
+      <ServiceJsonLd lang="ru" slug="/administrativnye-dela-ust-kamenogorsk" breadcrumbName="Адвокат по административным делам в Усть-Каменогорске" faq={faq} />
       <StickyBar phoneCall={phoneCall} waLink={waLink} showHome />
 
       {/* HERO */}

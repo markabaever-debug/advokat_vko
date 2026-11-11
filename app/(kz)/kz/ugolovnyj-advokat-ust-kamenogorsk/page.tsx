@@ -6,6 +6,7 @@ import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
 import { MemoButton } from "@/components/MemoButton";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
+import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 import { pageAlternates } from "@/lib/metadata";
 
@@ -69,6 +70,7 @@ export default function KzUgolovnyAdvokatPage() {
 
   return (
     <main className="container">
+      <ServiceJsonLd lang="kk" slug="/ugolovnyj-advokat-ust-kamenogorsk" breadcrumbName="Қылмыстық істер жөніндегі адвокат" faq={faq} />
       <StickyBar phoneCall={phoneCall} waLink={waLink} showHome lang="kk" />
 
       <MemoButton fullName={fullName} phoneCall={phoneCall} waLink={waLink} lang="kk" />
