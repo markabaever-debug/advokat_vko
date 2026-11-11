@@ -1,5 +1,6 @@
 import { FloatingContactButtons } from "@/components/FloatingContactButtons";
 import { CookieNotice } from "@/components/CookieNotice";
+import { LeadTracking } from "@/components/LeadTracking";
 import { type Lang } from "@/lib/i18n";
 
 // Выполняется до гидратации (инлайн в конце <body>, hero уже в DOM).
@@ -38,6 +39,7 @@ export function SiteFooterScripts({ lang = "ru" }: { lang?: Lang }) {
       <script dangerouslySetInnerHTML={{ __html: heroVisibilityScript }} />
       <FloatingContactButtons lang={lang} />
       <CookieNotice lang={lang} />
+      <LeadTracking />
     </>
   );
 }
