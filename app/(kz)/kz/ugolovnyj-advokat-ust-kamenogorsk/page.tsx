@@ -101,16 +101,6 @@ export default function KzUgolovnyAdvokatPage() {
               <div className="kpi">✅ Құпиялылық</div>
               <div className="kpi">✅ 2019 жылдан бері адвокат</div>
             </div>
-
-            <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
-                📞 Қоңырау шалу
-              </a>
-
-              <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
-                💬 WhatsApp
-              </a>
-            </div>
           </div>
 
           <HeroPhoto />

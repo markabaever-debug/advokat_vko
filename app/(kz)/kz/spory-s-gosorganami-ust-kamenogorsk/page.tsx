@@ -100,15 +100,6 @@ export default function KzSporyGosorganamiPage() {
               <div className="kpi">✅ Зейнетақы және төлемдер туралы даулар</div>
               <div className="kpi">✅ Әкімдіктермен даулар</div>
             </div>
-
-            <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
-                📞 Қоңырау шалу
-              </a>
-              <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
-                💬 WhatsApp
-              </a>
-            </div>
           </div>
 
           <HeroPhoto />

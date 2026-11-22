@@ -88,15 +88,6 @@ export default function GrazhdanskieDelaPage() {
               <div className="kpi">✅ Представительство в суде</div>
               <div className="kpi">✅ Апелляция и кассация</div>
             </div>
-
-            <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
-                📞 Позвонить
-              </a>
-              <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
-                💬 WhatsApp
-              </a>
-            </div>
           </div>
 
           <HeroPhoto />

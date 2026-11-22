@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StickyBar } from "@/components/StickyBar";
-import { HeroLeadButtons } from "@/components/HeroLeadButtons";
 import { HeroRating } from "@/components/HeroRating";
 import { DocsGallery } from "@/components/DocsGallery";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
@@ -59,8 +58,6 @@ export default function Home() {
             </div>
 
             <HeroRating />
-
-            <HeroLeadButtons phoneCall={phoneCall} waLink={waLink} />
           </div>
 
           <HeroPhoto alt="Адвокат Маркабаев Е.Б." />

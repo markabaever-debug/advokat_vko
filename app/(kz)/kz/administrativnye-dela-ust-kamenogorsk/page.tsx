@@ -100,15 +100,6 @@ export default function KzAdministrativnyeDelaPage() {
               <div className="kpi">✅ Құқықтан айыру кезінде қорғау</div>
               <div className="kpi">✅ Қаулыларға шағым жасау</div>
             </div>
-
-            <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
-                📞 Қоңырау шалу
-              </a>
-              <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
-                💬 WhatsApp
-              </a>
-            </div>
           </div>
 
           <HeroPhoto />

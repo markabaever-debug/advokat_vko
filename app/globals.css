@@ -8,8 +8,8 @@ html {
   /* Резервируем место под полосу прокрутки, чтобы её появление/исчезновение
      не сдвигало страницу по горизонтали между страницами. */
   scrollbar-gutter: stable;
-  /* Чтобы якорные переходы не прятались под закреплённой полосой. */
-  scroll-padding-top: 72px;
+  /* Чтобы якорные переходы не прятались под закреплённой полосой (56px + запас). */
+  scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px));
 }
 
 html, body {
@@ -18,6 +18,11 @@ html, body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
   background: linear-gradient(135deg, #0f172a, #0b1120);
   color: #ffffff;
+}
+
+/* Место под постоянную верхнюю полосу (.stickyBar, 56px + вырез экрана iPhone) */
+body {
+  padding-top: calc(56px + env(safe-area-inset-top, 0px));
 }
 
 a {
@@ -106,20 +111,7 @@ a {
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(10px);
-  /* По умолчанию скрыта над экраном; появляется плавно (fade + slide).
-     Видимостью управляет html[data-hero-visible] (ранний скрипт в layout). */
-  opacity: 0;
-  transform: translateY(-100%);
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
-}
-
-html[data-hero-visible="false"] .stickyBar {
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
-  pointer-events: auto;
+  /* Видна всегда, сразу при открытии страницы. */
 }
 
 .stickyBarInner {
@@ -138,15 +130,6 @@ html[data-hero-visible="false"] .stickyBar {
   align-items: center;
   gap: 10px;
   min-width: 0;
-}
-
-.stickyAvatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  flex-shrink: 0;
 }
 
 .stickyName {
@@ -208,8 +191,9 @@ html[data-hero-visible="false"] .stickyBar {
     display: none;
   }
 
-  /* Пока закреплённая полоса видна — прячем плавающие кнопки, чтобы не дублировать */
-  html[data-hero-visible="false"] .floating-contact {
+  /* Верхняя полоса с «Позвонить»/WhatsApp видна всегда — плавающие кнопки на мобильном
+     не нужны (не дублируем); html — чтобы перебить display: flex ниже */
+  html .floating-contact {
     display: none;
   }
 }
@@ -235,6 +219,53 @@ html[data-hero-visible="false"] .stickyBar {
     flex-direction: column-reverse;
     align-items: flex-start;
     flex-wrap: nowrap;
+  }
+}
+
+/* Узкие телефоны (360–420px): полоса всегда видна, поэтому делаем её компактнее,
+   чтобы имя не обрезалось: кнопки-значки 36px, плотнее «Рус/Қаз»; имя может
+   перенестись на две строки («Маркабаев» / «Е.Б.») в пределах той же высоты 56px. */
+@media (max-width: 420px) {
+  .stickyBarInner {
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .stickyActions {
+    gap: 5px;
+  }
+
+  .stickyBtn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .stickyBar .langSwitchBtn {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .stickyBrand {
+    flex-shrink: 0;
+  }
+
+  .stickyName {
+    white-space: normal;
+    overflow: visible;
+    font-size: 13px;
+    line-height: 1.15;
+  }
+}
+
+/* Самые узкие (360–380px) на подстраницах, где в полосе ещё и «←»: чуть меньше кнопки */
+@media (max-width: 380px) {
+  .stickyActions {
+    gap: 4px;
+  }
+
+  .stickyBtn {
+    width: 34px;
+    height: 34px;
   }
 }
 

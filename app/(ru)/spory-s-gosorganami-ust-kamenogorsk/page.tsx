@@ -88,15 +88,6 @@ export default function SporyGosorganamiPage() {
               <div className="kpi">✅ Споры о пенсиях и выплатах</div>
               <div className="kpi">✅ Споры с акиматами</div>
             </div>
-
-            <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
-                📞 Позвонить
-              </a>
-              <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
-                💬 WhatsApp
-              </a>
-            </div>
           </div>
 
           <HeroPhoto />
