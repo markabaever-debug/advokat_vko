@@ -13,3 +13,9 @@ Next.js (App Router), хостинг Vercel. Основной адрес: https:
 - Зависимости: `npm install`.
 - Проверка сборки: `npm run build`.
 - Локальный просмотр: `npm run dev` → http://localhost:3000.
+
+## Переменные окружения (Vercel → Settings → Environment Variables)
+Метатеги подтверждения сайта (`lib/metadata.ts`), читаются при сборке — после изменения нужен новый деплой. Пустая — тег не выводится.
+- `GOOGLE_SITE_VERIFICATION` — Google Search Console.
+- `BING_SITE_VERIFICATION` — Bing Webmaster Tools (`msvalidate.01`).
+- `YANDEX_SITE_VERIFICATION` — Яндекс.Вебмастер; пока не задана, выводится прежний код `f3983c7d853b2b3d`.
