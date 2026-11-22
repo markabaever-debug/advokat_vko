@@ -5,6 +5,7 @@ import { StickyBar } from "@/components/StickyBar";
 import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
+import { FaqRelatedLinks } from "@/components/FaqContent";
 import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 import { pageAlternates, og } from "@/lib/metadata";
@@ -99,15 +100,6 @@ export default function KzGrazhdanskieDelaPage() {
               <div className="kpi">✅ Сотта өкілдік ету</div>
               <div className="kpi">✅ Апелляция және кассация</div>
             </div>
-
-            <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
-                📞 Қоңырау шалу
-              </a>
-              <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
-                💬 WhatsApp
-              </a>
-            </div>
           </div>
 
           <HeroPhoto />
@@ -151,6 +143,7 @@ export default function KzGrazhdanskieDelaPage() {
           Клиенттердің тұрақты сұрақтарына жауаптар
         </p>
         <FaqAccordion items={faq} />
+        <FaqRelatedLinks lang="kk" blocks={[3, 4, 5]} />
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>

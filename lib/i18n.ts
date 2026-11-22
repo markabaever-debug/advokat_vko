@@ -9,6 +9,8 @@ type Strings = {
   whatsapp: string;
   writeWhatsapp: string;
   home: string;
+  faq: string;
+  faqShort: string;
   cookieBefore: string;
   cookieLink: string;
   cookieAfter: string;
@@ -31,6 +33,8 @@ export const ui: Record<Lang, Strings> = {
     whatsapp: "WhatsApp",
     writeWhatsapp: "Написать в WhatsApp",
     home: "На главную",
+    faq: "Вопросы и ответы",
+    faqShort: "Вопросы",
     cookieBefore:
       "После вашего согласия сайт использует файлы cookie и сервисы Google (Google Analytics и Google Реклама) для оценки посещаемости; данные этих сервисов обрабатываются на серверах за пределами Республики Казахстан. Базовая анонимная статистика посещений (Vercel) собирается без файлов cookie. Подробнее — в ",
     cookieLink: "политике конфиденциальности",
@@ -57,6 +61,8 @@ export const ui: Record<Lang, Strings> = {
     whatsapp: "WhatsApp",
     writeWhatsapp: "WhatsApp-қа жазу",
     home: "Басты бетке",
+    faq: "Сұрақтар мен жауаптар",
+    faqShort: "Сұрақтар",
     cookieBefore:
       "Сіздің келісіміңізден кейін сайт келуді бағалау үшін cookie файлдарын және Google қызметтерін (Google Analytics және Google Ads) пайдаланады; осы қызметтердің деректері Қазақстан Республикасынан тыс серверлерде өңделеді. Базалық анонимді келу статистикасы (Vercel) cookie файлдарынсыз жиналады. Толығырақ — ",
     cookieLink: "құпиялылық саясатында",

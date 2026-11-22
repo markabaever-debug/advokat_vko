@@ -5,6 +5,7 @@ import { StickyBar } from "@/components/StickyBar";
 import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
+import { FaqRelatedLinks } from "@/components/FaqContent";
 import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 import { pageAlternates, og } from "@/lib/metadata";
@@ -99,15 +100,6 @@ export default function KzSporyGosorganamiPage() {
               <div className="kpi">✅ Зейнетақы және төлемдер туралы даулар</div>
               <div className="kpi">✅ Әкімдіктермен даулар</div>
             </div>
-
-            <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
-                📞 Қоңырау шалу
-              </a>
-              <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
-                💬 WhatsApp
-              </a>
-            </div>
           </div>
 
           <HeroPhoto />
@@ -149,6 +141,7 @@ export default function KzSporyGosorganamiPage() {
           Клиенттердің тұрақты сұрақтарына жауаптар
         </p>
         <FaqAccordion items={faq} />
+        <FaqRelatedLinks lang="kk" blocks={[]} />
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>

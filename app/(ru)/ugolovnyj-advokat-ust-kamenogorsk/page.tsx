@@ -6,6 +6,7 @@ import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
 import { MemoButton } from "@/components/MemoButton";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
+import { FaqRelatedLinks } from "@/components/FaqContent";
 import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 
@@ -88,16 +89,6 @@ export default function UgolovnyAdvokatPage() {
               <div className="kpi">✅ Конфиденциальность</div>
               <div className="kpi">✅ Адвокат с 2019 года</div>
             </div>
-
-            <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
-                📞 Позвонить
-              </a>
-
-              <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
-                💬 WhatsApp
-              </a>
-            </div>
           </div>
 
           <HeroPhoto />
@@ -137,6 +128,7 @@ export default function UgolovnyAdvokatPage() {
           Ответы на типичные вопросы клиентов
         </p>
         <FaqAccordion items={faq} />
+        <FaqRelatedLinks lang="ru" blocks={[1]} />
       </section>
 
       {/* LICENSE */}

@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { LangSwitch } from "@/components/LangSwitch";
+import { FAQ_PATH } from "@/lib/faqPaths";
 import { HomeLink } from "@/components/HomeLink";
 import { ui, type Lang } from "@/lib/i18n";
 
@@ -10,23 +12,15 @@ type Props = {
   lang?: Lang;
 };
 
-// Закреплённая компактная полоса сверху. Её видимость управляется не React, а
-// ранним скриптом в components/SiteFooterScripts.tsx (heroVisibilityScript): он навешивает
-// IntersectionObserver + запасной обработчик scroll ещё ДО гидратации и
-// переключает атрибут html[data-hero-visible]. Благодаря этому полоса
-// появляется/скрывается за один кадр, не дожидаясь загрузки клиентского JS.
-// Сам компонент — чисто презентационный, без состояния и эффектов.
+// Закреплённая компактная полоса сверху — видна всегда, сразу при открытии страницы
+// (место под неё отведено отступом body в globals.css). Кнопки «Позвонить»/WhatsApp
+// только здесь: в первом блоке с фото их нет. Чисто презентационный компонент.
 export function StickyBar({ phoneCall, waLink, showHome = false, lang = "ru" }: Props) {
   const t = ui[lang];
   return (
     <div className="stickyBar">
       <div className="stickyBarInner">
         <div className="stickyBrand">
-          <picture>
-            <source type="image/avif" srcSet="/me-avatar.avif" />
-            <source type="image/webp" srcSet="/me-avatar.webp" />
-            <img src="/me-320.jpg" alt="" className="stickyAvatar" width={38} height={38} loading="lazy" decoding="async" />
-          </picture>
           <span className="stickyName">
             <span className="stickyNameFull">Маркабаев Е.Б., адвокат</span>
             <span className="stickyNameShort">Маркабаев Е.Б.</span>
@@ -42,6 +36,11 @@ export function StickyBar({ phoneCall, waLink, showHome = false, lang = "ru" }: 
               <span className="stickyBtnLabel">{t.home}</span>
             </HomeLink>
           )}
+
+          <Link href={FAQ_PATH[lang]} className="btn stickyBtn" aria-label={t.faq}>
+            <span className="stickyBtnIcon" aria-hidden>❓</span>
+            <span className="stickyBtnLabel">{t.faqShort}</span>
+          </Link>
 
           <a href={`tel:${phoneCall}`} className="btn btnPrimary stickyBtn" aria-label={t.call}>
             <span className="stickyBtnIcon" aria-hidden>📞</span>

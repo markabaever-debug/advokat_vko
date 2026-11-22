@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StickyBar } from "@/components/StickyBar";
-import { HeroLeadButtons } from "@/components/HeroLeadButtons";
 import { HeroRating } from "@/components/HeroRating";
 import { DocsGallery } from "@/components/DocsGallery";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
@@ -63,8 +62,6 @@ export default function KzHome() {
             </div>
 
             <HeroRating lang="kk" />
-
-            <HeroLeadButtons phoneCall={phoneCall} waLink={waLink} lang="kk" />
           </div>
 
           <HeroPhoto alt="Адвокат Маркабаев Е.Б." />
@@ -113,6 +110,9 @@ export default function KzHome() {
           </Link>
 
         </div>
+        <p style={{ marginTop: 20 }}>
+          <Link href="/kz/suraqtar-men-zhauaptar" className="faqRelatedAll">❓ Сұрақтар мен жауаптар →</Link>
+        </p>
       </section>
 
       {/* AFTER CONTACT */}
@@ -172,6 +172,10 @@ export default function KzHome() {
         <div style={{ marginTop: 6 }}>
           <Link href="/kz/politika-konfidencialnosti" style={{ textDecoration: "underline" }}>
             Құпиялылық саясаты
+          </Link>
+          {" · "}
+          <Link href="/kz/suraqtar-men-zhauaptar" style={{ textDecoration: "underline" }}>
+            Сұрақтар мен жауаптар
           </Link>
           {" · "}
           <CookieSettingsButton lang="kk" />

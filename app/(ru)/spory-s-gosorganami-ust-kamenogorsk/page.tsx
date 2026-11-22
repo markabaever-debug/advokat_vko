@@ -5,6 +5,7 @@ import { StickyBar } from "@/components/StickyBar";
 import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
+import { FaqRelatedLinks } from "@/components/FaqContent";
 import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 
@@ -87,15 +88,6 @@ export default function SporyGosorganamiPage() {
               <div className="kpi">✅ Споры о пенсиях и выплатах</div>
               <div className="kpi">✅ Споры с акиматами</div>
             </div>
-
-            <div className="ctaRow" style={{ marginTop: 20 }}>
-              <a className="btn btnPrimary" href={`tel:${phoneCall}`}>
-                📞 Позвонить
-              </a>
-              <a className="btn btnWA" href={waLink} target="_blank" rel="noreferrer">
-                💬 WhatsApp
-              </a>
-            </div>
           </div>
 
           <HeroPhoto />
@@ -137,6 +129,7 @@ export default function SporyGosorganamiPage() {
           Ответы на типичные вопросы клиентов
         </p>
         <FaqAccordion items={faq} />
+        <FaqRelatedLinks lang="ru" blocks={[]} />
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>

@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { HeroPhoto } from "@/components/HeroPhoto";
 import { StickyBar } from "@/components/StickyBar";
-import { HeroLeadButtons } from "@/components/HeroLeadButtons";
 import { HeroRating } from "@/components/HeroRating";
 import { DocsGallery } from "@/components/DocsGallery";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
@@ -59,8 +58,6 @@ export default function Home() {
             </div>
 
             <HeroRating />
-
-            <HeroLeadButtons phoneCall={phoneCall} waLink={waLink} />
           </div>
 
           <HeroPhoto alt="Адвокат Маркабаев Е.Б." />
@@ -109,6 +106,9 @@ export default function Home() {
           </Link>
 
         </div>
+        <p style={{ marginTop: 20 }}>
+          <Link href="/voprosy-i-otvety" className="faqRelatedAll">❓ Вопросы и ответы →</Link>
+        </p>
       </section>
 
       {/* AFTER CONTACT */}
@@ -168,6 +168,10 @@ export default function Home() {
         <div style={{ marginTop: 6 }}>
           <Link href="/politika-konfidencialnosti" style={{ textDecoration: "underline" }}>
             Политика конфиденциальности
+          </Link>
+          {" · "}
+          <Link href="/voprosy-i-otvety" style={{ textDecoration: "underline" }}>
+            Вопросы и ответы
           </Link>
           {" · "}
           <CookieSettingsButton />

@@ -45,6 +45,12 @@ const pairs: Pair[] = [
     priority: 0.5,
   },
   {
+    ru: "/voprosy-i-otvety",
+    kz: "/kz/suraqtar-men-zhauaptar",
+    changeFrequency: "monthly",
+    priority: 0.8,
+  },
+  {
     ru: "/politika-konfidencialnosti",
     kz: "/kz/politika-konfidencialnosti",
     changeFrequency: "yearly",
