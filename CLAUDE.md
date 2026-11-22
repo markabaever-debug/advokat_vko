@@ -19,3 +19,9 @@ Next.js (App Router), хостинг Vercel. Основной адрес: https:
 - `GOOGLE_SITE_VERIFICATION` — Google Search Console.
 - `BING_SITE_VERIFICATION` — Bing Webmaster Tools (`msvalidate.01`).
 - `YANDEX_SITE_VERIFICATION` — Яндекс.Вебмастер; пока не задана, выводится прежний код `f3983c7d853b2b3d`.
+
+## IndexNow (Bing, Яндекс и др.)
+- Ключ: `f6d9279bbf85373fe0cdf2b7f7afa968` (не секретный). Файл ключа — `public/f6d9279bbf85373fe0cdf2b7f7afa968.txt`, сайт отдаёт его из корня; переменная `INDEXNOW_KEY` — в GitHub (Settings → Secrets and variables → Actions → Variables). Ключ в файле и в переменной должен совпадать.
+- После каждой успешной публикации на Vercel (Production) GitHub Actions (`.github/workflows/indexnow.yml`) запускает `scripts/indexnow.mjs`: проверяет файл ключа на сайте, берёт все адреса из `sitemap.xml` и отправляет их в `api.indexnow.org`. Превью веток не отправляются.
+- Вручную: Actions → IndexNow → Run workflow, или локально `INDEXNOW_KEY=… node scripts/indexnow.mjs` (`--dry-run` — только показать адреса).
+- Новые страницы попадают в отправку сами — достаточно добавить их в `app/sitemap.ts`.
