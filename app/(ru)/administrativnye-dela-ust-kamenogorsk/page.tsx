@@ -138,7 +138,7 @@ export default function AdministrativnyeDelaPage() {
           Ответы на типичные вопросы клиентов
         </p>
         <FaqAccordion items={faq} />
-        <FaqRelatedLinks lang="ru" blocks={[2]} />
+        <FaqRelatedLinks lang="ru" blocks={[2, 4]} />
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>

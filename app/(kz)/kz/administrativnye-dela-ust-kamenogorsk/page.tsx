@@ -150,7 +150,7 @@ export default function KzAdministrativnyeDelaPage() {
           Клиенттердің тұрақты сұрақтарына жауаптар
         </p>
         <FaqAccordion items={faq} />
-        <FaqRelatedLinks lang="kk" blocks={[2]} />
+        <FaqRelatedLinks lang="kk" blocks={[2, 4]} />
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>
