@@ -26,10 +26,27 @@ export const baseMetadata: Metadata = {
     description: "Уголовные, гражданские и административные дела. Усть-Каменогорск (ВКО).",
     images: ["/og.jpg"],
   },
-  verification: {
-    yandex: "f3983c7d853b2b3d",
-  },
+  verification: siteVerification(),
 };
+
+// Метатеги подтверждения прав на сайт — из переменных окружения Vercel (Settings →
+// Environment Variables), читаются при сборке; после изменения нужен новый деплой.
+// Пустая переменная — тег не выводится.
+//   GOOGLE_SITE_VERIFICATION — Google Search Console (<meta name="google-site-verification">)
+//   BING_SITE_VERIFICATION   — Bing Webmaster Tools (<meta name="msvalidate.01">)
+//   YANDEX_SITE_VERIFICATION — Яндекс.Вебмастер (<meta name="yandex-verification">);
+//     пока не задана — прежний код, которым сайт уже подтверждён в Яндексе.
+function siteVerification(): Metadata["verification"] {
+  const YANDEX_CURRENT = "f3983c7d853b2b3d";
+  const env = (name: string) => process.env[name]?.trim() || undefined;
+  const google = env("GOOGLE_SITE_VERIFICATION");
+  const bing = env("BING_SITE_VERIFICATION");
+  return {
+    ...(google && { google }),
+    yandex: env("YANDEX_SITE_VERIFICATION") ?? YANDEX_CURRENT,
+    ...(bing && { other: { "msvalidate.01": bing } }),
+  };
+}
 
 // Казахская база (корневой layout /kz): те же данные, но og:locale = kk_KZ и
 // казахские тексты Open Graph / Twitter. Так превью казахских страниц при пересылке
