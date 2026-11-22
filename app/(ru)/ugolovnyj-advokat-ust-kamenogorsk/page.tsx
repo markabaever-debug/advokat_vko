@@ -6,6 +6,7 @@ import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
 import { MemoButton } from "@/components/MemoButton";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
+import { FaqRelatedLinks } from "@/components/FaqContent";
 import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 
@@ -137,6 +138,7 @@ export default function UgolovnyAdvokatPage() {
           Ответы на типичные вопросы клиентов
         </p>
         <FaqAccordion items={faq} />
+        <FaqRelatedLinks lang="ru" blocks={[1]} />
       </section>
 
       {/* LICENSE */}

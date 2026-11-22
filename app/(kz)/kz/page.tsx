@@ -113,6 +113,9 @@ export default function KzHome() {
           </Link>
 
         </div>
+        <p style={{ marginTop: 20 }}>
+          <Link href="/kz/suraqtar-men-zhauaptar" className="faqRelatedAll">❓ Сұрақтар мен жауаптар →</Link>
+        </p>
       </section>
 
       {/* AFTER CONTACT */}
@@ -172,6 +175,10 @@ export default function KzHome() {
         <div style={{ marginTop: 6 }}>
           <Link href="/kz/politika-konfidencialnosti" style={{ textDecoration: "underline" }}>
             Құпиялылық саясаты
+          </Link>
+          {" · "}
+          <Link href="/kz/suraqtar-men-zhauaptar" style={{ textDecoration: "underline" }}>
+            Сұрақтар мен жауаптар
           </Link>
           {" · "}
           <CookieSettingsButton lang="kk" />

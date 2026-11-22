@@ -109,6 +109,9 @@ export default function Home() {
           </Link>
 
         </div>
+        <p style={{ marginTop: 20 }}>
+          <Link href="/voprosy-i-otvety" className="faqRelatedAll">❓ Вопросы и ответы →</Link>
+        </p>
       </section>
 
       {/* AFTER CONTACT */}
@@ -168,6 +171,10 @@ export default function Home() {
         <div style={{ marginTop: 6 }}>
           <Link href="/politika-konfidencialnosti" style={{ textDecoration: "underline" }}>
             Политика конфиденциальности
+          </Link>
+          {" · "}
+          <Link href="/voprosy-i-otvety" style={{ textDecoration: "underline" }}>
+            Вопросы и ответы
           </Link>
           {" · "}
           <CookieSettingsButton />

@@ -1410,3 +1410,138 @@ footer a {
 .translatePendingRu {
   opacity: 0.85;
 }
+
+/* ===== ВОПРОСЫ И ОТВЕТЫ (раздел /voprosy-i-otvety, /kz/suraqtar-men-zhauaptar) ===== */
+
+.faqToc {
+  margin-top: 20px;
+}
+
+.faqTocBlocks {
+  margin: 14px 0 0 0;
+  padding-left: 22px;
+  line-height: 1.6;
+}
+
+.faqTocBlocks > li {
+  margin-top: 12px;
+}
+
+.faqTocBlock {
+  font-weight: 600;
+}
+
+.faqTocQuestions {
+  margin: 6px 0 0 0;
+  padding-left: 18px;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.faqTocQuestions li {
+  margin-top: 4px;
+}
+
+.faqToc a:hover,
+.faqRelated a:hover,
+.faqTop:hover {
+  text-decoration: underline;
+}
+
+/* Строка с автором, источниками норм и датой проверки — мелко, под заголовком блока */
+.faqSources {
+  margin-top: 10px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  opacity: 0.65;
+}
+
+.faqSources ul {
+  margin: 4px 0 0 0;
+  padding-left: 18px;
+}
+
+.faqQuestion {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.faqH3 {
+  font-size: 19px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.faqAnchor:hover {
+  text-decoration: underline;
+}
+
+.faqH4 {
+  font-size: 16px;
+  margin: 18px 0 0 0;
+}
+
+.faqP {
+  margin: 12px 0 0 0;
+  line-height: 1.7;
+}
+
+.faqList2 {
+  margin: 10px 0 0 0;
+  padding-left: 22px;
+  line-height: 1.7;
+}
+
+.faqList2 li {
+  margin-top: 6px;
+}
+
+.faqClosing {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 13.5px;
+  opacity: 0.75;
+}
+
+.faqTop {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.faqRelated {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.faqRelatedTitle {
+  font-size: 16px;
+  margin: 0;
+}
+
+.faqRelated ul {
+  margin: 10px 0 0 0;
+  padding-left: 20px;
+  line-height: 1.7;
+}
+
+.faqRelated li a {
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,0.35);
+}
+
+.faqRelatedAll {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .faqH3 {
+    font-size: 17px;
+  }
+}

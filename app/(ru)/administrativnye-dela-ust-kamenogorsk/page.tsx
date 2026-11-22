@@ -5,6 +5,7 @@ import { StickyBar } from "@/components/StickyBar";
 import { LangSwitch } from "@/components/LangSwitch";
 import { HomeLink } from "@/components/HomeLink";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
+import { FaqRelatedLinks } from "@/components/FaqContent";
 import { ServiceJsonLd } from "@/components/ServiceJsonLd";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 
@@ -137,6 +138,7 @@ export default function AdministrativnyeDelaPage() {
           Ответы на типичные вопросы клиентов
         </p>
         <FaqAccordion items={faq} />
+        <FaqRelatedLinks lang="ru" blocks={[2]} />
       </section>
 
       <footer style={{ marginTop: 40, opacity: 0.6, fontSize: 13 }}>

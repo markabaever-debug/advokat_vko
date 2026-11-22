@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { LangSwitch } from "@/components/LangSwitch";
+import { FAQ_PATH } from "@/lib/faqPaths";
 import { HomeLink } from "@/components/HomeLink";
 import { ui, type Lang } from "@/lib/i18n";
 
@@ -42,6 +44,11 @@ export function StickyBar({ phoneCall, waLink, showHome = false, lang = "ru" }: 
               <span className="stickyBtnLabel">{t.home}</span>
             </HomeLink>
           )}
+
+          <Link href={FAQ_PATH[lang]} className="btn stickyBtn" aria-label={t.faq}>
+            <span className="stickyBtnIcon" aria-hidden>❓</span>
+            <span className="stickyBtnLabel">{t.faqShort}</span>
+          </Link>
 
           <a href={`tel:${phoneCall}`} className="btn btnPrimary stickyBtn" aria-label={t.call}>
             <span className="stickyBtnIcon" aria-hidden>📞</span>
