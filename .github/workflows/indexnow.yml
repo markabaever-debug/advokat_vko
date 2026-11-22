@@ -1,0 +1,30 @@
+# После каждой успешной публикации на Vercel (окружение Production) — отправка всех адресов
+# из sitemap.xml в IndexNow. Превью-деплои веток не отправляются. Можно запустить и вручную
+# (Actions → IndexNow → Run workflow). Ключ — переменная репозитория INDEXNOW_KEY
+# (Settings → Secrets and variables → Actions → Variables), тот же, что в public/<ключ>.txt.
+name: IndexNow
+
+on:
+  deployment_status:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  indexnow:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Отправка адресов в IndexNow
+        env:
+          INDEXNOW_KEY: ${{ vars.INDEXNOW_KEY }}
+        run: node scripts/indexnow.mjs
